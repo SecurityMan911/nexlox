@@ -1230,6 +1230,59 @@ footer strong { color: var(--gold); font-weight: 600; }
 }
 #backToTop.visible { opacity: 1; pointer-events: auto; }
 #backToTop:hover { background: rgba(201,168,76,0.28); transform: translateY(-2px); }
+
+/* ─── THREAT TICKER ─── */
+.threat-ticker {
+  position: relative; z-index: 19;
+  background: rgba(5,12,22,0.97);
+  border-bottom: 1px solid rgba(232,64,64,0.18);
+  overflow: hidden;
+  height: 38px;
+  display: flex; align-items: stretch;
+}
+.ticker-badge {
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 16px;
+  background: rgba(232,64,64,0.1);
+  border-right: 1px solid rgba(232,64,64,0.22);
+  font-size: 0.63rem; font-weight: 800;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  color: var(--red-2); white-space: nowrap;
+}
+.ticker-pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red-2);
+  animation: livePulse 2s ease infinite;
+  flex-shrink: 0;
+}
+.ticker-track {
+  flex: 1; overflow: hidden;
+  display: flex; align-items: center;
+}
+.ticker-content {
+  display: inline-flex; align-items: center;
+  white-space: nowrap;
+  animation: tickerScroll 60s linear infinite;
+  padding-left: 60px;
+}
+.ticker-content:hover { animation-play-state: paused; }
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: inline-flex; align-items: center;
+  font-size: 0.73rem; color: var(--white); line-height: 1;
+}
+.ticker-lbl {
+  font-weight: 700; color: var(--gold); margin-right: 9px; flex-shrink: 0;
+}
+.ticker-div {
+  color: rgba(201,168,76,0.3);
+  margin: 0 36px;
+  font-size: 0.5rem;
+}
 </style>
 </head>
 <body>
@@ -1273,6 +1326,17 @@ footer strong { color: var(--gold); font-weight: 600; }
     </div>
   </div>
 </header>
+
+<!-- ════ THREAT TICKER ════ -->
+<div class="threat-ticker">
+  <div class="ticker-badge">
+    <span class="ticker-pulse"></span>
+    <span id="tickerLabel">ALERT</span>
+  </div>
+  <div class="ticker-track">
+    <div class="ticker-content" id="tickerContent"></div>
+  </div>
+</div>
 
 <!-- ════════════════════════════════
      MAIN
@@ -2530,6 +2594,36 @@ footer strong { color: var(--gold); font-weight: 600; }
      JAVASCRIPT
 ════════════════════════════════ -->
 <script>
+/* ─── SEASONAL ALERT TICKER ─── */
+const SEASONAL_ALERTS = [
+  { month: 0,  label: 'JAN ALERT', head: 'Tax Identity Theft Season',        text: 'Scammers file fraudulent returns in your name before you do. File early and set up an IRS Identity Protection PIN at irs.gov.' },
+  { month: 1,  label: 'FEB ALERT', head: 'Romance Scam Season',              text: 'Romance scams cost Americans $1.14 billion in 2023. Scammers spike on dating apps around Valentine\'s Day — they always eventually ask for gift cards or a wire transfer.' },
+  { month: 2,  label: 'MAR ALERT', head: 'IRS Impersonation Peak',           text: 'Fake IRS calls threatening arrest over "back taxes" peak in March. The real IRS never calls, texts, or emails first — they send a letter. Call 1-800-829-1040 to verify.' },
+  { month: 3,  label: 'APR ALERT', head: 'Tax Deadline Pressure Scams',      text: '"Your return was rejected" and "you owe a penalty" messages are scams. The IRS will never notify you by email or text. Go directly to irs.gov — never through a link you were sent.' },
+  { month: 4,  label: 'MAY ALERT', head: 'Contractor Scam Season',           text: 'Unlicensed crews go door-to-door claiming they noticed damage on your roof or driveway. The FTC received 81,925 home improvement scam reports in 2024. Verify any contractor at sos.ga.gov before paying anything.' },
+  { month: 5,  label: 'JUN ALERT', head: 'Vacation Rental Scam Season',      text: 'Fake Airbnb and Vrbo listings surge with summer travel. If a host asks you to pay via Zelle or Venmo to "avoid fees" — it\'s a scam. Only pay through the official booking platform.' },
+  { month: 6,  label: 'JUL ALERT', head: 'Investment & Crypto Scam Peak',    text: 'Investment fraud was the #1 loss category in 2024 at $6.6 billion (FBI). Summer social media exposure drives crypto scams. If someone you met online introduces an investment — stop and verify first.' },
+  { month: 7,  label: 'AUG ALERT', head: 'Back-to-School Scam Season',       text: 'Fake scholarships, phony laptop deals, and student loan forgiveness programs surge in August. Federal student aid is always free — apply only at studentaid.gov.' },
+  { month: 8,  label: 'SEP ALERT', head: 'Disaster & Utility Scam Season',   text: 'Hurricane season peaks in September. After any storm, fake FEMA reps and charity collectors appear. FEMA never charges fees. Your utility company will never demand gift card payment.' },
+  { month: 9,  label: 'OCT ALERT', head: 'Medicare Open Enrollment Scams',   text: 'Oct 15 – Dec 7 is peak season for fake Medicare plan calls. The FTC logged 45,000+ Medicare fraud complaints during the 2024 enrollment period. Never give your Medicare number to an inbound caller.' },
+  { month: 10, label: 'NOV ALERT', head: 'Package Delivery & Holiday Scams', text: '56% of consumers received fraudulent shipping texts in 2024. Fake USPS, FedEx, and UPS texts steal your payment details. Never click a shipping link — go directly to the carrier\'s website.' },
+  { month: 11, label: 'DEC ALERT', head: 'Gift Card & Charity Fraud Season', text: 'Gift card scams and fake charities peak in December. No government agency, employer, or charity will ever ask you to pay with gift cards over the phone. Verify charities at give.org.' },
+];
+
+function initTicker() {
+  const al = SEASONAL_ALERTS[new Date().getMonth()];
+  document.getElementById('tickerLabel').textContent = al.label;
+  const wrap = document.getElementById('tickerContent');
+  const make = () => {
+    const s = document.createElement('span');
+    s.className = 'ticker-item';
+    s.innerHTML = '<span class="ticker-lbl">⚠ ' + al.head + '</span>' + al.text + '<span class="ticker-div">◆</span>';
+    return s;
+  };
+  wrap.appendChild(make());
+  wrap.appendChild(make());
+}
+
 function togglePrivacy() {
   const card = document.getElementById('privacyCard');
   const panel = document.getElementById('privacyPanel');
@@ -3866,6 +3960,7 @@ function wbLaunch() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  initTicker();
   buildCatPills();
   if (!localStorage.getItem('nexlox_welcomed')) {
     document.getElementById('welcomeBanner').style.display = 'block';
