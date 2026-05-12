@@ -1315,7 +1315,7 @@ footer strong { color: var(--gold); font-weight: 600; }
       </div>
     </div>
     <div class="header-right" style="display:flex; align-items:center; gap:10px;">
-      <button id="fontToggle" onclick="toggleFontSize()" aria-label="Toggle large text">A+</button>
+      <button id="fontToggle" onclick="toggleFontSize()" aria-label="Toggle large text">Bigger Text</button>
       <div class="live-clock" id="liveClock">--</div>
       <div class="live-badge">
         <div class="live-dot"></div>
@@ -2743,7 +2743,7 @@ function rtab(id, el) {
 function toggleFontSize() {
   const large = document.documentElement.classList.toggle('large-text');
   const btn = document.getElementById('fontToggle');
-  if (btn) { btn.textContent = large ? 'A−' : 'A+'; btn.classList.toggle('active', large); }
+  if (btn) { btn.textContent = large ? 'Smaller Text' : 'Bigger Text'; btn.classList.toggle('active', large); }
   localStorage.setItem('nexlox_largetext', large ? '1' : '');
 }
 
@@ -4002,7 +4002,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (localStorage.getItem('nexlox_largetext')) {
     document.documentElement.classList.add('large-text');
     const btn = document.getElementById('fontToggle');
-    if (btn) { btn.textContent = 'A−'; btn.classList.add('active'); }
+    if (btn) { btn.textContent = 'Smaller Text'; btn.classList.add('active'); }
   }
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-wrap')) {
