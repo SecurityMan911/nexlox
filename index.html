@@ -1231,6 +1231,21 @@ footer strong { color: var(--gold); font-weight: 600; }
 #backToTop.visible { opacity: 1; pointer-events: auto; }
 #backToTop:hover { background: rgba(201,168,76,0.28); transform: translateY(-2px); }
 
+/* ─── LIVE CLOCK ─── */
+.live-clock {
+  display: flex; align-items: center;
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 0.71rem; font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  padding: 5px 11px;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 6px;
+}
+@media (max-width: 600px) { .live-clock { display: none; } }
+
 /* ─── THREAT TICKER ─── */
 .threat-ticker {
   position: relative; z-index: 19;
@@ -1301,6 +1316,7 @@ footer strong { color: var(--gold); font-weight: 600; }
     </div>
     <div class="header-right" style="display:flex; align-items:center; gap:10px;">
       <button id="fontToggle" onclick="toggleFontSize()" aria-label="Toggle large text">A+</button>
+      <div class="live-clock" id="liveClock">--</div>
       <div class="live-badge">
         <div class="live-dot"></div>
         SHIELD ACTIVE
@@ -2594,6 +2610,23 @@ footer strong { color: var(--gold); font-weight: 600; }
      JAVASCRIPT
 ════════════════════════════════ -->
 <script>
+/* ─── LIVE CLOCK ─── */
+const _DAYS  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const _MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function startClock() {
+  const el = document.getElementById('liveClock');
+  function tick() {
+    const n = new Date();
+    let h = n.getHours(), ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    const m = String(n.getMinutes()).padStart(2,'0');
+    const s = String(n.getSeconds()).padStart(2,'0');
+    el.textContent = _DAYS[n.getDay()] + ' ' + _MONTHS[n.getMonth()] + ' ' + n.getDate() + '  ·  ' + h + ':' + m + ':' + s + ' ' + ampm;
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
 /* ─── SEASONAL ALERT TICKER ─── */
 const SEASONAL_ALERTS = [
   { month: 0,  label: 'JAN ALERT', head: 'Tax Identity Theft Season',        text: 'Scammers file fraudulent returns in your name before you do. File early and set up an IRS Identity Protection PIN at irs.gov.' },
@@ -3960,6 +3993,7 @@ function wbLaunch() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  startClock();
   initTicker();
   buildCatPills();
   if (!localStorage.getItem('nexlox_welcomed')) {
