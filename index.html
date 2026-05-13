@@ -1250,7 +1250,7 @@ footer strong { color: var(--gold); font-weight: 600; }
 .radar-left-stats {
   display: flex; flex-direction: column; justify-content: space-evenly;
   padding: 24px 28px; border-right: 1px solid var(--border);
-  width: 210px; flex-shrink: 0; text-align: center;
+  flex: 1; text-align: center;
 }
 .radar-stat-v { display: flex; flex-direction: column; gap: 4px; }
 .rs-val {
@@ -1260,7 +1260,7 @@ footer strong { color: var(--gold); font-weight: 600; }
 .rs-key { font-size: 0.68rem; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.9px; }
 .radar-map-wrap {
   flex: 1; display: flex; justify-content: center; align-items: center;
-  padding: 18px 12px;
+  padding: 18px 12px; border-right: 1px solid var(--border);
 }
 .radar-map { width: 240px; height: auto; }
 .ga-outline {
@@ -1294,8 +1294,8 @@ footer strong { color: var(--gold); font-weight: 600; }
 .map-lbl-red  { font-size:5px; fill:rgba(232,64,64,0.8); font-family:'Courier New',monospace; font-weight:700; }
 .radar-right-panel {
   display: flex; flex-direction: column; justify-content: center; align-items: center;
-  padding: 24px 28px; border-left: 1px solid var(--border);
-  width: 210px; flex-shrink: 0; text-align: center; gap: 6px;
+  padding: 24px 28px;
+  flex: 1; text-align: center; gap: 6px;
   font-family: 'Courier New', Consolas, monospace;
 }
 .rr-time {
