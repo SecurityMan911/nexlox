@@ -1249,15 +1249,15 @@ footer strong { color: var(--gold); font-weight: 600; }
 }
 .radar-left-stats {
   display: flex; flex-direction: column; justify-content: space-evenly;
-  padding: 20px 18px; border-right: 1px solid var(--border);
-  min-width: 140px; text-align: center;
+  padding: 24px 28px; border-right: 1px solid var(--border);
+  width: 210px; flex-shrink: 0; text-align: center;
 }
 .radar-stat-v { display: flex; flex-direction: column; gap: 4px; }
 .rs-val {
-  font-size: 1.5rem; font-weight: 800; line-height: 1;
+  font-size: 1.8rem; font-weight: 800; line-height: 1;
   color: var(--gold); font-family: 'Courier New', monospace; display: block;
 }
-.rs-key { font-size: 0.55rem; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.9px; }
+.rs-key { font-size: 0.68rem; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.9px; }
 .radar-map-wrap {
   flex: 1; display: flex; justify-content: center; align-items: center;
   padding: 18px 12px;
@@ -1294,26 +1294,26 @@ footer strong { color: var(--gold); font-weight: 600; }
 .map-lbl-red  { font-size:5px; fill:rgba(232,64,64,0.8); font-family:'Courier New',monospace; font-weight:700; }
 .radar-right-panel {
   display: flex; flex-direction: column; justify-content: center; align-items: center;
-  padding: 20px 18px; border-left: 1px solid var(--border);
-  min-width: 160px; text-align: center; gap: 5px;
+  padding: 24px 28px; border-left: 1px solid var(--border);
+  width: 210px; flex-shrink: 0; text-align: center; gap: 6px;
   font-family: 'Courier New', Consolas, monospace;
 }
 .rr-time {
-  font-size: 1.7rem; font-weight: 800; color: var(--gold);
-  letter-spacing: 3px; line-height: 1;
+  font-size: 1.55rem; font-weight: 800; color: var(--gold);
+  letter-spacing: 2px; line-height: 1;
   text-shadow: 0 0 18px rgba(201,168,76,0.45);
 }
 .rr-date {
-  font-size: 0.58rem; color: rgba(201,168,76,0.75);
-  letter-spacing: 1.8px; text-transform: uppercase;
+  font-size: 0.68rem; color: rgba(201,168,76,0.75);
+  letter-spacing: 1.5px; text-transform: uppercase;
 }
 .rr-tz {
-  font-size: 0.5rem; color: var(--muted-2);
+  font-size: 0.6rem; color: var(--muted-2);
   letter-spacing: 2.5px; text-transform: uppercase;
 }
-.rr-divider { width: 55%; height: 1px; background: var(--border); margin: 6px 0; }
-.rr-label { font-size: 0.46rem; color: var(--muted-2); letter-spacing: 1.8px; text-transform: uppercase; }
-.rr-val   { font-size: 0.82rem; color: var(--gold); font-weight: 700; letter-spacing: 1px; }
+.rr-divider { width: 70%; height: 1px; background: var(--border); margin: 7px 0; }
+.rr-label { font-size: 0.58rem; color: var(--muted-2); letter-spacing: 1.8px; text-transform: uppercase; }
+.rr-val   { font-size: 1rem; color: var(--gold); font-weight: 700; letter-spacing: 1px; }
 @media (max-width:700px) {
   .radar-inner { flex-direction: column; }
   .radar-left-stats { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--border); min-width: unset; padding: 14px; }
@@ -2824,10 +2824,13 @@ function startClock() {
   let tzSet = false;
   function tick() {
     const n = new Date();
-    const h = String(n.getHours()).padStart(2,'0');
+    let hr = n.getHours();
+    const ampm = hr >= 12 ? 'PM' : 'AM';
+    hr = hr % 12 || 12;
+    const h = String(hr).padStart(2,'0');
     const m = String(n.getMinutes()).padStart(2,'0');
     const s = String(n.getSeconds()).padStart(2,'0');
-    timeEl.textContent = h + ':' + m + ':' + s;
+    timeEl.textContent = h + ':' + m + ':' + s + ' ' + ampm;
     dateEl.textContent = _DAYS[n.getDay()].toUpperCase() + ' · ' + String(n.getDate()).padStart(2,'0') + ' ' + _MONTHS[n.getMonth()].toUpperCase() + ' ' + n.getFullYear();
     if (!tzSet) {
       tzEl.textContent = n.toLocaleTimeString('en-US',{timeZoneName:'short'}).split(' ').pop();
