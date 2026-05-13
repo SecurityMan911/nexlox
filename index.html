@@ -1306,7 +1306,18 @@ footer strong { color: var(--gold); font-weight: 600; }
   100% { opacity:0; transform:scale(3); }
 }
 .map-lbl-gold { font-size:5.5px; fill:rgba(201,168,76,0.65); font-family:'Courier New',monospace; font-weight:700; letter-spacing:0.5px; }
-.map-lbl-red  { font-size:4.5px; fill:rgba(232,64,64,0.55);  font-family:'Courier New',monospace; font-weight:700; letter-spacing:0.3px; }
+.map-lbl-red  { font-size:4.5px; fill:rgba(232,64,64,0.7);   font-family:'Courier New',monospace; font-weight:700; letter-spacing:0.3px; }
+.radar-communities { margin-bottom: 18px; }
+.rc-label { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted-2); margin-bottom:8px; }
+.rc-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.rc-tag {
+  padding:3px 9px; border-radius:4px; font-size:0.65rem; font-weight:600;
+  background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.18);
+  color:var(--muted); letter-spacing:0.3px;
+}
+.rc-tag-primary { background:rgba(201,168,76,0.14); border-color:rgba(201,168,76,0.3); color:var(--gold); }
+.rc-tag-expand  { background:rgba(46,201,122,0.08); border-color:rgba(46,201,122,0.2); color:var(--green); font-style:italic; }
+.radar-map { width:175px; height:192px; }
 @media (max-width:700px) { .radar-right { display:none; } }
 @media (max-width:500px) { .radar-section { padding:18px; } .radar-stats { gap:16px; } }
 
@@ -1500,19 +1511,28 @@ footer strong { color: var(--gold); font-weight: 600; }
   <div class="radar-section">
     <div class="radar-left">
       <div class="radar-label">⬡ NEXLOX THREAT RADAR</div>
-      <div class="radar-sub">Atlanta Metro &amp; Gwinnett County · Continuous Monitoring</div>
+      <div class="radar-sub">Gwinnett County &amp; Greater Georgia · Continuous Monitoring</div>
       <div class="radar-stats">
         <div class="radar-stat">
           <span class="rs-val">28</span>
-          <span class="rs-key">Threat Types Tracked</span>
+          <span class="rs-key">Scam Types Covered</span>
         </div>
         <div class="radar-stat">
-          <span class="rs-val rs-red">5</span>
-          <span class="rs-key">Active Zones</span>
+          <span class="rs-val">1</span>
+          <span class="rs-key">County Protected</span>
         </div>
-        <div class="radar-stat">
-          <span class="rs-val">24/7</span>
-          <span class="rs-key">Shield Coverage</span>
+      </div>
+      <div class="radar-communities">
+        <div class="rc-label">Communities Served</div>
+        <div class="rc-tags">
+          <span class="rc-tag rc-tag-primary">Snellville</span>
+          <span class="rc-tag">Lawrenceville</span>
+          <span class="rc-tag">Duluth</span>
+          <span class="rc-tag">Norcross</span>
+          <span class="rc-tag">Suwanee</span>
+          <span class="rc-tag">Buford</span>
+          <span class="rc-tag">Lilburn</span>
+          <span class="rc-tag rc-tag-expand">+ Expanding</span>
         </div>
       </div>
       <div class="radar-status">
@@ -1521,34 +1541,45 @@ footer strong { color: var(--gold); font-weight: 600; }
     </div>
     <div class="radar-right">
       <svg class="radar-map" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-        <!-- Range rings centered on Atlanta -->
-        <circle class="radar-ring" cx="75" cy="82" r="22"/>
-        <circle class="radar-ring" cx="75" cy="82" r="40"/>
-        <circle class="radar-ring" cx="75" cy="82" r="58"/>
-        <!-- Georgia state outline (simplified) -->
+        <!-- Georgia state outline -->
         <path class="ga-outline" d="M30,18 L148,18 L152,22 L158,30 L168,42 L172,62 L175,92 L170,128 L160,152 L148,168 L135,178 L112,185 L92,182 L78,172 L65,158 L50,142 L38,125 L25,108 L18,82 L18,58 L22,40 Z"/>
         <!-- Crosshair at Atlanta -->
-        <line class="crosshair" x1="75" y1="73" x2="75" y2="91"/>
-        <line class="crosshair" x1="66" y1="82" x2="84" y2="82"/>
-        <!-- Gwinnett County -->
-        <circle class="radar-ripple" cx="93" cy="67" r="5" style="animation-delay:0s"/>
-        <circle class="radar-dot"    cx="93" cy="67" r="3" style="animation-delay:0s"/>
-        <!-- Atlanta core -->
-        <circle class="radar-ripple" cx="72" cy="80" r="5" style="animation-delay:1.1s"/>
-        <circle class="radar-dot"    cx="72" cy="80" r="3" style="animation-delay:1.1s"/>
-        <!-- Marietta / Cobb -->
-        <circle class="radar-ripple" cx="59" cy="72" r="5" style="animation-delay:2.3s"/>
-        <circle class="radar-dot"    cx="59" cy="72" r="3" style="animation-delay:2.3s"/>
-        <!-- Decatur / DeKalb -->
-        <circle class="radar-ripple" cx="84" cy="79" r="5" style="animation-delay:0.6s"/>
-        <circle class="radar-dot"    cx="84" cy="79" r="3" style="animation-delay:0.6s"/>
-        <!-- South metro / Henry -->
-        <circle class="radar-ripple" cx="76" cy="96" r="5" style="animation-delay:1.8s"/>
-        <circle class="radar-dot"    cx="76" cy="96" r="3" style="animation-delay:1.8s"/>
+        <line class="crosshair" x1="72" y1="73" x2="72" y2="89"/>
+        <line class="crosshair" x1="64" y1="81" x2="80" y2="81"/>
+        <!-- Atlanta / Fulton -->
+        <circle class="radar-ripple" cx="72" cy="81" r="5" style="animation-delay:0s"/>
+        <circle class="radar-dot"    cx="72" cy="81" r="3" style="animation-delay:0s"/>
+        <!-- Gwinnett (Lawrenceville) — PRIMARY, slightly larger -->
+        <circle class="radar-ripple" cx="93" cy="67" r="6" style="animation-delay:0.5s"/>
+        <circle class="radar-dot"    cx="93" cy="67" r="4" style="animation-delay:0.5s"/>
+        <!-- Cobb / Marietta -->
+        <circle class="radar-ripple" cx="58" cy="72" r="5" style="animation-delay:1.2s"/>
+        <circle class="radar-dot"    cx="58" cy="72" r="3" style="animation-delay:1.2s"/>
+        <!-- Athens / Clarke -->
+        <circle class="radar-ripple" cx="118" cy="65" r="5" style="animation-delay:2.0s"/>
+        <circle class="radar-dot"    cx="118" cy="65" r="3" style="animation-delay:2.0s"/>
+        <!-- Augusta / Richmond -->
+        <circle class="radar-ripple" cx="158" cy="88" r="5" style="animation-delay:0.8s"/>
+        <circle class="radar-dot"    cx="158" cy="88" r="3" style="animation-delay:0.8s"/>
+        <!-- Macon / Bibb -->
+        <circle class="radar-ripple" cx="105" cy="120" r="5" style="animation-delay:1.6s"/>
+        <circle class="radar-dot"    cx="105" cy="120" r="3" style="animation-delay:1.6s"/>
+        <!-- Columbus / Muscogee -->
+        <circle class="radar-ripple" cx="42" cy="132" r="5" style="animation-delay:2.4s"/>
+        <circle class="radar-dot"    cx="42" cy="132" r="3" style="animation-delay:2.4s"/>
+        <!-- Savannah / Chatham -->
+        <circle class="radar-ripple" cx="152" cy="155" r="5" style="animation-delay:1.0s"/>
+        <circle class="radar-dot"    cx="152" cy="155" r="3" style="animation-delay:1.0s"/>
+        <!-- Gainesville / Hall -->
+        <circle class="radar-ripple" cx="100" cy="52" r="5" style="animation-delay:2.8s"/>
+        <circle class="radar-dot"    cx="100" cy="52" r="3" style="animation-delay:2.8s"/>
         <!-- Labels -->
-        <text class="map-lbl-gold" x="60" y="77">ATL</text>
-        <text class="map-lbl-red"  x="95" y="64">GWINNETT</text>
-        <text class="map-lbl-gold" x="108" y="215">GEORGIA</text>
+        <text class="map-lbl-gold" x="56" y="78">ATL</text>
+        <text class="map-lbl-red"  x="96" y="63">GWINNETT</text>
+        <text class="map-lbl-gold" x="138" y="86">AUGUSTA</text>
+        <text class="map-lbl-gold" x="120" y="119">MACON</text>
+        <text class="map-lbl-gold" x="136" y="152">SAVANNAH</text>
+        <text class="map-lbl-gold" x="85" y="215">GEORGIA</text>
       </svg>
     </div>
   </div>
