@@ -1243,12 +1243,26 @@ footer strong { color: var(--gold); font-weight: 600; }
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(ellipse 60% 50% at 50% 45%, rgba(232,64,64,0.05) 0%, transparent 70%);
 }
-.radar-map-wrap {
-  display: flex; justify-content: center;
-  padding: 22px 20px 10px;
+.radar-inner {
+  display: flex; align-items: stretch; min-height: 280px;
   position: relative; z-index: 1;
 }
-.radar-map { width: 260px; height: auto; }
+.radar-left-stats {
+  display: flex; flex-direction: column; justify-content: space-evenly;
+  padding: 20px 18px; border-right: 1px solid var(--border);
+  min-width: 140px; text-align: center;
+}
+.radar-stat-v { display: flex; flex-direction: column; gap: 4px; }
+.rs-val {
+  font-size: 1.5rem; font-weight: 800; line-height: 1;
+  color: var(--gold); font-family: 'Courier New', monospace; display: block;
+}
+.rs-key { font-size: 0.55rem; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.9px; }
+.radar-map-wrap {
+  flex: 1; display: flex; justify-content: center; align-items: center;
+  padding: 18px 12px;
+}
+.radar-map { width: 240px; height: auto; }
 .ga-outline {
   fill: rgba(201,168,76,0.05);
   stroke: rgba(201,168,76,0.38);
@@ -1278,24 +1292,36 @@ footer strong { color: var(--gold); font-weight: 600; }
 }
 .map-lbl-gold { font-size:5px; fill:rgba(201,168,76,0.6); font-family:'Courier New',monospace; font-weight:700; }
 .map-lbl-red  { font-size:5px; fill:rgba(232,64,64,0.8); font-family:'Courier New',monospace; font-weight:700; }
-.radar-stats {
-  display: flex;
-  border-top: 1px solid var(--border);
-  position: relative; z-index: 1;
+.radar-right-panel {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 20px 18px; border-left: 1px solid var(--border);
+  min-width: 160px; text-align: center; gap: 5px;
+  font-family: 'Courier New', Consolas, monospace;
 }
-.radar-stat {
-  flex: 1; text-align: center;
-  padding: 14px 8px;
-  border-right: 1px solid var(--border);
+.rr-time {
+  font-size: 1.7rem; font-weight: 800; color: var(--gold);
+  letter-spacing: 3px; line-height: 1;
+  text-shadow: 0 0 18px rgba(201,168,76,0.45);
 }
-.radar-stat:last-child { border-right: none; }
-.rs-val {
-  font-size: 1.4rem; font-weight: 800; line-height: 1;
-  color: var(--gold); font-family: 'Courier New', monospace;
-  display: block; margin-bottom: 4px;
+.rr-date {
+  font-size: 0.58rem; color: rgba(201,168,76,0.75);
+  letter-spacing: 1.8px; text-transform: uppercase;
 }
-.rs-key { font-size: 0.58rem; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.8px; }
-@media (max-width:600px) { .radar-map { width:200px; } .rs-val { font-size:1.1rem; } .rs-key { font-size:0.5rem; } }
+.rr-tz {
+  font-size: 0.5rem; color: var(--muted-2);
+  letter-spacing: 2.5px; text-transform: uppercase;
+}
+.rr-divider { width: 55%; height: 1px; background: var(--border); margin: 6px 0; }
+.rr-label { font-size: 0.46rem; color: var(--muted-2); letter-spacing: 1.8px; text-transform: uppercase; }
+.rr-val   { font-size: 0.82rem; color: var(--gold); font-weight: 700; letter-spacing: 1px; }
+@media (max-width:700px) {
+  .radar-inner { flex-direction: column; }
+  .radar-left-stats { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--border); min-width: unset; padding: 14px; }
+  .radar-stat-v { flex: 1; min-width: 80px; }
+  .radar-right-panel { border-left: none; border-top: 1px solid var(--border); min-width: unset; flex-direction: row; flex-wrap: wrap; gap: 12px; padding: 14px; }
+  .radar-map { width: 200px; }
+  .rs-val { font-size: 1.2rem; }
+}
 
 /* ─── TYPEWRITER CURSOR ─── */
 .type-cursor {
@@ -1311,20 +1337,6 @@ footer strong { color: var(--gold); font-weight: 600; }
   50% { opacity: 0; }
 }
 
-/* ─── LIVE CLOCK ─── */
-.live-clock {
-  display: flex; align-items: center;
-  font-family: 'Courier New', Consolas, monospace;
-  font-size: 0.71rem; font-weight: 600;
-  color: var(--gold);
-  letter-spacing: 0.4px;
-  white-space: nowrap;
-  padding: 5px 11px;
-  background: rgba(201,168,76,0.06);
-  border: 1px solid rgba(201,168,76,0.15);
-  border-radius: 6px;
-}
-@media (max-width: 600px) { .live-clock { display: none; } }
 
 /* ─── THREAT TICKER ─── */
 .threat-ticker {
@@ -1396,7 +1408,7 @@ footer strong { color: var(--gold); font-weight: 600; }
     </div>
     <div class="header-right" style="display:flex; align-items:center; gap:10px;">
       <button id="fontToggle" onclick="toggleFontSize()" aria-label="Toggle large text">Bigger Text</button>
-      <div class="live-clock" id="liveClock">--</div>
+
       <div class="live-badge">
         <div class="live-dot"></div>
         SHIELD ACTIVE
@@ -1485,6 +1497,17 @@ footer strong { color: var(--gold); font-weight: 600; }
 
   <!-- ════ THREAT RADAR ════ -->
   <div class="radar-section">
+    <div class="radar-inner">
+
+    <!-- LEFT: Tool Stats -->
+    <div class="radar-left-stats">
+      <div class="radar-stat-v"><span class="rs-val">28</span><span class="rs-key">Scam Types Covered</span></div>
+      <div class="radar-stat-v"><span class="rs-val">10</span><span class="rs-key">Guided Scenarios</span></div>
+      <div class="radar-stat-v"><span class="rs-val">4</span><span class="rs-key">Threat Vectors</span></div>
+      <div class="radar-stat-v"><span class="rs-val">6</span><span class="rs-key">Report Agencies</span></div>
+    </div>
+
+    <!-- CENTER: Georgia Map -->
     <div class="radar-map-wrap">
       <svg class="radar-map" viewBox="0 0 190 210" xmlns="http://www.w3.org/2000/svg">
         <!-- Real Georgia state outline (GeoJSON-derived) -->
@@ -1547,12 +1570,21 @@ footer strong { color: var(--gold); font-weight: 600; }
         <text class="map-lbl-gold" x="148" y="127">SAVANNAH</text>
       </svg>
     </div>
-    <div class="radar-stats">
-      <div class="radar-stat"><span class="rs-val">28</span><span class="rs-key">Scam Types Covered</span></div>
-      <div class="radar-stat"><span class="rs-val">10</span><span class="rs-key">Guided Scenarios</span></div>
-      <div class="radar-stat"><span class="rs-val">4</span><span class="rs-key">Threat Vectors</span></div>
-      <div class="radar-stat"><span class="rs-val">6</span><span class="rs-key">Report Agencies</span></div>
+
+    <!-- RIGHT: Cyber Clock Panel -->
+    <div class="radar-right-panel">
+      <div class="rr-time" id="radarTime">00:00:00</div>
+      <div class="rr-date" id="radarDate">--- -- ----</div>
+      <div class="rr-tz"  id="radarTz">---</div>
+      <div class="rr-divider"></div>
+      <div class="rr-label">GA Population</div>
+      <div class="rr-val">Est. 11.4M</div>
+      <div class="rr-divider"></div>
+      <div class="rr-label">Last Updated</div>
+      <div class="rr-val">May 2026</div>
     </div>
+
+    </div><!-- /radar-inner -->
   </div>
 
   <!-- ════ STEP 1: SPOT IT ════ -->
@@ -2217,7 +2249,7 @@ footer strong { color: var(--gold); font-weight: 600; }
 
 <footer>
   ⚠ For educational and informational use only. Always verify with official sources.<br>
-  <strong>NEXLOX</strong> &mdash; Serving Snellville, Gwinnett County &amp; Greater Atlanta &mdash; Last updated May 2026
+  <strong>NEXLOX</strong> &mdash; Serving Snellville, Gwinnett County &amp; Greater Atlanta
 </footer>
 
 <!-- ════════════════════════════════
@@ -2785,14 +2817,22 @@ function typeTagline() {
 const _DAYS  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const _MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function startClock() {
-  const el = document.getElementById('liveClock');
+  const timeEl = document.getElementById('radarTime');
+  const dateEl = document.getElementById('radarDate');
+  const tzEl   = document.getElementById('radarTz');
+  if (!timeEl) return;
+  let tzSet = false;
   function tick() {
     const n = new Date();
-    let h = n.getHours(), ampm = h >= 12 ? 'PM' : 'AM';
-    h = h % 12 || 12;
+    const h = String(n.getHours()).padStart(2,'0');
     const m = String(n.getMinutes()).padStart(2,'0');
     const s = String(n.getSeconds()).padStart(2,'0');
-    el.textContent = _DAYS[n.getDay()] + ' ' + _MONTHS[n.getMonth()] + ' ' + n.getDate() + '  ·  ' + h + ':' + m + ':' + s + ' ' + ampm;
+    timeEl.textContent = h + ':' + m + ':' + s;
+    dateEl.textContent = _DAYS[n.getDay()].toUpperCase() + ' · ' + String(n.getDate()).padStart(2,'0') + ' ' + _MONTHS[n.getMonth()].toUpperCase() + ' ' + n.getFullYear();
+    if (!tzSet) {
+      tzEl.textContent = n.toLocaleTimeString('en-US',{timeZoneName:'short'}).split(' ').pop();
+      tzSet = true;
+    }
   }
   tick();
   setInterval(tick, 1000);
