@@ -1307,19 +1307,10 @@ footer strong { color: var(--gold); font-weight: 600; }
 }
 .map-lbl-gold { font-size:5.5px; fill:rgba(201,168,76,0.65); font-family:'Courier New',monospace; font-weight:700; letter-spacing:0.5px; }
 .map-lbl-red  { font-size:4.5px; fill:rgba(232,64,64,0.7);   font-family:'Courier New',monospace; font-weight:700; letter-spacing:0.3px; }
-.radar-communities { margin-bottom: 18px; }
-.rc-label { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted-2); margin-bottom:8px; }
-.rc-tags { display:flex; flex-wrap:wrap; gap:5px; }
-.rc-tag {
-  padding:3px 9px; border-radius:4px; font-size:0.65rem; font-weight:600;
-  background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.18);
-  color:var(--muted); letter-spacing:0.3px;
-}
-.rc-tag-primary { background:rgba(201,168,76,0.14); border-color:rgba(201,168,76,0.3); color:var(--gold); }
-.rc-tag-expand  { background:rgba(46,201,122,0.08); border-color:rgba(46,201,122,0.2); color:var(--green); font-style:italic; }
-.radar-map { width:175px; height:192px; }
+.radar-stats { display:grid; grid-template-columns:1fr 1fr; gap:16px 28px; margin-bottom:22px; }
+.radar-map { width:190px; height:210px; }
 @media (max-width:700px) { .radar-right { display:none; } }
-@media (max-width:500px) { .radar-section { padding:18px; } .radar-stats { gap:16px; } }
+@media (max-width:500px) { .radar-section { padding:18px; } .radar-stats { gap:12px 20px; } }
 
 /* ─── TYPEWRITER CURSOR ─── */
 .type-cursor {
@@ -1511,28 +1502,23 @@ footer strong { color: var(--gold); font-weight: 600; }
   <div class="radar-section">
     <div class="radar-left">
       <div class="radar-label">⬡ NEXLOX THREAT RADAR</div>
-      <div class="radar-sub">Gwinnett County &amp; Greater Georgia · Continuous Monitoring</div>
+      <div class="radar-sub">Georgia Statewide · Continuous Monitoring</div>
       <div class="radar-stats">
         <div class="radar-stat">
           <span class="rs-val">28</span>
           <span class="rs-key">Scam Types Covered</span>
         </div>
         <div class="radar-stat">
-          <span class="rs-val">1</span>
-          <span class="rs-key">County Protected</span>
+          <span class="rs-val">10</span>
+          <span class="rs-key">Guided Scenarios</span>
         </div>
-      </div>
-      <div class="radar-communities">
-        <div class="rc-label">Communities Served</div>
-        <div class="rc-tags">
-          <span class="rc-tag rc-tag-primary">Snellville</span>
-          <span class="rc-tag">Lawrenceville</span>
-          <span class="rc-tag">Duluth</span>
-          <span class="rc-tag">Norcross</span>
-          <span class="rc-tag">Suwanee</span>
-          <span class="rc-tag">Buford</span>
-          <span class="rc-tag">Lilburn</span>
-          <span class="rc-tag rc-tag-expand">+ Expanding</span>
+        <div class="radar-stat">
+          <span class="rs-val">4</span>
+          <span class="rs-key">Threat Vectors</span>
+        </div>
+        <div class="radar-stat">
+          <span class="rs-val">6</span>
+          <span class="rs-key">Report Agencies</span>
         </div>
       </div>
       <div class="radar-status">
@@ -1546,40 +1532,81 @@ footer strong { color: var(--gold); font-weight: 600; }
         <!-- Crosshair at Atlanta -->
         <line class="crosshair" x1="72" y1="73" x2="72" y2="89"/>
         <line class="crosshair" x1="64" y1="81" x2="80" y2="81"/>
-        <!-- Atlanta / Fulton -->
+
+        <!-- ── METRO ATLANTA CLUSTER ── -->
+        <!-- Fulton / Atlanta core -->
         <circle class="radar-ripple" cx="72" cy="81" r="5" style="animation-delay:0s"/>
         <circle class="radar-dot"    cx="72" cy="81" r="3" style="animation-delay:0s"/>
-        <!-- Gwinnett (Lawrenceville) — PRIMARY, slightly larger -->
-        <circle class="radar-ripple" cx="93" cy="67" r="6" style="animation-delay:0.5s"/>
-        <circle class="radar-dot"    cx="93" cy="67" r="4" style="animation-delay:0.5s"/>
+        <!-- Gwinnett — PRIMARY -->
+        <circle class="radar-ripple" cx="93" cy="67" r="6" style="animation-delay:0.4s"/>
+        <circle class="radar-dot"    cx="93" cy="67" r="4" style="animation-delay:0.4s"/>
         <!-- Cobb / Marietta -->
-        <circle class="radar-ripple" cx="58" cy="72" r="5" style="animation-delay:1.2s"/>
-        <circle class="radar-dot"    cx="58" cy="72" r="3" style="animation-delay:1.2s"/>
-        <!-- Athens / Clarke -->
-        <circle class="radar-ripple" cx="118" cy="65" r="5" style="animation-delay:2.0s"/>
-        <circle class="radar-dot"    cx="118" cy="65" r="3" style="animation-delay:2.0s"/>
-        <!-- Augusta / Richmond -->
-        <circle class="radar-ripple" cx="158" cy="88" r="5" style="animation-delay:0.8s"/>
-        <circle class="radar-dot"    cx="158" cy="88" r="3" style="animation-delay:0.8s"/>
-        <!-- Macon / Bibb -->
-        <circle class="radar-ripple" cx="105" cy="120" r="5" style="animation-delay:1.6s"/>
-        <circle class="radar-dot"    cx="105" cy="120" r="3" style="animation-delay:1.6s"/>
-        <!-- Columbus / Muscogee -->
-        <circle class="radar-ripple" cx="42" cy="132" r="5" style="animation-delay:2.4s"/>
-        <circle class="radar-dot"    cx="42" cy="132" r="3" style="animation-delay:2.4s"/>
-        <!-- Savannah / Chatham -->
-        <circle class="radar-ripple" cx="152" cy="155" r="5" style="animation-delay:1.0s"/>
-        <circle class="radar-dot"    cx="152" cy="155" r="3" style="animation-delay:1.0s"/>
+        <circle class="radar-ripple" cx="57" cy="72" r="5" style="animation-delay:0.9s"/>
+        <circle class="radar-dot"    cx="57" cy="72" r="3" style="animation-delay:0.9s"/>
+        <!-- DeKalb / Decatur -->
+        <circle class="radar-ripple" cx="84" cy="79" r="5" style="animation-delay:1.4s"/>
+        <circle class="radar-dot"    cx="84" cy="79" r="3" style="animation-delay:1.4s"/>
+        <!-- Cherokee / Canton -->
+        <circle class="radar-ripple" cx="69" cy="57" r="4" style="animation-delay:0.7s"/>
+        <circle class="radar-dot"    cx="69" cy="57" r="2.5" style="animation-delay:0.7s"/>
+        <!-- Forsyth / Cumming -->
+        <circle class="radar-ripple" cx="86" cy="55" r="4" style="animation-delay:2.1s"/>
+        <circle class="radar-dot"    cx="86" cy="55" r="2.5" style="animation-delay:2.1s"/>
+        <!-- Henry / McDonough -->
+        <circle class="radar-ripple" cx="78" cy="97" r="4" style="animation-delay:1.7s"/>
+        <circle class="radar-dot"    cx="78" cy="97" r="2.5" style="animation-delay:1.7s"/>
+        <!-- Clayton / Jonesboro -->
+        <circle class="radar-ripple" cx="74" cy="91" r="4" style="animation-delay:2.5s"/>
+        <circle class="radar-dot"    cx="74" cy="91" r="2.5" style="animation-delay:2.5s"/>
+        <!-- Rockdale / Conyers -->
+        <circle class="radar-ripple" cx="98" cy="83" r="4" style="animation-delay:1.1s"/>
+        <circle class="radar-dot"    cx="98" cy="83" r="2.5" style="animation-delay:1.1s"/>
+        <!-- Douglas / Douglasville -->
+        <circle class="radar-ripple" cx="54" cy="83" r="4" style="animation-delay:3.0s"/>
+        <circle class="radar-dot"    cx="54" cy="83" r="2.5" style="animation-delay:3.0s"/>
+        <!-- Paulding / Dallas -->
+        <circle class="radar-ripple" cx="49" cy="68" r="4" style="animation-delay:2.3s"/>
+        <circle class="radar-dot"    cx="49" cy="68" r="2.5" style="animation-delay:2.3s"/>
+        <!-- Fayette / Fayetteville -->
+        <circle class="radar-ripple" cx="66" cy="97" r="4" style="animation-delay:1.9s"/>
+        <circle class="radar-dot"    cx="66" cy="97" r="2.5" style="animation-delay:1.9s"/>
+
+        <!-- ── REST OF GEORGIA ── -->
+        <!-- Rome / Floyd -->
+        <circle class="radar-ripple" cx="44" cy="52" r="4" style="animation-delay:0.6s"/>
+        <circle class="radar-dot"    cx="44" cy="52" r="2.5" style="animation-delay:0.6s"/>
         <!-- Gainesville / Hall -->
-        <circle class="radar-ripple" cx="100" cy="52" r="5" style="animation-delay:2.8s"/>
-        <circle class="radar-dot"    cx="100" cy="52" r="3" style="animation-delay:2.8s"/>
+        <circle class="radar-ripple" cx="100" cy="51" r="4" style="animation-delay:2.7s"/>
+        <circle class="radar-dot"    cx="100" cy="51" r="2.5" style="animation-delay:2.7s"/>
+        <!-- Athens / Clarke -->
+        <circle class="radar-ripple" cx="118" cy="66" r="5" style="animation-delay:1.3s"/>
+        <circle class="radar-dot"    cx="118" cy="66" r="3" style="animation-delay:1.3s"/>
+        <!-- Augusta / Richmond -->
+        <circle class="radar-ripple" cx="158" cy="88" r="5" style="animation-delay:0.5s"/>
+        <circle class="radar-dot"    cx="158" cy="88" r="3" style="animation-delay:0.5s"/>
+        <!-- Warner Robins -->
+        <circle class="radar-ripple" cx="98" cy="128" r="4" style="animation-delay:2.0s"/>
+        <circle class="radar-dot"    cx="98" cy="128" r="2.5" style="animation-delay:2.0s"/>
+        <!-- Macon / Bibb -->
+        <circle class="radar-ripple" cx="105" cy="120" r="5" style="animation-delay:1.5s"/>
+        <circle class="radar-dot"    cx="105" cy="120" r="3" style="animation-delay:1.5s"/>
+        <!-- Columbus / Muscogee -->
+        <circle class="radar-ripple" cx="42" cy="132" r="5" style="animation-delay:2.9s"/>
+        <circle class="radar-dot"    cx="42" cy="132" r="3" style="animation-delay:2.9s"/>
+        <!-- Albany / Dougherty -->
+        <circle class="radar-ripple" cx="78" cy="153" r="4" style="animation-delay:1.8s"/>
+        <circle class="radar-dot"    cx="78" cy="153" r="2.5" style="animation-delay:1.8s"/>
+        <!-- Savannah / Chatham -->
+        <circle class="radar-ripple" cx="152" cy="155" r="5" style="animation-delay:0.3s"/>
+        <circle class="radar-dot"    cx="152" cy="155" r="3" style="animation-delay:0.3s"/>
+
         <!-- Labels -->
-        <text class="map-lbl-gold" x="56" y="78">ATL</text>
+        <text class="map-lbl-gold" x="56" y="77">ATL</text>
         <text class="map-lbl-red"  x="96" y="63">GWINNETT</text>
         <text class="map-lbl-gold" x="138" y="86">AUGUSTA</text>
-        <text class="map-lbl-gold" x="120" y="119">MACON</text>
-        <text class="map-lbl-gold" x="136" y="152">SAVANNAH</text>
-        <text class="map-lbl-gold" x="85" y="215">GEORGIA</text>
+        <text class="map-lbl-gold" x="109" y="117">MACON</text>
+        <text class="map-lbl-gold" x="133" y="152">SAVANNAH</text>
+        <text class="map-lbl-gold" x="82" y="215">GEORGIA</text>
       </svg>
     </div>
   </div>
