@@ -22,4 +22,4 @@
     # Content Security Policy — controls what can load on your page
     # unsafe-inline required: all JS and CSS are inline in the single-file HTML
     # Kit (ConvertKit) script allowed for email capture popup
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://scamshield.kit.com https://*.convertkit.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://*.kit.com https://*.convertkit.com; connect-src 'self' https://*.kit.com https://*.convertkit.com; font-src 'self' data:;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://scamshield.kit.com https://*.convertkit.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://*.kit.com https://*.convertkit.com; connect-src 'self' https://*.kit.com https://*.convertkit.com https://www.google-analytics.com https://analytics.google.com; font-src 'self' data:;"
