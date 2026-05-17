@@ -1,0 +1,25 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking — blocks your site from being embedded in iframes elsewhere
+    X-Frame-Options = "DENY"
+
+    # Prevent MIME sniffing attacks
+    X-Content-Type-Options = "nosniff"
+
+    # Block XSS in older browsers
+    X-XSS-Protection = "1; mode=block"
+
+    # Control referrer info sent when users click outbound links
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Force HTTPS for 1 year — browser will never load over HTTP
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # Disable browser features you don't use
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+    # Content Security Policy — controls what can load on your page
+    # unsafe-inline required: all JS and CSS are inline in the single-file HTML
+    # Kit (ConvertKit) script allowed for email capture popup
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://scamshield.kit.com https://*.convertkit.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://*.kit.com https://*.convertkit.com; connect-src 'self' https://*.kit.com https://*.convertkit.com; font-src 'self' data:;"
