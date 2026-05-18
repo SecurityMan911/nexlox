@@ -1211,7 +1211,11 @@ footer strong { color: var(--gold); font-weight: 600; }
 .wb-dismiss:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
 @media (max-width: 600px) {
   .welcome-banner { padding: 11px 16px; }
-  .wb-actions { width: 100%; justify-content: flex-end; }
+  .wb-actions { width: 100%; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .wb-divider { display: none; }
+  .wb-cta-emergency { width: 100%; justify-content: center; text-align: center; }
+  .step-prog-item { padding: 8px 6px; gap: 6px; }
+  .step-prog-arrow { padding: 0 1px; font-size: 0.7rem; }
 }
 
 
