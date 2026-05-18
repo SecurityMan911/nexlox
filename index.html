@@ -1090,6 +1090,62 @@ main {
   letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px;
   padding-bottom: 6px; border-bottom: 1px solid var(--border);
 }
+/* ─── SHIELD PLEDGE CLOSE ─── */
+.shield-pledge {
+  position: relative; overflow: hidden;
+  padding: 80px 28px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: rgba(5,10,20,0.98);
+}
+#pledgeCanvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+.pledge-inner {
+  position: relative; z-index: 1;
+  max-width: 640px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.pledge-eyebrow {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  opacity: 0.7;
+}
+.pledge-headline {
+  font-size: 1.9rem; font-weight: 800; line-height: 1.25;
+  color: var(--white); letter-spacing: -0.5px;
+}
+.pledge-headline em {
+  font-style: normal; color: var(--gold);
+}
+.pledge-sub {
+  font-size: 0.82rem; color: var(--muted); line-height: 1.65;
+  max-width: 480px;
+}
+.pledge-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 13px 28px;
+  background: var(--gold);
+  color: #0a1929;
+  border: none; border-radius: 10px;
+  font-size: 0.85rem; font-weight: 800;
+  font-family: inherit; letter-spacing: 0.5px;
+  cursor: pointer; text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+  animation: pledgePulse 3s ease-in-out infinite;
+}
+.pledge-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+@keyframes pledgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+}
+@media (max-width: 600px) {
+  .shield-pledge { padding: 56px 20px; }
+  .pledge-headline { font-size: 1.4rem; }
+}
+
 footer {
   position: relative; z-index: 5;
   border-top: 1px solid var(--border);
@@ -2441,6 +2497,16 @@ footer strong { color: var(--gold); font-weight: 600; }
   </div>
 </div>
 </div>
+
+<section class="shield-pledge" aria-label="Community closing statement">
+  <canvas id="pledgeCanvas"></canvas>
+  <div class="pledge-inner">
+    <div class="pledge-eyebrow">Gwinnett County Scam Intelligence</div>
+    <div class="pledge-headline">Scammers count on <em>silence.</em><br>Gwinnett doesn't have to stay silent.</div>
+    <div class="pledge-sub">Every report you make helps protect your neighbor. This tool is free, always will be, and built for one reason — to make Gwinnett County the hardest place in Georgia to run a scam.</div>
+    <button class="pledge-btn" onclick="jumpStep(3)">&#128680; Report a Scam Now</button>
+  </div>
+</section>
 
 <footer>
   ⚠ For educational and informational use only. Always verify with official sources.<br>
@@ -4460,6 +4526,63 @@ function wbLaunch() {
   wbDismiss();
   setTimeout(() => { jumpStep(1); toggleFlags(); }, 290);
 }
+
+/* ─── PARTICLE FIELD ─── */
+(function() {
+  const canvas = document.getElementById('pledgeCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, dots;
+  const COUNT = 72, MAX_DIST = 130, GOLD = 'rgba(201,168,76,';
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function mkDot() {
+    return {
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.8 + 0.6
+    };
+  }
+
+  function init() { resize(); dots = Array.from({length: COUNT}, mkDot); }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < dots.length; i++) {
+      const d = dots[i];
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0 || d.x > W) d.vx *= -1;
+      if (d.y < 0 || d.y > H) d.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = GOLD + '0.7)';
+      ctx.fill();
+      for (let j = i + 1; j < dots.length; j++) {
+        const e = dots[j];
+        const dx = d.x - e.x, dy = d.y - e.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(d.x, d.y);
+          ctx.lineTo(e.x, e.y);
+          ctx.strokeStyle = GOLD + (0.18 * (1 - dist / MAX_DIST)) + ')';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+})();
 
 document.addEventListener('DOMContentLoaded', function() {
   typeTagline();
