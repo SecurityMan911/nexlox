@@ -3170,7 +3170,13 @@ function renderBolo() {
 
 function fetchBoloNews() {
   const el = document.getElementById('boloNews');
-  if (!el || el.dataset.loaded) return;
+  if (!el) return;
+  const CACHE_KEY = 'nexlox_bolo_news';
+  const CACHE_TTL = 6 * 60 * 60 * 1000;
+  const cached = (() => { try { const c = JSON.parse(localStorage.getItem(CACHE_KEY)); return c && (Date.now() - c.ts < CACHE_TTL) ? c.html : null; } catch(e) { return null; } })();
+  if (cached) { el.innerHTML = cached; return; }
+  if (el.dataset.loading) return;
+  el.dataset.loading = '1';
   const proxy = 'https://api.allorigins.win/raw?url=';
   const feeds = [
     { url: 'https://consumer.ftc.gov/consumer-alerts/rss', src: 'FTC' },
@@ -3206,8 +3212,7 @@ function fetchBoloNews() {
       .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
       .slice(0, 7);
     if (!merged.length) throw new Error('empty');
-    el.dataset.loaded = '1';
-    el.innerHTML = merged.map(item => {
+    const html = merged.map(item => {
       const ago = _newsAgo(new Date(item.pubDate));
       return `<div style="padding:11px 0;border-bottom:1px solid var(--border);">
         <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${item.title}</div>
@@ -3217,8 +3222,11 @@ function fetchBoloNews() {
         </div>
       </div>`;
     }).join('');
+    el.innerHTML = html;
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ html, ts: Date.now() })); } catch(e) {}
   }).catch(() => {
-    el.innerHTML = '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">News feed unavailable right now.</div>';
+    const stale = (() => { try { const c = JSON.parse(localStorage.getItem(CACHE_KEY)); return c ? c.html : null; } catch(e) { return null; } })();
+    el.innerHTML = stale || '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">News feed unavailable right now.</div>';
   });
 }
 
