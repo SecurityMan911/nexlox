@@ -948,23 +948,18 @@ main {
 .bolo-card::after {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: 15px;
-  background: conic-gradient(
-    transparent 0deg,
-    transparent 332deg,
-    rgba(232,64,64,0.15) 340deg,
-    rgba(255,45,45,0.65) 349deg,
-    #ff2d2d 353deg,
-    rgba(255,45,45,0.65) 357deg,
-    rgba(232,64,64,0.15) 360deg
-  );
-  z-index: -1;
-  animation: boloHeartScan 6s linear infinite;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,80,80,0.13) 50%, transparent 70%);
+  background-size: 200% 100%;
+  background-position: 200% 0;
+  animation: boloShimmer 5s ease-in-out infinite;
+  pointer-events: none;
 }
-@keyframes boloHeartScan {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes boloShimmer {
+  0%, 70%  { background-position: 200% 0; opacity: 0; }
+  75%      { opacity: 1; }
+  100%     { background-position: -200% 0; opacity: 0; }
 }
 .bolo-card:hover { border-color: rgba(232,64,64,0.6); box-shadow: 0 10px 32px rgba(232,64,64,0.15); }
 .bolo-live-dot {
