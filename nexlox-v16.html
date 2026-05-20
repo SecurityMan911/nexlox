@@ -3170,63 +3170,55 @@ function renderBolo() {
 
 function fetchBoloNews() {
   const el = document.getElementById('boloNews');
-  if (!el) return;
-  const KEY = 'nexlox_bolo_news', TTL = 6 * 60 * 60 * 1000;
-  const getCache = () => { try { const c = JSON.parse(localStorage.getItem(KEY)); return c && (Date.now() - c.ts < TTL) ? c.html : null; } catch(e) { return null; } };
-  const getStale = () => { try { const c = JSON.parse(localStorage.getItem(KEY)); return c ? c.html : null; } catch(e) { return null; } };
-  const render = (html) => { el.innerHTML = html; };
-  const fresh = getCache();
-  if (fresh) { render(fresh); return; }
-  render('<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">Loading latest scam news...</div>');
-  const proxies = ['https://corsproxy.io/?', 'https://api.allorigins.win/raw?url='];
+  if (!el || el.dataset.loaded) return;
+  const proxy = 'https://api.allorigins.win/raw?url=';
   const feeds = [
     { url: 'https://consumer.ftc.gov/consumer-alerts/rss', src: 'FTC' },
     { url: 'https://www.ic3.gov/Media/RSS', src: 'IC3' }
   ];
-  const tryFetch = (url) => {
-    const encoded = encodeURIComponent(url);
-    return fetch(proxies[0] + encoded).then(r => { if (!r.ok) throw new Error(); return r.text(); })
-      .catch(() => fetch(proxies[1] + encoded).then(r => r.text()));
-  };
-  const parse = ({txt, src}) => {
-    if (!txt) return [];
-    try {
+  Promise.all(feeds.map(f =>
+    fetch(proxy + encodeURIComponent(f.url))
+      .then(r => r.text())
+      .then(txt => ({ txt, src: f.src }))
+      .catch(() => ({ txt: '', src: f.src }))
+  )).then(results => {
+    const parse = ({txt, src}) => {
+      if (!txt) return [];
       const doc = new DOMParser().parseFromString(txt, 'text/xml');
       return Array.from(doc.querySelectorAll('item')).map(item => {
         const raw = new XMLSerializer().serializeToString(item);
-        const lm = raw.match(/<link[^>]*>([^<]+)<\/link>/i);
+        const linkMatch = raw.match(/<link[^>]*>([^<]+)<\/link>/i);
         return {
           title: item.querySelector('title')?.textContent?.trim() || '',
-          link: lm ? lm[1].trim() : '#',
+          link: linkMatch ? linkMatch[1].trim() : (item.querySelector('link')?.textContent?.trim() || '#'),
           pubDate: item.querySelector('pubDate')?.textContent || '',
           source: src
         };
       }).filter(i => i.title.length > 5);
-    } catch(e) { return []; }
-  };
-  Promise.all(feeds.map(f =>
-    tryFetch(f.url).then(txt => ({txt, src: f.src})).catch(() => ({txt:'', src: f.src}))
-  )).then(results => {
+    };
     const seen = new Set();
     const merged = results.flatMap(parse)
-      .filter(i => { const k = i.title.slice(0,50); if(seen.has(k)) return false; seen.add(k); return true; })
-      .sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate))
+      .filter(item => {
+        const key = item.title.slice(0, 50);
+        if (seen.has(key)) return false;
+        seen.add(key); return true;
+      })
+      .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
       .slice(0, 7);
     if (!merged.length) throw new Error('empty');
-    const html = merged.map(i => {
-      const ago = _newsAgo(new Date(i.pubDate));
+    el.dataset.loaded = '1';
+    el.innerHTML = merged.map(item => {
+      const ago = _newsAgo(new Date(item.pubDate));
       return `<div style="padding:11px 0;border-bottom:1px solid var(--border);">
-        <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${i.title}</div>
+        <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${item.title}</div>
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:0.72rem;color:var(--muted);">${i.source} &middot; ${ago}</span>
-          <a href="${i.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);text-decoration:none;font-weight:700;padding:2px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;">Read &rarr;</a>
+          <span style="font-size:0.72rem;color:var(--muted);">${item.source} &middot; ${ago}</span>
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);text-decoration:none;font-weight:700;padding:2px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;">Read &rarr;</a>
         </div>
       </div>`;
     }).join('');
-    render(html);
-    try { localStorage.setItem(KEY, JSON.stringify({html, ts: Date.now()})); } catch(e) {}
   }).catch(() => {
-    render(getStale() || '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">News feed unavailable right now.</div>');
+    el.innerHTML = '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">News feed unavailable right now.</div>';
   });
 }
 
