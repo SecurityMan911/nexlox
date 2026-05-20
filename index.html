@@ -3171,27 +3171,39 @@ function renderBolo() {
 function fetchBoloNews() {
   const el = document.getElementById('boloNews');
   if (!el || el.dataset.loaded) return;
-  const rss = encodeURIComponent('https://news.google.com/rss/search?q=scam+fraud+alert&hl=en-US&gl=US&ceid=US:en');
-  fetch('https://api.rss2json.com/v1/api.json?rss_url=' + rss + '&count=6')
-    .then(r => r.json())
-    .then(data => {
-      if (!data.items || !data.items.length) throw new Error('empty');
-      el.dataset.loaded = '1';
-      el.innerHTML = data.items.map(item => {
-        const ago = _newsAgo(new Date(item.pubDate));
-        const src = (item.author || '').replace(/\s*,.*$/, '').trim() || 'News';
-        return `<div style="padding:11px 0;border-bottom:1px solid var(--border);last-child{border:none}">
-          <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${item.title}</div>
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:0.72rem;color:var(--muted);">${src} &middot; ${ago}</span>
-            <a href="${item.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);text-decoration:none;font-weight:700;padding:2px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;">Read &rarr;</a>
-          </div>
-        </div>`;
-      }).join('');
-    })
-    .catch(() => {
-      el.innerHTML = '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">News feed unavailable right now.</div>';
-    });
+  const base = 'https://api.rss2json.com/v1/api.json?rss_url=';
+  const q1 = encodeURIComponent('https://news.google.com/rss/search?q=scam+fraud+alert&hl=en-US&gl=US&ceid=US:en');
+  const q2 = encodeURIComponent('https://news.google.com/rss/search?q=scam+fraud+Georgia&hl=en-US&gl=US&ceid=US:en');
+  Promise.all([
+    fetch(base + q1 + '&count=8').then(r => r.json()).catch(() => ({items:[]})),
+    fetch(base + q2 + '&count=6').then(r => r.json()).catch(() => ({items:[]}))
+  ]).then(([broad, local]) => {
+    const seen = new Set();
+    const merged = [...(local.items||[]), ...(broad.items||[])]
+      .filter(item => {
+        const key = item.title.slice(0, 60);
+        if (seen.has(key)) return false;
+        seen.add(key); return true;
+      })
+      .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
+      .slice(0, 7);
+    if (!merged.length) throw new Error('empty');
+    el.dataset.loaded = '1';
+    el.innerHTML = merged.map(item => {
+      const ago = _newsAgo(new Date(item.pubDate));
+      const src = (item.author || '').replace(/\s*,.*$/, '').trim() || 'News';
+      const isGA = (item.title + (item.description||'')).match(/georgia|gwinnett|atlanta/i);
+      return `<div style="padding:11px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${item.title}${isGA ? ' <span style="font-size:0.65rem;background:rgba(46,201,122,0.15);color:var(--green);padding:1px 6px;border-radius:4px;font-weight:700;vertical-align:middle;">GA</span>' : ''}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:0.72rem;color:var(--muted);">${src} &middot; ${ago}</span>
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);text-decoration:none;font-weight:700;padding:2px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;">Read &rarr;</a>
+        </div>
+      </div>`;
+    }).join('');
+  }).catch(() => {
+    el.innerHTML = '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">News feed unavailable right now.</div>';
+  });
 }
 
 function _newsAgo(d) {
