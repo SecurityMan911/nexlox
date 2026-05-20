@@ -3168,6 +3168,40 @@ function renderBolo() {
   }
 }
 
+function fetchBoloNews() {
+  const el = document.getElementById('boloNews');
+  if (!el || el.dataset.loaded) return;
+  const rss = encodeURIComponent('https://news.google.com/rss/search?q=scam+fraud+alert&hl=en-US&gl=US&ceid=US:en');
+  fetch('https://api.rss2json.com/v1/api.json?rss_url=' + rss + '&count=6')
+    .then(r => r.json())
+    .then(data => {
+      if (!data.items || !data.items.length) throw new Error('empty');
+      el.dataset.loaded = '1';
+      el.innerHTML = data.items.map(item => {
+        const ago = _newsAgo(new Date(item.pubDate));
+        const src = (item.author || '').replace(/\s*,.*$/, '').trim() || 'News';
+        return `<div style="padding:11px 0;border-bottom:1px solid var(--border);last-child{border:none}">
+          <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${item.title}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:0.72rem;color:var(--muted);">${src} &middot; ${ago}</span>
+            <a href="${item.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);text-decoration:none;font-weight:700;padding:2px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;">Read &rarr;</a>
+          </div>
+        </div>`;
+      }).join('');
+    })
+    .catch(() => {
+      el.innerHTML = '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">News feed unavailable right now.</div>';
+    });
+}
+
+function _newsAgo(d) {
+  const s = Math.floor((Date.now() - d) / 1000);
+  if (s < 3600)  return Math.floor(s / 60) + ' min ago';
+  if (s < 86400) return Math.floor(s / 3600) + ' hr ago';
+  if (s < 172800) return '1 day ago';
+  return Math.floor(s / 86400) + ' days ago';
+}
+
 const SEASONAL_ALERTS = [
   { month: 0,  label: 'JAN ALERT', head: 'Tax Identity Theft Season',        text: 'Scammers file fraudulent returns in your name before you do. File early and set up an IRS Identity Protection PIN at irs.gov.' },
   { month: 1,  label: 'FEB ALERT', head: 'Romance Scam Season',              text: 'Romance scams cost Americans $1.14 billion in 2023. Scammers spike on dating apps around Valentine\'s Day — they always eventually ask for gift cards or a wire transfer.' },
@@ -3306,6 +3340,7 @@ function open_(id) {
   if (!el) return;
   el.classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (id === 'bolo') fetchBoloNews();
 }
 function openScenario(key) {
   open_('scenarios');
@@ -4696,6 +4731,10 @@ window.addEventListener('scroll', () => {
   </div>
   <div class="modal-body">
     <div id="boloContent"></div>
+    <div style="margin-top:22px;">
+      <div class="tool-section-label" style="margin-bottom:12px;">📰 Latest Scam News</div>
+      <div id="boloNews"><div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">Loading latest scam news...</div></div>
+    </div>
   </div>
 </div>
 </div>
