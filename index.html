@@ -2354,6 +2354,12 @@ footer strong { color: var(--gold); font-weight: 600; }
       <div class="ref-card-desc">Be On the Lookout — active threat alerts and breaking scam news for your community</div>
     </div>
 
+    <div class="ref-card" onclick="open_('mobile')">
+      <div class="ref-card-icon">📱</div>
+      <div class="ref-card-title">Mobile Device Security</div>
+      <div class="ref-card-desc">iPhone and Android hardening — settings, locks, and habits that block the most common phone-based scams</div>
+    </div>
+
   </div>
 
   <!-- Privacy expandable panel  -  sits below the grid -->
@@ -3540,6 +3546,17 @@ const SEARCH_INDEX = [
   { terms:['usps informed delivery','informed delivery','mail preview','usps mail alerts','mail theft protection','package preview email','usps signup'], label:'📬 USPS Informed Delivery', desc:'Sign up for daily email previews of your incoming mail to detect mail theft and fake notifications', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','exposure') },
   { terms:['mozilla monitor','firefox monitor','breach check free','email breach monitor','data breach monitor','firefox data breach','mozilla breach'], label:'🦊 Mozilla Monitor — Breach Check', desc:'Free breach monitoring from Firefox — see every data breach your email appeared in', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','brokers') },
 
+  // MOBILE SECURITY
+  { terms:['mobile security','phone security','cell phone security','smartphone security','phone hardening','mobile scam protection','phone scam prevention'], label:'📱 Mobile Device Security', desc:'iPhone and Android hardening — settings and habits to block phone-based scams', badge:'MOBILE', action:()=>open_('mobile') },
+  { terms:['android security','android settings','android hardening','android scam protection','android 16 security','advanced protection mode','google play protect'], label:'🤖 Android Security Settings', desc:'Top 10 Android security settings to enable right now', badge:'MOBILE', action:()=>_navTab('mobile','mstab','android') },
+  { terms:['iphone security','ios security','iphone settings','iphone hardening','ios 26 security','stolen device protection','screen unknown callers'], label:'🍎 iPhone Security Settings', desc:'Top 10 iOS security settings to enable right now', badge:'MOBILE', action:()=>_navTab('mobile','mstab','iphone') },
+  { terms:['airplane mode','airplane mode scam','phone killswitch','cut internet phone','disconnect phone internet'], label:'✈️ Airplane Mode as Killswitch', desc:'Cut all wireless instantly — cellular, WiFi, and Bluetooth — in one tap', badge:'MOBILE', action:()=>open_('mobile') },
+  { terms:['auto wifi','public wifi danger','auto connect wifi','free wifi scam','evil twin wifi','wifi attack','vpn phone'], label:'📶 Public WiFi Safety', desc:'Dangers of auto-connecting to public WiFi and how to stay protected', badge:'MOBILE', action:()=>open_('mobile') },
+  { terms:['stolen device protection','iphone stolen','phone stolen what to do','stolen phone settings','iphone theft'], label:'🔒 Stolen Device Protection (iPhone)', desc:'iOS setting that locks down your phone if it leaves your hands', badge:'MOBILE', action:()=>_navTab('mobile','mstab','iphone') },
+  { terms:['theft detection lock','android stolen','android theft','phone stolen android','offline device lock'], label:'🔒 Theft Detection Lock (Android)', desc:'Android auto-locks when motion patterns suggest your phone was grabbed', badge:'MOBILE', action:()=>_navTab('mobile','mstab','android') },
+  { terms:['sideloading apps','unknown apps install','apk install','unknown sources android','jailbreak','jailbroken phone','unofficial apps phone'], label:'⚠️ Sideloading & Unknown App Sources', desc:'Why installing apps outside the official app store is a major scam risk', badge:'MOBILE', action:()=>open_('mobile') },
+  { terms:['text message scam','smishing','sms scam','spam text','scam text message','filter unknown senders','spam protection messages'], label:'💬 Text Message Scams (Smishing)', desc:'How to filter and block scam texts on iPhone and Android', badge:'MOBILE', action:()=>open_('mobile') },
+
 ];
 
 /* ─── SEARCH FUNCTIONS ─────────────────────────────────── */
@@ -4361,6 +4378,14 @@ function dftab(id, el) {
   if (el) el.classList.add('on');
 }
 
+function mstab(id, el) {
+  document.querySelectorAll('[id^="msp-"]').forEach(p => p.classList.remove('on'));
+  const target = document.getElementById('msp-' + id);
+  if (target) target.classList.add('on');
+  const modal = el ? el.closest('.modal') : null;
+  if (modal) modal.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  if (el) el.classList.add('on');
+}
 
 // ── Built-in Scam Recognition Quiz ──
 const QUIZ_QUESTIONS = [
@@ -5189,6 +5214,207 @@ window.addEventListener('scroll', () => {
 
 
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&#8679;</button>
+
+<!-- MOBILE DEVICE SECURITY MODAL -->
+<div class="overlay" id="ol-mobile" onclick="overlayClick(event,'mobile')">
+<div class="modal">
+  <div class="modal-head">
+    <div class="modal-head-left">
+      <div class="modal-head-icon" style="background:rgba(201,168,76,0.15);">📱</div>
+      <div class="modal-h2">Mobile Device Security</div>
+      <div class="modal-sub">Settings and habits that block the most common phone-based scams — for iPhone and Android</div>
+    </div>
+    <button class="modal-close" onclick="close_('mobile')">✕</button>
+  </div>
+  <div class="modal-body">
+
+    <div class="tabs" style="margin-bottom:18px;">
+      <button class="tab on" onclick="mstab('universal',this)">🌐 Universal</button>
+      <button class="tab" onclick="mstab('android',this)">🤖 Android</button>
+      <button class="tab" onclick="mstab('iphone',this)">🍎 iPhone</button>
+    </div>
+
+    <!-- UNIVERSAL -->
+    <div class="pane on" id="msp-universal">
+      <div class="tool-section-label" style="margin-bottom:12px;">🌐 Works on Any Phone</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">These apply regardless of whether you have an iPhone or Android. Get these right first.</div>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🔒 Lock &amp; Access</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li><strong style="color:var(--white);">6-digit PIN minimum</strong> — a 4-digit PIN has only 10,000 combinations; 6-digit has 1 million. Face/fingerprint unlock is fine as the primary method, but your PIN is the backup — make it strong.</li>
+        <li><strong style="color:var(--white);">Auto-lock after 30 seconds</strong> — every second your screen stays unlocked in public is risk. A grabbed phone is a locked phone if your timeout is tight.</li>
+        <li><strong style="color:var(--white);">Keep your OS updated</strong> — iOS 26.5 and Android 16 are current as of 2026. Most successful phone attacks target devices running outdated software. Updates are the fastest fix.</li>
+        <li><strong style="color:var(--white);">Two-factor authentication</strong> on your email, bank accounts, and social media — these are the accounts scammers target first. If one is taken, 2FA stops the chain.</li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📞 Calls &amp; Texts</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li><strong style="color:var(--white);">Enable your carrier's spam call labeling</strong> — AT&amp;T ActiveArmor, T-Mobile Scam Shield, and Verizon Call Filter are all free. They label or auto-block likely scam calls before your phone even rings.</li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">✈️ Airplane Mode — Your Wireless Killswitch</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:8px;">
+        Turning on Airplane Mode instantly cuts all three wireless radios: cellular, WiFi, and Bluetooth. This is the fastest way to isolate your phone if you suspect active compromise, malicious pairing, or a caller with remote access.
+      </div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>One swipe from Control Center (iPhone) or Quick Settings (Android)</li>
+        <li>After enabling, you can manually re-enable WiFi while staying off cellular — useful if you want internet but not calls</li>
+        <li>Scammers who talk you through a "security process" do not want you to go offline — that alone is a red flag</li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📶 Public WiFi &amp; Auto-Connect</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:8px;">
+        Auto-connecting to public WiFi means your phone can silently join a network you've never verified — including attacker-controlled networks designed to look like Starbucks, a hotel, or your gym.
+      </div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:14px;">
+        <li><strong style="color:var(--white);">iPhone:</strong> Settings → WiFi → tap ⓘ next to a saved network → turn off Auto-Join. Or: Settings → WiFi → Ask to Join Networks → Ask (instead of Automatic)</li>
+        <li><strong style="color:var(--white);">Android:</strong> Settings → Network &amp; Internet → WiFi → WiFi preferences → turn off Connect to open networks</li>
+        <li>If you use public WiFi regularly, run a VPN on your phone — Proton VPN is free and trustworthy</li>
+        <li><strong style="color:var(--white);">Never</strong> do banking or enter passwords on unsecured public WiFi without a VPN</li>
+      </ul>
+
+      <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px; margin-top:8px;">
+        Not every setting is required — treat these as a priority list, not a pass/fail checklist. A phone with 5 of these in place is dramatically harder to compromise than one with none.
+      </div>
+    </div>
+
+    <!-- ANDROID -->
+    <div class="pane" id="msp-android">
+      <div class="tool-section-label" style="margin-bottom:12px;">🤖 Android 16 — Top 10 Settings</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">Paths shown for stock Android 16. Samsung, Pixel, and other manufacturers may label settings slightly differently — use Search in your Settings app if a path doesn't match.</div>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🛡️ Device Protection</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Advanced Protection Mode</strong> — Google's maximum security mode. Requires hardware keys for sign-in, blocks sideloaded apps from accessing sensitive permissions, and activates all available protections at once.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Security &amp; privacy → Advanced Protection</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Google Play Protect</strong> — continuously scans every app on your device for malware, even apps you installed months ago. Should be on by default; verify it's active.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Play Store → profile icon → Play Protect → make sure it's on</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Block unknown source installs</strong> — prevents any app from being installed outside the Play Store. This shuts down the most common malware delivery method: a link texted to you that installs a fake app.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Special app access → Install unknown apps → confirm all show "Not Allowed"</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Automatic system updates</strong> — patches security vulnerabilities the moment they're fixed, without waiting for you to remember.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → System → Software update → Auto-update → on</span>
+        </li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📍 Anti-Theft</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Theft Detection Lock</strong> — uses motion sensors and AI to detect if your phone is suddenly grabbed and run off with. Locks the screen automatically.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Security &amp; privacy → Device unlock → Theft protection → Theft Detection Lock</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Offline Device Lock</strong> — locks your phone if it's been offline for an extended period. Prevents a thief from putting it in a signal-blocking bag and bypassing lock screen.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Security &amp; privacy → Device unlock → Theft protection → Offline Device Lock</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Find Hub</strong> (formerly Find My Device) — locate, ring, lock, or remotely wipe your phone if lost or stolen. Set this up before you need it.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Google → All services → Personal &amp; device safety → Find Hub</span>
+        </li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">💬 Calls &amp; Messages</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Scam Protection in Messages</strong> — Google Messages automatically detects and warns you about likely scam texts. Keep it enabled.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Messages app → profile icon → Settings → Spam protection → on</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">OTP Protection</strong> — Android 16 automatically hides one-time passcodes from your notifications so shoulder-surfers and screen-recording malware can't capture them. This is automatic — just confirm you're on Android 16.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → About phone → Android version (confirm 16)</span>
+        </li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">✅ Security Checkup</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:14px;">
+        <li>
+          <strong style="color:var(--white);">Google Security Checkup</strong> — reviews your Google account for weak passwords, compromised accounts, unauthorized access, and recovery options. Takes 2 minutes.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → tap your Google account → Security tab → Security Checkup</span>
+        </li>
+      </ul>
+
+      <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px; margin-top:8px;">
+        RCS messaging between Android and iPhone is now end-to-end encrypted as of May 2026. Standard SMS is not encrypted — use Signal or WhatsApp for sensitive conversations.
+      </div>
+    </div>
+
+    <!-- IPHONE -->
+    <div class="pane" id="msp-iphone">
+      <div class="tool-section-label" style="margin-bottom:12px;">🍎 iPhone iOS 26.5 — Top 10 Settings</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">Paths shown for iOS 26.5. If a setting is in a slightly different location, use Settings search (magnifying glass at the top of Settings).</div>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🛡️ Device Protection</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Stolen Device Protection</strong> — on by default since iOS 26.4. If your phone is taken to an unfamiliar location, it requires Face ID and adds a 1-hour delay before allowing changes to your Apple ID, passcode, or payment methods. Set the delay to "Always" for maximum protection.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Face ID &amp; Passcode → Stolen Device Protection → Require Security Delay → Always</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Automatic Updates</strong> — keeps iOS current with the latest security patches without manual intervention.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → General → Software Update → Automatic Updates → turn both toggles on</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Find My iPhone</strong> — locate, play a sound, lock, or erase your device remotely. Enable all three toggles: Find My iPhone, Find My network, and Send Last Location.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → [your name] → Find My → Find My iPhone → all three on</span>
+        </li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📞 Calls &amp; Messages</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Silence Unknown Callers</strong> — automatically silences calls from numbers not in your contacts, recent calls, or Siri suggestions. The call still goes to voicemail, so you won't miss it — you just won't be interrupted mid-task by a scam call.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Phone → Screen Unknown Callers → Silence</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Filter Unknown Senders</strong> — moves texts from unknown numbers into a separate "Junk" folder so they don't mix with your real conversations.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Messages → Filter Unknown Senders → on</span>
+        </li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🌐 Safari &amp; Browsing</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Fraudulent Website Warning</strong> — Safari checks sites you visit against a database of known phishing and scam pages and blocks them before they load.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Safari → Fraudulent Website Warning → on</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Block Pop-ups</strong> — eliminates fake virus warnings and tech support scam pop-ups that try to panic you into calling a fake number.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Safari → Block Pop-ups → on</span>
+        </li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🔏 Privacy</div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">App Tracking Transparency</strong> — prevents apps from tracking your activity across other apps and websites. This is data scammers buy to build targeting profiles.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Privacy &amp; Security → Tracking → Allow Apps to Request to Track → off</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Mail Privacy Protection</strong> — hides your IP address and prevents email senders from knowing when you opened their message. Stops tracking pixels used in phishing campaigns to validate active email addresses.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Mail → Privacy Protection → Protect Mail Activity → on</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Review Trusted Phone Numbers</strong> — confirm only your own numbers appear. Scammers who access your Apple ID sometimes add their own number as a recovery contact.<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → [your name] → Sign-In &amp; Security → Two-Factor Authentication → Trusted Phone Numbers</span>
+        </li>
+      </ul>
+
+      <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px; margin-top:8px;">
+        RCS messaging between iPhone and Android is now end-to-end encrypted as of May 2026. iMessage between iPhones remains encrypted. Standard SMS is not — use Signal for sensitive conversations.
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- END MOBILE DEVICE SECURITY MODAL -->
+
 <script async data-uid="e8d521a893" src="https://scamshield.kit.com/e8d521a893/index.js"></script>
 </body>
 </html>
