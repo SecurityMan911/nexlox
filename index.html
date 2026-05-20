@@ -915,9 +915,10 @@ main {
 /* Reference Library */
 .ref-library-label {
   font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 4px; color: #e8cc80; margin: 28px 0 14px;
+  letter-spacing: 4px; margin: 28px 0 14px;
   display: flex; align-items: center; gap: 10px; font-family: 'Courier New', monospace;
-  text-shadow: 0 0 10px rgba(232,204,128,0.55), 0 0 22px rgba(232,204,128,0.2);
+  background: linear-gradient(90deg, #c9a84c 0%, #fff8dc 45%, #f5e070 60%, #c9a84c 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .ref-library-label::before, .ref-library-label::after {
   content: ''; flex: 1; height: 1px;
