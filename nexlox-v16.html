@@ -3171,29 +3171,33 @@ function renderBolo() {
 function fetchBoloNews() {
   const el = document.getElementById('boloNews');
   if (!el || el.dataset.loaded) return;
-  const proxy = 'https://api.allorigins.win/get?url=';
-  const q1 = encodeURIComponent('https://news.google.com/rss/search?q=scam+fraud+alert&hl=en-US&gl=US&ceid=US:en');
-  const q2 = encodeURIComponent('https://news.google.com/rss/search?q=scam+fraud+Georgia&hl=en-US&gl=US&ceid=US:en');
-  Promise.all([
-    fetch(proxy + q1).then(r => r.json()).catch(() => null),
-    fetch(proxy + q2).then(r => r.json()).catch(() => null)
-  ]).then(([r1, r2]) => {
-    const parse = (data) => {
-      if (!data || !data.contents) return [];
-      const doc = new DOMParser().parseFromString(data.contents, 'text/xml');
+  const proxy = 'https://api.allorigins.win/raw?url=';
+  const feeds = [
+    { url: 'https://consumer.ftc.gov/consumer-alerts/rss', src: 'FTC' },
+    { url: 'https://www.ic3.gov/Media/RSS', src: 'IC3' }
+  ];
+  Promise.all(feeds.map(f =>
+    fetch(proxy + encodeURIComponent(f.url))
+      .then(r => r.text())
+      .then(txt => ({ txt, src: f.src }))
+      .catch(() => ({ txt: '', src: f.src }))
+  )).then(results => {
+    const parse = ({txt, src}) => {
+      if (!txt) return [];
+      const doc = new DOMParser().parseFromString(txt, 'text/xml');
       return Array.from(doc.querySelectorAll('item')).map(item => {
         const raw = new XMLSerializer().serializeToString(item);
         const linkMatch = raw.match(/<link[^>]*>([^<]+)<\/link>/i);
         return {
           title: item.querySelector('title')?.textContent?.trim() || '',
-          link: linkMatch ? linkMatch[1].trim() : '#',
+          link: linkMatch ? linkMatch[1].trim() : (item.querySelector('link')?.textContent?.trim() || '#'),
           pubDate: item.querySelector('pubDate')?.textContent || '',
-          source: item.querySelector('source')?.textContent?.trim() || 'News'
+          source: src
         };
       }).filter(i => i.title.length > 5);
     };
     const seen = new Set();
-    const merged = [...parse(r2), ...parse(r1)]
+    const merged = results.flatMap(parse)
       .filter(item => {
         const key = item.title.slice(0, 50);
         if (seen.has(key)) return false;
@@ -3205,9 +3209,8 @@ function fetchBoloNews() {
     el.dataset.loaded = '1';
     el.innerHTML = merged.map(item => {
       const ago = _newsAgo(new Date(item.pubDate));
-      const isGA = /georgia|gwinnett|atlanta/i.test(item.title);
       return `<div style="padding:11px 0;border-bottom:1px solid var(--border);">
-        <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${item.title}${isGA ? ' <span style="font-size:0.65rem;background:rgba(46,201,122,0.15);color:var(--green);padding:1px 6px;border-radius:4px;font-weight:700;vertical-align:middle;">GA</span>' : ''}</div>
+        <div style="font-size:0.82rem;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.45;">${item.title}</div>
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:0.72rem;color:var(--muted);">${item.source} &middot; ${ago}</span>
           <a href="${item.link}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.72rem;color:var(--gold);text-decoration:none;font-weight:700;padding:2px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;">Read &rarr;</a>
