@@ -915,19 +915,30 @@ main {
 /* Reference Library */
 .ref-library-label {
   font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2.5px; color: var(--muted); margin: 28px 0 14px;
-  display: flex; align-items: center; gap: 10px;
+  letter-spacing: 2.5px; color: rgba(201,168,76,0.7); margin: 28px 0 14px;
+  display: flex; align-items: center; gap: 10px; font-family: 'Courier New', monospace;
 }
 .ref-library-label::before, .ref-library-label::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
 }
 .ref-library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
 .ref-card {
   background: var(--glass); border: 1px solid var(--border);
   border-radius: 14px; padding: 18px 20px; cursor: pointer;
   transition: all 0.22s; backdrop-filter: blur(12px);
+  border-left: 3px solid rgba(201,168,76,0.18);
 }
-.ref-card:hover { border-color: var(--border-2); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+.ref-card:hover { border-color: var(--border-2); border-left-color: rgba(201,168,76,0.55); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+/* per-card accent colors — left border only, muted */
+.ref-card-intel  { border-left-color: rgba(232,64,64,0.22); }
+.ref-card-intel:hover  { border-left-color: rgba(232,64,64,0.55); }
+.ref-card-safety { border-left-color: rgba(46,201,122,0.22); }
+.ref-card-safety:hover { border-left-color: rgba(46,201,122,0.55); }
+.ref-card-digital { border-left-color: rgba(80,180,255,0.22); }
+.ref-card-digital:hover { border-left-color: rgba(80,180,255,0.55); }
+.ref-card-local  { border-left-color: rgba(240,150,58,0.22); }
+.ref-card-local:hover  { border-left-color: rgba(240,150,58,0.55); }
 .bolo-card {
   border-color: rgba(232,64,64,0.3);
   background: linear-gradient(135deg, rgba(232,64,64,0.06) 0%, rgba(15,34,55,0.75) 100%);
@@ -935,10 +946,15 @@ main {
 }
 .bolo-card:hover { border-color: rgba(232,64,64,0.6); box-shadow: 0 10px 32px rgba(232,64,64,0.15); }
 .bolo-live-dot {
-  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-  background: var(--red); vertical-align: middle; margin-left: 4px;
-  box-shadow: 0 0 0 0 rgba(232,64,64,0.4);
-  animation: panicPulse 2s ease infinite;
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  background: #ff3b3b; vertical-align: middle; margin-left: 5px;
+  box-shadow: 0 0 8px 2px rgba(232,64,64,0.7);
+  animation: boloLivePulse 1.6s ease-out infinite;
+}
+@keyframes boloLivePulse {
+  0%   { box-shadow: 0 0 6px 2px rgba(232,64,64,0.8), 0 0 0 0 rgba(232,64,64,0.6); }
+  70%  { box-shadow: 0 0 6px 2px rgba(232,64,64,0.8), 0 0 0 10px rgba(232,64,64,0); }
+  100% { box-shadow: 0 0 6px 2px rgba(232,64,64,0.8), 0 0 0 0 rgba(232,64,64,0); }
 }
 .ref-card-icon { font-size: 1.4rem; margin-bottom: 10px; }
 .ref-card-title { font-size: 0.88rem; font-weight: 700; color: var(--white); margin-bottom: 5px; }
@@ -2298,34 +2314,34 @@ footer strong { color: var(--gold); font-weight: 600; }
   </div>
 
   <!-- ════ REFERENCE LIBRARY ════ -->
-  <div class="ref-library-label">Reference Library</div>
+  <div class="ref-library-label">[ Intelligence Modules — 9 Active ]</div>
   <div class="ref-library-grid">
 
-    <div class="ref-card" onclick="open_('scamTypes')">
+    <div class="ref-card ref-card-intel" onclick="open_('scamTypes')">
       <div class="ref-card-icon">&#127919;</div>
       <div class="ref-card-title">Scam Library</div>
       <div class="ref-card-desc">All 28 scam types with full playbooks, red flags, and what to do</div>
     </div>
 
-    <div class="ref-card" onclick="open_('tools')">
+    <div class="ref-card ref-card-intel" onclick="open_('tools')">
       <div class="ref-card-icon">&#128270;</div>
       <div class="ref-card-title">Deep Investigation</div>
       <div class="ref-card-desc">Advanced tools: sandboxing, identity investigation, forensics</div>
     </div>
 
-    <div class="ref-card" onclick="open_('local')">
+    <div class="ref-card ref-card-local" onclick="open_('local')">
       <div class="ref-card-icon">&#128205;</div>
       <div class="ref-card-title">Local Resources</div>
       <div class="ref-card-desc">Snellville, Gwinnett, Atlanta contacts and neighborhood safety maps</div>
     </div>
 
-    <div class="ref-card" onclick="open_('learn')">
+    <div class="ref-card ref-card-intel" onclick="open_('learn')">
       <div class="ref-card-icon">&#128218;</div>
       <div class="ref-card-title">Learn and Stay Safe</div>
       <div class="ref-card-desc">Daily habits, golden rules, phishing quiz, password tools</div>
     </div>
 
-    <div class="ref-card privacy-expand-card" id="privacyCard" onclick="togglePrivacy()">
+    <div class="ref-card ref-card-digital privacy-expand-card" id="privacyCard" onclick="togglePrivacy()">
       <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px;">
         <div>
           <div class="ref-card-icon">&#128274;</div>
@@ -2336,13 +2352,13 @@ footer strong { color: var(--gold); font-weight: 600; }
       </div>
     </div>
 
-    <div class="ref-card" onclick="open_('homesafety')">
+    <div class="ref-card ref-card-safety" onclick="open_('homesafety')">
       <div class="ref-card-icon">🏠</div>
       <div class="ref-card-title">Home &amp; Physical Security</div>
       <div class="ref-card-desc">Doors, locks, cameras, lighting, dogs, perimeter security, and emergency preparedness for your home</div>
     </div>
 
-    <div class="ref-card" onclick="open_('digitalfootprint')">
+    <div class="ref-card ref-card-digital" onclick="open_('digitalfootprint')">
       <div class="ref-card-icon">🌐</div>
       <div class="ref-card-title">Digital Footprint &amp; Privacy</div>
       <div class="ref-card-desc">Reduce your online exposure, opt out of data brokers, protect your identity, and understand authentication security</div>
@@ -2354,7 +2370,7 @@ footer strong { color: var(--gold); font-weight: 600; }
       <div class="ref-card-desc">Be On the Lookout — active threat alerts and breaking scam news for your community</div>
     </div>
 
-    <div class="ref-card" onclick="open_('mobile')">
+    <div class="ref-card ref-card-digital" onclick="open_('mobile')">
       <div class="ref-card-icon">📱</div>
       <div class="ref-card-title">Mobile Device Security</div>
       <div class="ref-card-desc">iPhone and Android hardening — settings, locks, and habits that block the most common phone-based scams</div>
