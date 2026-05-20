@@ -915,12 +915,12 @@ main {
 /* Reference Library */
 .ref-library-label {
   font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2.5px; color: rgba(201,168,76,0.7); margin: 28px 0 14px;
+  letter-spacing: 2.5px; color: #e8cc80; margin: 28px 0 14px;
   display: flex; align-items: center; gap: 10px; font-family: 'Courier New', monospace;
 }
 .ref-library-label::before, .ref-library-label::after {
   content: ''; flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(232,204,128,0.6), transparent);
 }
 .ref-library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
 .ref-card {
@@ -2314,7 +2314,7 @@ footer strong { color: var(--gold); font-weight: 600; }
   </div>
 
   <!-- ════ REFERENCE LIBRARY ════ -->
-  <div class="ref-library-label">[ Intelligence Modules — 9 Active ]</div>
+  <div class="ref-library-label">Reference Library</div>
   <div class="ref-library-grid">
 
     <div class="ref-card ref-card-intel" onclick="open_('scamTypes')">
