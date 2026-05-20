@@ -3546,6 +3546,13 @@ const SEARCH_INDEX = [
   { terms:['usps informed delivery','informed delivery','mail preview','usps mail alerts','mail theft protection','package preview email','usps signup'], label:'📬 USPS Informed Delivery', desc:'Sign up for daily email previews of your incoming mail to detect mail theft and fake notifications', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','exposure') },
   { terms:['mozilla monitor','firefox monitor','breach check free','email breach monitor','data breach monitor','firefox data breach','mozilla breach'], label:'🦊 Mozilla Monitor — Breach Check', desc:'Free breach monitoring from Firefox — see every data breach your email appeared in', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','brokers') },
 
+  // AI THREATS
+  { terms:['ai scams','ai threats','ai fraud','artificial intelligence scam','deepfake scam','ai safety'], label:'🤖 AI Threats & Defenses', desc:'How AI is being used to scam people and how to protect yourself', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','ai') },
+  { terms:['voice cloning','ai voice scam','cloned voice','deepfake call','fake voice call','ai phone call','family emergency scam ai','grandparent scam ai'], label:'🎙️ AI Voice Cloning Scam', desc:'Scammers clone a family member\'s voice from social media to fake emergencies', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','ai') },
+  { terms:['family safe word','safe word scam','family code word','verify caller family','ai impersonation defense'], label:'🔑 Family Safe Word Defense', desc:'FTC and FBI recommended defense against AI voice cloning calls', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','ai') },
+  { terms:['ai phishing','ai email scam','chatgpt phishing','ai generated email','no typos email scam','perfect grammar scam'], label:'📧 AI-Generated Phishing Emails', desc:'Why bad spelling is no longer a reliable red flag for scam emails', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','ai') },
+  { terms:['chatgpt privacy','ai chatbot privacy','what not to share chatgpt','chatgpt data training','opt out ai training','chatgpt settings privacy'], label:'💬 AI Chatbot Privacy', desc:'What not to share with ChatGPT and how to opt out of training', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','ai') },
+
   // MOBILE SECURITY
   { terms:['mobile security','phone security','cell phone security','smartphone security','phone hardening','mobile scam protection','phone scam prevention'], label:'📱 Mobile Device Security', desc:'iPhone and Android hardening — settings and habits to block phone-based scams', badge:'MOBILE', action:()=>open_('mobile') },
   { terms:['android security','android settings','android hardening','android scam protection','android 16 security','advanced protection mode','google play protect'], label:'🤖 Android Security Settings', desc:'Top 10 Android security settings to enable right now', badge:'MOBILE', action:()=>_navTab('mobile','mstab','android') },
@@ -4991,6 +4998,7 @@ window.addEventListener('scroll', () => {
       <button class="tab on" onclick="dftab('exposure',this)">👤 Your Exposure</button>
       <button class="tab" onclick="dftab('brokers',this)">🗂️ Data Brokers</button>
       <button class="tab" onclick="dftab('auth',this)">🔐 Authentication</button>
+      <button class="tab" onclick="dftab('ai',this)">🤖 AI Threats</button>
       <button class="tab" onclick="dftab('cisa',this)">🔗 CISA Resources</button>
       <button class="tab" onclick="dftab('freeze',this)">🧊 Credit Freeze</button>
     </div>
@@ -5191,6 +5199,50 @@ window.addEventListener('scroll', () => {
     </div>
 
     <!-- CISA RESOURCES -->
+    <div class="pane" id="dfp-ai">
+      <div class="tool-section-label" style="margin-bottom:12px;">🤖 AI-Powered Scams & Privacy</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:20px;">AI has changed two things: scammers can now impersonate people you know with their actual voice, and phishing emails no longer have typos. These are the defenses.</div>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🎙️ AI Voice Cloning — The Family Emergency Scam</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:8px;">
+        Scammers pull a short audio clip from a family member's social media — a Facebook video, a TikTok, a voicemail — and use free AI tools to clone that voice. They then call you pretending that person is in jail, in the hospital, or in an accident and needs money immediately. The voice sounds real. The FTC and FBI have both officially warned about this.
+      </div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:20px;">
+        <li><strong style="color:var(--white);">Create a family safe word</strong> — pick a random, nonsensical phrase ("purple cactus," "midnight protocol") and share it privately with your household. If someone calls claiming to be a family member in crisis, ask for the safe word before doing anything. The FTC, FBI, BBB, and National Cybersecurity Alliance all recommend this as the single most effective defense. AI cannot guess a word it has never heard.</li>
+        <li>Hang up and call the family member back directly on their known number — do not use a number the caller provides</li>
+        <li>Urgency and secrecy ("don't tell anyone") are the two biggest red flags — real emergencies can wait 60 seconds for you to verify</li>
+        <li>Limit public video of family members, especially voice-heavy clips — less audio available means harder to clone</li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📧 AI Phishing — Grammar Is No Longer a Tell</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:8px;">
+        KnowBe4, a major cybersecurity firm, found that 82% of phishing emails now contain AI-generated content. The FBI officially warned that criminals are using AI to run "highly targeted phishing campaigns." The old trick of catching scams by bad spelling or broken English no longer works — these emails are polished, personalized, and professional-looking.
+      </div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:20px;">
+        <li><strong style="color:var(--white);">Verify by going directly to the source</strong> — if an email claims to be from your bank, FedEx, or the IRS, open a new browser tab and type the address yourself. Never through a link in the email.</li>
+        <li>The new red flags: urgency, unusual requests, anything asking you to click, call, or pay through an unexpected channel</li>
+        <li>Perfect grammar does not mean legitimate — it means the scammer used AI</li>
+      </ul>
+
+      <div class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">💬 AI Chatbots — What Not to Share</div>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:8px;">
+        ChatGPT, Gemini, and other AI chatbots store your conversations and use them for training by default. A Stanford study confirmed that personal details shared with chatbots create real privacy exposure. Never type the following into any AI chatbot:
+      </div>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:14px;">
+        <li>Social Security number, bank account numbers, or passwords</li>
+        <li>Medical conditions or insurance information</li>
+        <li>Home address, daily schedule, or travel plans</li>
+        <li>Anything your bank, employer, or doctor told you in confidence</li>
+      </ul>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:20px;">
+        <strong style="color:var(--white);">Opt out of ChatGPT training:</strong> Profile icon → Settings → Data Controls → "Improve the model for everyone" → off. This stops new conversations from being used to train future AI models.
+      </div>
+
+      <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px;">
+        Voice cloning technology crossed the "indistinguishable threshold" in 2025 — cybersecurity experts can no longer reliably tell real from synthetic. The safe word works because it never existed in any training data.
+      </div>
+    </div>
+
     <div class="pane" id="dfp-cisa">
       <div class="tool-section-label" style="margin-bottom:12px;">🏛️ CISA Official Guides</div>
       <div class="report-grid" style="margin-bottom:20px;">
