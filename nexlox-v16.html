@@ -3353,6 +3353,10 @@ function open_(id) {
   el.classList.add('open');
   document.body.style.overflow = 'hidden';
   if (id === 'bolo') loadBoloFeed();
+  if (id === 'crimemap') {
+    const f = document.getElementById('crimeMapFrame');
+    if (f && !f.src) f.src = 'https://www.crimemapping.com/map/ga/gwinnettcounty';
+  }
 }
 function openScenario(key) {
   open_('scenarios');
@@ -5567,7 +5571,7 @@ window.addEventListener('scroll', () => {
   </div>
   <div class="modal-body" style="padding:0;">
     <iframe
-      src="https://www.crimemapping.com/map/ga/gwinnettcounty"
+      id="crimeMapFrame"
       width="100%"
       height="560"
       frameborder="0"
