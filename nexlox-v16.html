@@ -3188,7 +3188,9 @@ function loadBoloFeed() {
         el.innerHTML = '<div style="color:var(--muted);font-size:0.78rem;text-align:center;padding:16px;">No reports available.</div>';
         return;
       }
-      const filtered = data.items.filter(i => (i.link||'').includes('ftc.gov') || (i.link||'').includes('ic3.gov')).slice(0,5);
+      const ftcItems = data.items.filter(i => (i.link||'').includes('ftc.gov')).slice(0,5);
+      const ic3Items = data.items.filter(i => (i.link||'').includes('ic3.gov')).slice(0,3);
+      const filtered = [...ftcItems, ...ic3Items];
       const html = filtered.map(item => {
         const raw = item.date || item.pubDate || '';
         const date = raw ? new Date(raw).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
