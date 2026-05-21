@@ -3169,6 +3169,36 @@ function renderBolo() {
 }
 
 
+let boloFeedCache = null;
+function loadBoloFeed() {
+  const el = document.getElementById('boloFeed');
+  if (!el) return;
+  if (boloFeedCache) { el.innerHTML = boloFeedCache; return; }
+  el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--muted);font-size:0.78rem;">Loading feed...</div>';
+  fetch('https://scam-alerts-rss.nexloxtech.workers.dev')
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success || !data.items?.length) {
+        el.innerHTML = '<div style="color:var(--muted);font-size:0.78rem;text-align:center;padding:16px;">No reports available.</div>';
+        return;
+      }
+      const html = data.items.map(item => {
+        const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+        const desc = item.description ? item.description.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ').substring(0,130).trim() + '…' : '';
+        return `<a href="${item.link}" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px 14px;margin-bottom:10px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.35)';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.background='rgba(255,255,255,0.03)'">
+          <div style="font-size:0.68rem;color:var(--muted-2);margin-bottom:5px;letter-spacing:0.3px;">${date}</div>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--white);margin-bottom:5px;line-height:1.4;">${item.title}</div>
+          ${desc ? `<div style="font-size:0.74rem;color:var(--muted);line-height:1.55;">${desc}</div>` : ''}
+        </a>`;
+      }).join('');
+      boloFeedCache = html;
+      el.innerHTML = html;
+    })
+    .catch(() => {
+      el.innerHTML = '<div style="color:var(--muted);font-size:0.78rem;text-align:center;padding:16px;">Feed unavailable — check back later.</div>';
+    });
+}
+
 const SEASONAL_ALERTS = [
   { month: 0,  label: 'JAN ALERT', head: 'Tax Identity Theft Season',        text: 'Scammers file fraudulent returns in your name before you do. File early and set up an IRS Identity Protection PIN at irs.gov.' },
   { month: 1,  label: 'FEB ALERT', head: 'Romance Scam Season',              text: 'Romance scams cost Americans $1.14 billion in 2023. Scammers spike on dating apps around Valentine\'s Day — they always eventually ask for gift cards or a wire transfer.' },
@@ -3307,6 +3337,7 @@ function open_(id) {
   if (!el) return;
   el.classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (id === 'bolo') loadBoloFeed();
 }
 function openScenario(key) {
   open_('scenarios');
@@ -4697,6 +4728,13 @@ window.addEventListener('scroll', () => {
   </div>
   <div class="modal-body">
     <div id="boloContent"></div>
+    <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+        <span style="font-size:0.68rem;font-weight:700;color:var(--muted-2);letter-spacing:1px;text-transform:uppercase;">Gwinnett County Police — Latest</span>
+        <span class="bolo-live-dot" style="margin-left:2px;"></span>
+      </div>
+      <div id="boloFeed"></div>
+    </div>
   </div>
 </div>
 </div>
