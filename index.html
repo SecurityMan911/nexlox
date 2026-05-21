@@ -3182,7 +3182,8 @@ function loadBoloFeed() {
         el.innerHTML = '<div style="color:var(--muted);font-size:0.78rem;text-align:center;padding:16px;">No reports available.</div>';
         return;
       }
-      const html = data.items.map(item => {
+      const filtered = data.items.filter(i => (i.link || '').includes('ftc.gov'));
+      const html = filtered.map(item => {
         const raw = item.date || item.pubDate || '';
         const date = raw ? new Date(raw).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
         const source = item.source || '';
