@@ -3189,7 +3189,7 @@ function loadBoloFeed() {
         return;
       }
       const ftcItems = data.items.filter(i => (i.link||'').includes('ftc.gov')).slice(0,5);
-      const ic3Items = data.items.filter(i => (i.link||'').includes('ic3.gov')).slice(0,3);
+      const ic3Items = data.items.filter(i => (i.link||'').includes('ic3.gov')).slice(0,5);
       const filtered = [...ftcItems, ...ic3Items];
       const html = filtered.map(item => {
         const raw = item.date || item.pubDate || '';
