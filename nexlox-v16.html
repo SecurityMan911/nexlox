@@ -4014,6 +4014,8 @@ const GUIDE_QUESTIONS = {
       { label: 'I met them online — dating, social media, or a messaging app', icon: '💬', next: 'q2_online' },
       { label: 'It is about buying or selling something', icon: '🛒', next: 'q2_market' },
       { label: 'Someone came to my door or approached me in person', icon: '🚪', next: 'q2_door' },
+      { label: 'A pop-up appeared on my computer or browser', icon: '🖥️', next: 'q2_popup' },
+      { label: 'I received something in the mail', icon: '✉️', next: 'q2_mail' },
       { label: 'Not sure — something just does not feel right', icon: '🤔', next: 'q2_unsure' }
     ]
   },
@@ -4078,6 +4080,26 @@ const GUIDE_QUESTIONS = {
       { label: 'A pushy salesperson for alarms, solar, windows, or similar who would not take no', icon: '🚪', next: 'r_doorsales' },
       { label: 'Someone with an urgent story asking for cash, gift cards, or a donation', icon: '😢', next: 'r_sob' },
       { label: 'Not sure — something about them just felt wrong', icon: '🤔', next: 'r_feeloff' }
+    ]
+  },
+  q2_popup: {
+    q: 'What did the pop-up say?',
+    sub: 'The message in the pop-up points to the exact scam type — pick the one closest to what you saw.',
+    opts: [
+      { label: 'Microsoft, Windows, or Apple — your computer is infected or locked', icon: '💻', next: 'r_techsupport' },
+      { label: 'A virus alert with a phone number to call right now', icon: '📞', next: 'r_techsupport' },
+      { label: 'It asked me to install software or give someone access to my computer', icon: '🔓', next: 'r_remoteaccess' },
+      { label: 'A government or law enforcement warning — illegal content found', icon: '🏛️', next: 'r_techsupport' }
+    ]
+  },
+  q2_mail: {
+    q: 'What did you receive?',
+    sub: 'Physical mail scams are still very common — each type has a specific red flag.',
+    opts: [
+      { label: 'A check or money order — sometimes with instructions to send some back', icon: '💵', next: 'r_overpayment' },
+      { label: 'A letter saying I won a prize, lottery, or sweepstakes', icon: '🎁', next: 'r_lottery' },
+      { label: 'An official-looking letter from the IRS, Social Security, or courts demanding payment', icon: '🏛️', next: 'r_govmail' },
+      { label: 'Something else that just seems suspicious or too good to be true', icon: '🤔', next: 'r_feeloff' }
     ]
   }
 };
@@ -4214,6 +4236,12 @@ const GUIDE_RESULTS = {
     match: 'Marketplace and Local Scams',
     body: 'Urgency, limited-time offers, and refusing to leave are deliberate tactics to stop you from thinking clearly or comparing prices. <strong style="color:var(--red-2);">You are never required to decide at the door.</strong> In Georgia, you have the legal right to cancel any door-to-door sale contract within 3 business days — always get any agreement in writing first.',
     cat: 'marketplace', scenario: null
+  },
+  r_govmail: {
+    risk: 'high', icon: '🚨', label: 'Fake Government Letter Scam',
+    match: 'Senior and Vulnerable Targets',
+    body: 'Real IRS, Social Security, and court letters <strong style="color:var(--red-2);">never demand payment by gift card, wire transfer, or cryptocurrency.</strong> Before paying or calling any number in the letter, look up the agency\'s official number yourself and call them directly to verify it is real.',
+    cat: 'vishing', scenario: 'govimpersonation'
   },
   r_feeloff: {
     risk: 'mid', icon: '⚠️', label: 'Something Feels Off — Trust Your Gut',
