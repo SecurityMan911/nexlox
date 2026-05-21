@@ -2393,6 +2393,12 @@ footer strong { color: var(--gold); font-weight: 600; }
       <div class="ref-card-desc">iPhone and Android hardening — settings, locks, and habits that block the most common phone-based scams</div>
     </div>
 
+    <div class="ref-card ref-card-local" onclick="open_('crimemap')">
+      <div class="ref-card-icon">🗺️</div>
+      <div class="ref-card-title">Crime Map</div>
+      <div class="ref-card-desc">Interactive live crime activity map for Gwinnett County — recent incidents by type and location</div>
+    </div>
+
   </div>
 
   <!-- Privacy expandable panel  -  sits below the grid -->
@@ -5541,6 +5547,30 @@ window.addEventListener('scroll', () => {
 </div>
 </div>
 <!-- END MOBILE DEVICE SECURITY MODAL -->
+
+<!-- CRIME MAP MODAL -->
+<div class="overlay" id="ol-crimemap" onclick="overlayClick(event,'crimemap')">
+<div class="modal">
+  <div class="modal-head">
+    <div class="modal-head-left">
+      <div class="modal-head-icon" style="background:rgba(240,150,58,0.15);">🗺️</div>
+      <div class="modal-h2">Gwinnett County Crime Map</div>
+      <div class="modal-sub">Live interactive crime activity map — recent incidents by type and location</div>
+    </div>
+    <button class="modal-close" onclick="close_('crimemap')">✕</button>
+  </div>
+  <div class="modal-body" style="padding:0;">
+    <iframe
+      src="https://www.crimemapping.com/map/ga/gwinnettcounty"
+      width="100%"
+      height="560"
+      frameborder="0"
+      style="display:block;border:none;filter:invert(1) hue-rotate(180deg);">
+    </iframe>
+  </div>
+</div>
+</div>
+<!-- END CRIME MAP MODAL -->
 
 <script async data-uid="e8d521a893" src="https://scamshield.kit.com/e8d521a893/index.js"></script>
 </body>
