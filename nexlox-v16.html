@@ -1551,6 +1551,82 @@ footer strong { color: var(--gold); font-weight: 600; }
   margin: 0 36px;
   font-size: 0.5rem;
 }
+
+/* ─── SECURITY REMINDERS CRAWL ─── */
+.crawl-section {
+  background: var(--navy);
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.crawl-eyebrow {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  color: rgba(201,168,76,0.45);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  z-index: 3;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.crawl-fade-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 110px;
+  background: linear-gradient(to bottom, var(--navy) 25%, transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+.crawl-fade-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 70px;
+  background: linear-gradient(to top, var(--navy), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+.crawl-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 260px;
+}
+.crawl-track {
+  position: absolute;
+  top: 100%;
+  left: 15%;
+  width: 70%;
+  text-align: center;
+  transform-origin: 50% 0%;
+  transform: rotateX(22deg);
+  animation: swCrawl 38s linear infinite;
+}
+@keyframes swCrawl {
+  0%   { top: 110%; }
+  100% { top: -380%; }
+}
+.crawl-item {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  padding: 16px 0;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+@media (max-width: 640px) {
+  .crawl-section { height: 280px; }
+  .crawl-stage { perspective: none; }
+  .crawl-track { transform: none; left: 8%; width: 84%; }
+  .crawl-item { font-size: 0.82rem; padding: 14px 0; }
+}
 </style>
 </head>
 <body>
@@ -2462,6 +2538,27 @@ footer strong { color: var(--gold); font-weight: 600; }
   </div>
 </div>
 </div>
+
+<!-- SECURITY REMINDERS CRAWL -->
+<section class="crawl-section" aria-label="Security reminders">
+  <div class="crawl-eyebrow">⚡ Always Remember</div>
+  <div class="crawl-fade-top"></div>
+  <div class="crawl-fade-bottom"></div>
+  <div class="crawl-stage">
+    <div class="crawl-track">
+      <div class="crawl-item">Always enable 2FA — every account, no exceptions</div>
+      <div class="crawl-item">Use a VPN on public WiFi — coffee shops, hotels, airports</div>
+      <div class="crawl-item">Use strong unique passwords — never reuse the same one</div>
+      <div class="crawl-item">Lock your credit — it's free and stops new accounts cold</div>
+      <div class="crawl-item">Never click links in texts — go directly to the site yourself</div>
+      <div class="crawl-item">Verify before you trust — call back on a number you looked up</div>
+      <div class="crawl-item">Check your bank statements weekly — catch fraud fast</div>
+      <div class="crawl-item">Keep your OS and apps updated — patches close the doors</div>
+      <div class="crawl-item">Never share your OTP code with anyone — not even "the bank"</div>
+      <div class="crawl-item">Back up your files — ransomware can't hold what you already have</div>
+    </div>
+  </div>
+</section>
 
 <section class="shield-pledge" aria-label="Community closing statement">
   <canvas id="pledgeCanvas"></canvas>
