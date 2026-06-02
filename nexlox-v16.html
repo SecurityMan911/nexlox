@@ -2546,16 +2546,6 @@ footer strong { color: var(--gold); font-weight: 600; }
       <div class="crawl-item">Keep your OS and apps updated — patches close the doors</div>
       <div class="crawl-item">Never share your OTP code with anyone — not even "the bank"</div>
       <div class="crawl-item">Back up your files — ransomware can't hold what you already have</div>
-      <div class="crawl-item">Always enable 2FA — every account, no exceptions</div>
-      <div class="crawl-item">Use a VPN on public WiFi — coffee shops, hotels, airports</div>
-      <div class="crawl-item">Use strong unique passwords — never reuse the same one</div>
-      <div class="crawl-item">Lock your credit — it's free and stops new accounts cold</div>
-      <div class="crawl-item">Never click links in texts — go directly to the site yourself</div>
-      <div class="crawl-item">Verify before you trust — call back on a number you looked up</div>
-      <div class="crawl-item">Check your bank statements weekly — catch fraud fast</div>
-      <div class="crawl-item">Keep your OS and apps updated — patches close the doors</div>
-      <div class="crawl-item">Never share your OTP code with anyone — not even "the bank"</div>
-      <div class="crawl-item">Back up your files — ransomware can't hold what you already have</div>
     </div>
   </div>
 </section>
@@ -4798,11 +4788,12 @@ window.addEventListener('scroll', () => {
   requestAnimationFrame(function measure() {
     const halfH = track.scrollHeight / 2;
     track.style.top = pos + 'px';
+    const trackH = track.scrollHeight;
     function tick() {
       if (!paused) {
         pos -= speed;
-        if (pos <= -halfH) {
-          pos += halfH;
+        if (pos <= -trackH) {
+          pos = containerH;
           paused = true;
           setTimeout(function() { paused = false; }, pauseMs);
         }
