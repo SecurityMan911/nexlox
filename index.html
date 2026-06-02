@@ -1605,11 +1605,6 @@ footer strong { color: var(--gold); font-weight: 600; }
   text-align: center;
   transform-origin: 50% 0%;
   transform: rotateX(22deg);
-  animation: swCrawl 38s linear infinite;
-}
-@keyframes swCrawl {
-  0%   { top: 110%; }
-  100% { top: -55%; }
 }
 .crawl-item {
   font-family: 'Courier New', monospace;
@@ -4794,6 +4789,27 @@ window.addEventListener('scroll', () => {
   const btn = document.getElementById('backToTop');
   if (btn) btn.classList.toggle('visible', window.scrollY > 400);
 });
+
+// Seamless crawl loop — measures real content height, resets without gap
+(function() {
+  const stage = document.querySelector('.crawl-stage');
+  const track = document.querySelector('.crawl-track');
+  if (!stage || !track) return;
+  const containerH = stage.offsetHeight;
+  let pos = containerH;
+  const speed = 0.55;
+  requestAnimationFrame(function measure() {
+    const halfH = track.scrollHeight / 2;
+    track.style.top = pos + 'px';
+    function tick() {
+      pos -= speed;
+      if (pos <= -halfH) pos += halfH;
+      track.style.top = pos + 'px';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+})();
 </script>
 <!-- HOME & PHYSICAL SECURITY -->
 <!-- BOLO ALERTS -->
