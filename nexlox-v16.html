@@ -1556,7 +1556,7 @@ footer strong { color: var(--gold); font-weight: 600; }
 .crawl-section {
   background: var(--navy);
   position: relative;
-  height: 320px;
+  height: 300px;
   overflow: hidden;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -1578,16 +1578,16 @@ footer strong { color: var(--gold); font-weight: 600; }
 .crawl-fade-top {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 110px;
-  background: linear-gradient(to bottom, var(--navy) 25%, transparent);
+  height: 90px;
+  background: linear-gradient(to bottom, var(--navy) 30%, transparent);
   z-index: 2;
   pointer-events: none;
 }
 .crawl-fade-bottom {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 160px;
-  background: linear-gradient(to top, var(--navy) 45%, transparent);
+  height: 90px;
+  background: linear-gradient(to top, var(--navy) 30%, transparent);
   z-index: 2;
   pointer-events: none;
 }
@@ -1595,7 +1595,6 @@ footer strong { color: var(--gold); font-weight: 600; }
   position: absolute;
   inset: 0;
   overflow: hidden;
-  perspective: 500px;
 }
 .crawl-track {
   position: absolute;
@@ -1603,23 +1602,19 @@ footer strong { color: var(--gold); font-weight: 600; }
   left: 10%;
   width: 80%;
   text-align: center;
-  transform-origin: 50% 0%;
-  transform: rotateX(16deg);
 }
 .crawl-item {
   font-family: 'Courier New', monospace;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--gold);
-  padding: 16px 0;
-  letter-spacing: 0.04em;
+  padding: 18px 0;
+  letter-spacing: 0.05em;
   line-height: 1.4;
   border-bottom: 1px solid rgba(201,168,76,0.08);
 }
 @media (max-width: 640px) {
-  .crawl-section { height: 280px; }
-  .crawl-stage { perspective: none; }
-  .crawl-track { transform: none; left: 8%; width: 84%; }
+  .crawl-section { height: 260px; }
   .crawl-item { font-size: 0.82rem; padding: 14px 0; }
 }
 </style>
