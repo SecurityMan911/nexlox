@@ -4785,21 +4785,29 @@ window.addEventListener('scroll', () => {
   if (btn) btn.classList.toggle('visible', window.scrollY > 400);
 });
 
-// Seamless crawl loop — measures real content height, resets without gap
+// Crawl loop with pause between cycles
 (function() {
   const stage = document.querySelector('.crawl-stage');
   const track = document.querySelector('.crawl-track');
   if (!stage || !track) return;
   const containerH = stage.offsetHeight;
   let pos = containerH;
-  const speed = 0.55;
+  const speed = 0.45;
+  const pauseMs = 3500;
+  let paused = false;
   requestAnimationFrame(function measure() {
     const halfH = track.scrollHeight / 2;
     track.style.top = pos + 'px';
     function tick() {
-      pos -= speed;
-      if (pos <= -halfH) pos += halfH;
-      track.style.top = pos + 'px';
+      if (!paused) {
+        pos -= speed;
+        if (pos <= -halfH) {
+          pos += halfH;
+          paused = true;
+          setTimeout(function() { paused = false; }, pauseMs);
+        }
+        track.style.top = pos + 'px';
+      }
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
