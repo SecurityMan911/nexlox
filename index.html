@@ -1900,6 +1900,12 @@ footer strong { color: var(--gold); font-weight: 600; }
             <div class="v3-desc">Verify sender, spot red flags, report</div>
           </button>
 
+          <button class="v3-btn" id="v3-business" onclick="openVerifyPanel('business')">
+            <div class="v3-icon">🏢</div>
+            <div class="v3-label">A business or contractor</div>
+            <div class="v3-desc">Reviews, complaints, and license check</div>
+          </button>
+
         </div>
       </div>
 
@@ -2172,6 +2178,66 @@ footer strong { color: var(--gold); font-weight: 600; }
         </div>
 
         <div class="vp-tip">Never click a link or reply STOP to a text from an unknown number — not even to opt out. Both actions confirm your number is active and can lead to more scam texts or malware. Navigate to any company's website directly by typing it yourself.</div>
+      </div>
+
+      <div class="verify-panel" id="vpanel-business">
+        <div class="vp-head">
+          <div class="vp-title">🏢 Verifying a business or contractor</div>
+          <div class="vp-desc">Search the business name in each tool below. Use more than one — a clean Google result doesn't tell you if they're licensed or have a complaint history.</div>
+        </div>
+        <div class="vp-tools">
+          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="vp-tool">
+            <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="" class="rc-logo" style="margin-bottom:6px; display:block;">
+            <div class="vp-tool-name">Google Reviews</div>
+            <div class="vp-tool-desc">Search the business name and look at star ratings, written reviews, and how long they've been listed. Watch for a sudden flood of 5-star reviews with no text.</div>
+            <div class="vp-tool-badge badge-paste">Search name</div>
+          </a>
+          <a href="https://www.yelp.com" target="_blank" rel="noopener noreferrer" class="vp-tool">
+            <img src="https://www.google.com/s2/favicons?domain=yelp.com&sz=64" alt="" class="rc-logo" style="margin-bottom:6px; display:block;">
+            <div class="vp-tool-name">Yelp</div>
+            <div class="vp-tool-desc">Strong for local contractors, repair shops, and service businesses. Check for patterns in the negative reviews — one bad review is noise, five saying the same thing is a signal.</div>
+            <div class="vp-tool-badge badge-paste">Search name</div>
+          </a>
+          <a href="https://www.bbb.org" target="_blank" rel="noopener noreferrer" class="vp-tool">
+            <img src="https://www.google.com/s2/favicons?domain=bbb.org&sz=64" alt="" class="rc-logo" style="margin-bottom:6px; display:block;">
+            <div class="vp-tool-name">BBB — Better Business Bureau</div>
+            <div class="vp-tool-desc">Check the business rating, accreditation status, and full complaint history. How they respond to complaints tells you more than the complaints themselves.</div>
+            <div class="vp-tool-badge badge-paste">Search name</div>
+          </a>
+          <a href="https://www.trustpilot.com" target="_blank" rel="noopener noreferrer" class="vp-tool">
+            <img src="https://www.google.com/s2/favicons?domain=trustpilot.com&sz=64" alt="" class="rc-logo" style="margin-bottom:6px; display:block;">
+            <div class="vp-tool-name">Trustpilot</div>
+            <div class="vp-tool-desc">Broad coverage for online and national businesses. Useful when a company operates primarily online or markets itself across multiple states.</div>
+            <div class="vp-tool-badge badge-paste">Search name</div>
+          </a>
+          <a href="https://ecorp.sos.ga.gov/BusinessSearch" target="_blank" rel="noopener noreferrer" class="vp-tool">
+            <img src="https://www.google.com/s2/favicons?domain=sos.ga.gov&sz=64" alt="" class="rc-logo" style="margin-bottom:6px; display:block;">
+            <div class="vp-tool-name">Georgia SOS Business Search</div>
+            <div class="vp-tool-desc">Verify the business is legally registered in the state of Georgia. Legitimate local businesses will appear here. No listing is a serious red flag.</div>
+            <div class="vp-tool-badge badge-paste">Search name</div>
+          </a>
+          <a href="https://verify.sos.ga.gov/verification/" target="_blank" rel="noopener noreferrer" class="vp-tool">
+            <img src="https://www.google.com/s2/favicons?domain=sos.ga.gov&sz=64" alt="" class="rc-logo" style="margin-bottom:6px; display:block;">
+            <div class="vp-tool-name">Georgia Professional License Verify</div>
+            <div class="vp-tool-desc">Confirm a contractor, electrician, plumber, or other licensed professional holds a valid and active Georgia license before any work begins.</div>
+            <div class="vp-tool-badge badge-paste">Search name</div>
+          </a>
+        </div>
+
+        <div class="vp-interpret">
+          <div class="vp-interpret-head">How to read the results</div>
+          <div class="vp-interpret-row">
+            <div class="vp-interpret-cell vp-interpret-ok">
+              <div class="vp-interpret-label">✅ Looks legitimate when…</div>
+              Reviews span multiple years and come from real profiles. Complaints exist but the business responded professionally. Business appears in Georgia SOS with a real address. License is active and current. Rating is consistent across more than one platform.
+            </div>
+            <div class="vp-interpret-cell vp-interpret-bad">
+              <div class="vp-interpret-label">🚩 Treat as suspicious when…</div>
+              All 5-star reviews were posted in the same week. Multiple reviews mention the same specific issue. Business name does not appear in Georgia SOS. License is expired, suspended, or can't be found. Only one platform has reviews and the others show nothing.
+            </div>
+          </div>
+        </div>
+        <div class="vp-tip" style="margin-top:10px;">Never pay a contractor in full upfront — 30% down is standard, the rest on completion. Any contractor who pressures you to decide same-day or refuses to show a license number should be turned away immediately.</div>
       </div>
 
     </div>
@@ -2852,6 +2918,18 @@ footer strong { color: var(--gold); font-weight: 600; }
       </div>
     </div>
 
+    <div class="tool-section">
+      <div class="tool-section-label">🏢 Verify a Business or Contractor</div>
+      <div class="tool-grid">
+        <a class="tool-link" href="https://www.google.com" target="_blank" rel="noopener noreferrer"><span class="tool-icon"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="" class="rc-logo"></span><div class="tool-info"><div class="tool-name">Google Reviews <span class="tool-badge badge-manual">SEARCH</span></div><div class="tool-desc">Ratings, reviews, and how long they've been listed</div></div><span class="tool-arrow">↗</span></a>
+        <a class="tool-link" href="https://www.yelp.com" target="_blank" rel="noopener noreferrer"><span class="tool-icon"><img src="https://www.google.com/s2/favicons?domain=yelp.com&sz=64" alt="" class="rc-logo"></span><div class="tool-info"><div class="tool-name">Yelp <span class="tool-badge badge-manual">SEARCH</span></div><div class="tool-desc">Strong for local contractors and service businesses</div></div><span class="tool-arrow">↗</span></a>
+        <a class="tool-link" href="https://www.bbb.org" target="_blank" rel="noopener noreferrer"><span class="tool-icon"><img src="https://www.google.com/s2/favicons?domain=bbb.org&sz=64" alt="" class="rc-logo"></span><div class="tool-info"><div class="tool-name">BBB — Better Business Bureau <span class="tool-badge badge-manual">SEARCH</span></div><div class="tool-desc">Accreditation, rating, and full complaint history</div></div><span class="tool-arrow">↗</span></a>
+        <a class="tool-link" href="https://www.trustpilot.com" target="_blank" rel="noopener noreferrer"><span class="tool-icon"><img src="https://www.google.com/s2/favicons?domain=trustpilot.com&sz=64" alt="" class="rc-logo"></span><div class="tool-info"><div class="tool-name">Trustpilot <span class="tool-badge badge-manual">SEARCH</span></div><div class="tool-desc">Broad review coverage for online and national businesses</div></div><span class="tool-arrow">↗</span></a>
+        <a class="tool-link" href="https://ecorp.sos.ga.gov/BusinessSearch" target="_blank" rel="noopener noreferrer"><span class="tool-icon"><img src="https://www.google.com/s2/favicons?domain=sos.ga.gov&sz=64" alt="" class="rc-logo"></span><div class="tool-info"><div class="tool-name">Georgia SOS Business Search <span class="tool-badge badge-manual">SEARCH</span></div><div class="tool-desc">Verify the business is legally registered in Georgia</div></div><span class="tool-arrow">↗</span></a>
+        <a class="tool-link" href="https://verify.sos.ga.gov/verification/" target="_blank" rel="noopener noreferrer"><span class="tool-icon"><img src="https://www.google.com/s2/favicons?domain=sos.ga.gov&sz=64" alt="" class="rc-logo"></span><div class="tool-info"><div class="tool-name">Georgia License Verify <span class="tool-badge badge-manual">SEARCH</span></div><div class="tool-desc">Confirm contractor or professional holds a valid GA license</div></div><span class="tool-arrow">↗</span></a>
+      </div>
+    </div>
+
   </div>
 </div>
 </div>
@@ -3518,6 +3596,7 @@ const SEARCH_INDEX = [
   { terms:['verify email','suspicious email','phishing email check','check email','email scam check','email header','fake email check'], label:'📧 Verify a Suspicious Email', desc:'Check if an email is legitimate or phishing', badge:'VERIFY', action:()=>{ jumpStep(2); openVerifyPanel('email'); } },
   { terms:['verify phone','check phone number','who called me','suspicious call','reverse phone lookup','phone scam check','unknown number','who is calling me'], label:'📞 Verify a Phone Number', desc:'Look up who is calling and check for scam reports', badge:'VERIFY', action:()=>{ jumpStep(2); openVerifyPanel('phone'); } },
   { terms:['check text message','suspicious text','sms scam check','verify text message','7726','spam text report','report spam text'], label:'💬 Verify a Suspicious Text', desc:'Red flags, tools, and how to report scam texts', badge:'VERIFY', action:()=>{ jumpStep(2); openVerifyPanel('sms'); } },
+  { terms:['verify business','check contractor','business reviews','google reviews','yelp','bbb','better business bureau','trustpilot','is this business legit','contractor license','georgia business lookup','sos georgia','georgia license','review check','fake business','business scam','check reviews','contractor scam'], label:'🏢 Verify a Business or Contractor', desc:'Reviews, complaints, and license check before you pay', badge:'VERIFY', action:()=>{ jumpStep(2); openVerifyPanel('business'); } },
 
   // REPORT
   { terms:['report scam','file report','report to ftc','ftc complaint','report fraud','how to report a scam'], label:'📋 Report a Scam', desc:'FTC, FBI IC3, Gwinnett PD, Georgia AG and more', badge:'REPORT', action:()=>jumpStep(3) },
