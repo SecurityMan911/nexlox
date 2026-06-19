@@ -3716,6 +3716,9 @@ const SEARCH_INDEX = [
   { terms:['account takeover','hacked social media','facebook hacked','instagram hacked','social media account stolen','account hijacked','locked out of account'], label:'🔓 Social Media Account Takeover — Scam Library', desc:'Account hijacking — recovery steps and prevention', badge:'SCAM', action:()=>_navScam('social','socialhijack') },
   { terms:['fake account','clone account','impersonation account','fake facebook profile','fake instagram','duplicate account','friend request clone'], label:'👥 Fake & Clone Accounts — Scam Library', desc:'Scammers cloning your profile to scam your friends and family', badge:'SCAM', action:()=>_navScam('social','socialclone') },
   { terms:['social media safety','social media privacy','facebook privacy','instagram privacy','account hardening','social media tips','protect social media account'], label:'🛡️ Social Media Safety & Hardening — Scam Library', desc:'Lock down your accounts and reduce your scam exposure', badge:'SCAM', action:()=>_navScam('social','socialsafety') },
+  { terms:['facebook privacy settings','facebook privacy checkup','lock facebook account','facebook post visibility','facebook connected apps'], label:'📱 Facebook Privacy Settings', desc:'Step-by-step Facebook privacy and audience settings', badge:'FOOTPRINT', action:()=>{ open_('digitalfootprint'); setTimeout(()=>dftab('social',null),150); } },
+  { terms:['instagram private account','instagram privacy settings','instagram activity status','tiktok private account','tiktok privacy settings','tiktok ghost mode','snapchat ghost mode','snapchat privacy controls','snapchat location'], label:'📱 Instagram, TikTok and Snapchat Privacy Settings', desc:'Platform-by-platform privacy settings for each app', badge:'FOOTPRINT', action:()=>{ open_('digitalfootprint'); setTimeout(()=>dftab('social',null),150); } },
+  { terms:['linkedin privacy settings','linkedin connections visibility','x privacy settings','twitter privacy settings','protect posts x','youtube watch history private','youtube subscriptions private','social media platform settings'], label:'📱 LinkedIn, X and YouTube Privacy Settings', desc:'Privacy and visibility settings for LinkedIn, X, and YouTube', badge:'FOOTPRINT', action:()=>{ open_('digitalfootprint'); setTimeout(()=>dftab('social',null),150); } },
 
   // NEW — FINANCIAL / SENIOR SCAM TYPES
   { terms:['pig butchering','crypto scam','investment scam','fake trading platform','cryptocurrency romance scam','crypto pig butchering','bitcoin investment scam','fake crypto platform'], label:'🐷 Crypto Pig Butchering — Scam Library', desc:'Long-term relationship scam that funnels victims into fake crypto investment platforms', badge:'SCAM', action:()=>_navScam('financial','pigbutcher') },
@@ -5257,6 +5260,7 @@ window.addEventListener('scroll', () => {
       <button class="tab" onclick="dftab('ai',this)">🤖 AI Threats</button>
       <button class="tab" onclick="dftab('cisa',this)">🔗 CISA Resources</button>
       <button class="tab" onclick="dftab('freeze',this)">🧊 Credit Freeze</button>
+      <button class="tab" onclick="dftab('social',this)">📱 Social Media</button>
     </div>
 
     <!-- EXPOSURE -->
@@ -5513,6 +5517,136 @@ window.addEventListener('scroll', () => {
       <div class="report-grid">
         <a href="https://www.ready.gov/sites/default/files/2021-02/ready_checklist.pdf" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon">🖨️</div><div class="rc-name">Ready.gov Emergency Checklist</div><div class="rc-desc">Printable household emergency preparedness checklist from FEMA. Good for the refrigerator.</div></a>
         <a href="https://www.consumer.ftc.gov/articles/pdf-0001-ftc-id-theft.pdf" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon">📄</div><div class="rc-name">FTC Identity Theft Recovery</div><div class="rc-desc">Step-by-step printable guide to recovering from identity theft. Official FTC document.</div></a>
+      </div>
+    </div>
+
+    <!-- SOCIAL MEDIA PRIVACY -->
+    <div class="pane" id="dfp-social">
+      <div style="font-size:0.8rem; line-height:1.6; color:var(--muted); margin-bottom:16px; padding:10px 14px; background:rgba(201,168,76,0.06); border-left:3px solid var(--gold); border-radius:8px;">
+        Most social media accounts are far more exposed than their owners realize. These are the specific settings to change on each platform right now. Prioritize whichever ones you actively use.
+      </div>
+
+      <div style="display:grid; gap:12px;">
+
+        <!-- FACEBOOK -->
+        <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="https://www.google.com/s2/favicons?domain=facebook.com&sz=64" alt="" class="rc-logo" style="width:18px; height:18px;">
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">Facebook</div>
+            <a href="https://www.facebook.com/privacy/checkup/" target="_blank" rel="noopener noreferrer" style="margin-left:auto; font-size:0.72rem; color:var(--gold); font-weight:600; text-decoration:none;">Privacy Checkup &#8599;</a>
+          </div>
+          <ul style="font-size:0.77rem; line-height:1.7; color:var(--muted); padding-left:18px; margin:0;">
+            <li><strong style="color:var(--white);">Post visibility:</strong> Settings &amp; Privacy → Settings → Privacy → Who can see your future posts → Friends</li>
+            <li><strong style="color:var(--white);">Friends list:</strong> Settings → Privacy → Who can see your friends list → Only me</li>
+            <li><strong style="color:var(--white);">Phone and email lookup:</strong> Settings → Privacy → How people find and contact you → change both to Friends</li>
+            <li><strong style="color:var(--white);">Tag review:</strong> Settings → Profile and tagging → Review posts you're tagged in before they appear → on</li>
+            <li><strong style="color:var(--white);">Connected apps:</strong> Settings → Apps and Websites → remove everything you no longer actively use</li>
+            <li><strong style="color:var(--white);">Run the Privacy Checkup (link above)</strong> -- it walks through every category in about 5 minutes and flags anything overexposed</li>
+          </ul>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="https://www.google.com/s2/favicons?domain=instagram.com&sz=64" alt="" class="rc-logo" style="width:18px; height:18px;">
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">Instagram</div>
+            <a href="https://help.instagram.com" target="_blank" rel="noopener noreferrer" style="margin-left:auto; font-size:0.72rem; color:var(--gold); font-weight:600; text-decoration:none;">Instagram Help &#8599;</a>
+          </div>
+          <ul style="font-size:0.77rem; line-height:1.7; color:var(--muted); padding-left:18px; margin:0;">
+            <li><strong style="color:var(--white);">Private account (most important):</strong> Settings → Account Privacy → Private Account → on. Anyone not already following you cannot see your posts, stories, or reels.</li>
+            <li><strong style="color:var(--white);">Activity status:</strong> Settings → Messages → Show activity status → off</li>
+            <li><strong style="color:var(--white);">Story resharing:</strong> Settings → Privacy → Stories → Allow resharing to Stories → off</li>
+            <li><strong style="color:var(--white);">Comment controls:</strong> Settings → Comments → Allow comments from → Followers you follow back</li>
+            <li><strong style="color:var(--white);">Connected apps:</strong> Settings → Apps and Websites → remove anything you no longer actively use</li>
+            <li><strong style="color:var(--white);">Profile info:</strong> Remove your phone number and email address from your public profile fields</li>
+          </ul>
+        </div>
+
+        <!-- TIKTOK -->
+        <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="https://www.google.com/s2/favicons?domain=tiktok.com&sz=64" alt="" class="rc-logo" style="width:18px; height:18px;">
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">TikTok</div>
+            <span style="margin-left:auto; font-size:0.72rem; color:var(--muted); font-style:italic;">Settings are in-app</span>
+          </div>
+          <ul style="font-size:0.77rem; line-height:1.7; color:var(--muted); padding-left:18px; margin:0;">
+            <li><strong style="color:var(--white);">Private account:</strong> Profile → 3-line menu (top right) → Settings and Privacy → Privacy → Private Account → on</li>
+            <li><strong style="color:var(--white);">Direct messages:</strong> Settings and Privacy → Privacy → Direct Messages → Friends or No one</li>
+            <li><strong style="color:var(--white);">Duet and Stitch:</strong> Settings and Privacy → Privacy → Duet / Stitch → No one or Friends</li>
+            <li><strong style="color:var(--white);">Suggest your account:</strong> Settings and Privacy → Privacy → Suggest your account to others → turn off all toggles</li>
+            <li><strong style="color:var(--white);">Ad personalization:</strong> Settings and Privacy → Privacy → Ads personalization → off</li>
+            <li><strong style="color:var(--white);">AI voice exposure:</strong> Any TikTok video that includes your voice can be used to clone it with AI. Keep personal content to a private account or avoid posting voice-heavy clips publicly.</li>
+          </ul>
+        </div>
+
+        <!-- X (TWITTER) -->
+        <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="" class="rc-logo" style="width:18px; height:18px;">
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">X (Twitter)</div>
+            <a href="https://x.com/settings/privacy_and_safety" target="_blank" rel="noopener noreferrer" style="margin-left:auto; font-size:0.72rem; color:var(--gold); font-weight:600; text-decoration:none;">Privacy Settings &#8599;</a>
+          </div>
+          <ul style="font-size:0.77rem; line-height:1.7; color:var(--muted); padding-left:18px; margin:0;">
+            <li><strong style="color:var(--white);">Protect your posts:</strong> Settings → Privacy and safety → Audience and tagging → Protect your posts → on. Only approved followers can see your content.</li>
+            <li><strong style="color:var(--white);">Discoverability:</strong> Settings → Privacy and safety → Discoverability and contacts → uncheck both "Let others find you by email" and "by phone number"</li>
+            <li><strong style="color:var(--white);">Location:</strong> Settings → Privacy and safety → Location information → turn off precise location</li>
+            <li><strong style="color:var(--white);">Direct messages:</strong> Settings → Privacy and safety → Direct Messages → Allow message requests from → Verified users or Nobody</li>
+            <li><strong style="color:var(--white);">Data sharing:</strong> Settings → Privacy and safety → Data sharing with business partners → off</li>
+          </ul>
+        </div>
+
+        <!-- SNAPCHAT -->
+        <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="https://www.google.com/s2/favicons?domain=snapchat.com&sz=64" alt="" class="rc-logo" style="width:18px; height:18px;">
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">Snapchat</div>
+            <a href="https://support.snapchat.com" target="_blank" rel="noopener noreferrer" style="margin-left:auto; font-size:0.72rem; color:var(--gold); font-weight:600; text-decoration:none;">Snapchat Support &#8599;</a>
+          </div>
+          <ul style="font-size:0.77rem; line-height:1.7; color:var(--muted); padding-left:18px; margin:0;">
+            <li><strong style="color:var(--white);">Ghost Mode (highest priority):</strong> Tap your avatar → Snap Map → gear icon → Ghost Mode → on. This hides your real-time location from everyone including friends.</li>
+            <li><strong style="color:var(--white);">Who can contact me:</strong> Settings (gear icon, top right) → Privacy Controls → Contact Me → My Friends</li>
+            <li><strong style="color:var(--white);">Who can view my Story:</strong> Settings → View My Story → My Friends</li>
+            <li><strong style="color:var(--white);">Quick Add:</strong> Settings → See Me in Quick Add → off. This stops strangers from being suggested your account based on mutual contacts.</li>
+            <li><strong style="color:var(--white);">Who can see my location:</strong> Settings → See My Location → Ghost Mode (verify it matches the Snap Map setting above)</li>
+          </ul>
+        </div>
+
+        <!-- LINKEDIN -->
+        <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=64" alt="" class="rc-logo" style="width:18px; height:18px;">
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">LinkedIn</div>
+            <a href="https://www.linkedin.com/settings/" target="_blank" rel="noopener noreferrer" style="margin-left:auto; font-size:0.72rem; color:var(--gold); font-weight:600; text-decoration:none;">Settings &#8599;</a>
+          </div>
+          <ul style="font-size:0.77rem; line-height:1.7; color:var(--muted); padding-left:18px; margin:0;">
+            <li><strong style="color:var(--white);">Profile info:</strong> Remove your personal phone number and personal email from your public profile directly. These are prime targets for scammers doing reconnaissance.</li>
+            <li><strong style="color:var(--white);">Who can see your connections:</strong> Settings → Visibility → Who can see your connections → Only you</li>
+            <li><strong style="color:var(--white);">Profile viewing options:</strong> Settings → Visibility → Profile viewing options → Anonymous LinkedIn Member (lets you browse profiles without being seen)</li>
+            <li><strong style="color:var(--white);">Discoverability:</strong> Settings → Visibility → Profile discovery and visibility → review who can find you by email or phone and restrict both</li>
+            <li><strong style="color:var(--white);">Fake recruiter warning:</strong> Any recruiter contacting you via LinkedIn DM and asking for your SSN, bank info, or upfront fees before a formal offer is a scam. Legitimate recruiters never operate this way.</li>
+          </ul>
+        </div>
+
+        <!-- YOUTUBE -->
+        <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="" class="rc-logo" style="width:18px; height:18px;">
+            <div style="font-size:0.82rem; font-weight:700; color:var(--white);">YouTube</div>
+            <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener noreferrer" style="margin-left:auto; font-size:0.72rem; color:var(--gold); font-weight:600; text-decoration:none;">Google Data &amp; Privacy &#8599;</a>
+          </div>
+          <ul style="font-size:0.77rem; line-height:1.7; color:var(--muted); padding-left:18px; margin:0;">
+            <li><strong style="color:var(--white);">Watch history:</strong> YouTube saves everything you watch to your Google account by default. To pause it: myaccount.google.com → Data &amp; Privacy → YouTube watch history → Pause</li>
+            <li><strong style="color:var(--white);">Playlists:</strong> Saved playlists are public by default. Go to each playlist → Edit → set to Private.</li>
+            <li><strong style="color:var(--white);">Subscriptions:</strong> YouTube Studio → Settings → Privacy → Keep all my subscriptions private → on</li>
+            <li><strong style="color:var(--white);">AI voice exposure:</strong> Any public YouTube video that includes your voice gives scammers material to clone it with AI. Set personal videos to Unlisted or Private instead of Public.</li>
+            <li><strong style="color:var(--white);">Search history:</strong> myaccount.google.com → Data &amp; Privacy → YouTube search history → Pause to stop saving future searches</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px; margin-top:16px;">
+        Platform interfaces change periodically. If a settings path does not match exactly, use the search function inside the app's Settings to find it by keyword.
       </div>
     </div>
 
