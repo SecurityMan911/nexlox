@@ -4032,7 +4032,7 @@ function renderStep(idx) {
       <div style="font-size:0.78rem; font-weight:700; color:var(--gold); margin-bottom:10px; letter-spacing:0.4px;">YOUR NEXT STEPS</div>
       <div style="display:flex; gap:9px; flex-wrap:wrap;">
         <button class="flow-choice" style="background:rgba(232,64,64,0.15); border-color:rgba(232,64,64,0.4); color:var(--red-2);" onclick="close_('scenarios'); jumpStep(3);">📋 Go to Report Section</button>
-        <button class="flow-choice" onclick="close_('scenarios'); jumpStep(3); setTimeout(()=>{ const b=document.querySelector('.report-tab[onclick*=\'sent\']'); if(b)rtab('sent',b); },80);">💰 Payment Recovery Guide</button>
+        <button class="flow-choice" onclick="close_('scenarios'); jumpStep(3); setTimeout(()=>{ const b=document.querySelector('.report-tab[onclick*=sent]'); if(b)rtab('sent',b); },80);">💰 Payment Recovery Guide</button>
         <button class="flow-choice" onclick="resetFlow();">↩ Back to Scenarios</button>
       </div>
     </div>` : '';
