@@ -4908,13 +4908,9 @@ window.addEventListener('scroll', () => {
 <!-- BOLO ALERTS -->
 <div class="overlay" id="ol-bolo" onclick="overlayClick(event,'bolo')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon" style="background:rgba(232,64,64,0.15);">📡</div>
-      <div class="modal-h2">BOLO Alerts</div>
-      <div class="modal-sub">Be On the Lookout — active threat alerts and breaking scam news</div>
-    </div>
-    <button class="modal-close" onclick="close_('bolo')">✕</button>
+  <div style="position:relative;">
+    <img src="bolo-banner.png" alt="BOLO — Be On the Lookout" style="width:100%; display:block; border-radius:12px 12px 0 0; max-height:200px; object-fit:cover; object-position:center top;">
+    <button class="modal-close" onclick="close_('bolo')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
     <div id="boloContent"></div>
