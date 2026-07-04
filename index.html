@@ -3315,6 +3315,9 @@ function renderBolo() {
 
 
 let boloFeedCache = null;
+function escFeed(s) {
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 function loadBoloFeed() {
   const el = document.getElementById('boloFeed');
   if (!el) return;
@@ -3332,11 +3335,12 @@ function loadBoloFeed() {
       const renderCards = items => items.map(item => {
         const raw = item.date || item.pubDate || '';
         const date = raw ? new Date(raw).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
-        const title = (item.title || '').replace(/<[^>]+>/g,'').trim();
+        const title = escFeed((item.title || '').replace(/<[^>]+>/g,'').trim());
+        const safeLink = /^https:\/\//i.test(item.link || '') ? escFeed(item.link) : '';
         return `<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:11px 14px;margin-bottom:8px;">
-          <div style="font-size:0.65rem;color:var(--muted-2);margin-bottom:5px;">${date}</div>
+          <div style="font-size:0.65rem;color:var(--muted-2);margin-bottom:5px;">${escFeed(date)}</div>
           <div style="font-size:0.79rem;font-weight:700;color:var(--white);line-height:1.4;margin-bottom:7px;">${title}</div>
-          <a href="${item.link}" target="_blank" rel="noopener noreferrer" style="font-size:0.68rem;color:var(--gold);text-decoration:none;font-weight:600;">Read alert →</a>
+          ${safeLink ? `<a href="${safeLink}" target="_blank" rel="noopener noreferrer" style="font-size:0.68rem;color:var(--gold);text-decoration:none;font-weight:600;">Read alert →</a>` : ''}
         </div>`;
       }).join('');
       const footer = `<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">

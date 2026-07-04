@@ -1,0 +1,16 @@
+# Cloudflare Pages security headers — replaces the old netlify.toml (Netlify decommissioned 2026-07-03)
+# CSP notes:
+#   unsafe-inline required: all JS/CSS is inline in the single-file HTML
+#   scamshield.kit.com + *.convertkit.com  = Kit email capture popup
+#   googletagmanager.com + google-analytics domains = GA4
+#   scam-alerts-rss.nexloxtech.workers.dev = BOLO live feed Worker
+#   www.crimemapping.com = Crime Map modal iframe
+#   img-src https: = Google favicon service across all cards
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://scamshield.kit.com https://*.convertkit.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://*.kit.com https://*.convertkit.com https://www.crimemapping.com; connect-src 'self' https://*.kit.com https://*.convertkit.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://scam-alerts-rss.nexloxtech.workers.dev; font-src 'self' data:; base-uri 'self'; form-action 'self' https://app.kit.com https://*.convertkit.com
