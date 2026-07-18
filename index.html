@@ -3452,7 +3452,11 @@ function togglePrivacy() {
 }
 
 
-const STEP_ICONS = ['🔍', '🔬', '🚨'];
+const STEP_ICONS = [
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>'
+];
 
 function clearStepDefaults(el) {
   el.classList.remove('step2-default', 'step3-default');
@@ -3467,7 +3471,7 @@ function jumpStep(n) {
     el.classList.toggle('done', isDone);
     const numEl = el.querySelector('.step-prog-num');
     if (numEl) {
-      numEl.textContent = isDone ? '✓' : STEP_ICONS[i];
+      numEl.innerHTML = isDone ? '✓' : STEP_ICONS[i];
       numEl.style.fontSize = isDone ? '0.9rem' : '1rem';
     }
   });
