@@ -4577,7 +4577,7 @@ function showGuideResult(resultKey) {
 const SCAM_CATS = [
   {
     id: 'digital',
-    icon: '🎣',
+    icon: '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
     label: 'Digital Deception  -  Email, Text \u0026 Link Scams',
     def: 'Fake emails, text messages, QR codes, and websites designed to steal your login, money, or personal information by impersonating trusted brands. The most common scam type — nearly every other scam starts here.',
     subtypes: ['Phishing emails impersonating banks, Amazon, PayPal, IRS, or delivery companies','Smishing  -  fake text messages with urgent links','QR code phishing  -  malicious QR codes in public places, emails, or mailings','Spear phishing  -  targeted attacks using your personal details to sound credible','Clone phishing  -  fake copy of a real email you previously received','Fake websites mimicking real brands to harvest login credentials','Fake login pages and credential harvesting portals','Vishing follow-up  -  phishing email followed by a phone call to increase credibility'],
@@ -4587,7 +4587,7 @@ const SCAM_CATS = [
   },
   {
     id: 'vishing',
-    icon: '📞',
+    icon: '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
     label: 'Vishing  -  Phone Call Scams',
     def: 'Scam phone calls impersonating government agencies, banks, tech support, and utility companies. Caller ID can be completely faked — the number means nothing.',
     subtypes: ['IRS and government impersonation','Social Security Administration scams','Bank fraud calls  -  "suspicious activity on your account"','Tech support scams','AI voice cloning scams  -  they sound exactly like your relative','Georgia Power and utility shutoff impersonation','Medicare and health insurance scams targeting seniors','Grandparent emergency scams'],
@@ -4597,7 +4597,7 @@ const SCAM_CATS = [
   },
   {
     id: 'marketplace',
-    icon: '🛒',
+    icon: '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
     label: 'Marketplace and Local Scams',
     def: 'Fraud targeting buyers, sellers, renters, and service seekers on platforms like Facebook Marketplace, Craigslist, Nextdoor, and OfferUp.',
     subtypes: ['Facebook Marketplace overpayment scams','Fake buyers sending fraudulent checks or Zelle payments','Rental listing scams','Contractor pay upfront then disappear scams','"Sad story" neighbor and Nextdoor help scams','Fake escrow or shipping services','Elder financial abuse  -  trusted person exploiting finances','Government benefit scams  -  fake follow-up calls after applying for assistance'],
@@ -4607,7 +4607,7 @@ const SCAM_CATS = [
   },
   {
     id: 'jobscam',
-    icon: '💼',
+    icon: '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
     label: 'Job, Investment \u0026 Romance Fraud',
     def: 'Fake job offers, financial schemes, and manufactured romantic relationships  -  all designed to build trust before stealing your money or identity.',
     subtypes: ['Fake job offers via text or email (you did not apply)','Work-from-home task scams (click and earn)','Fake recruiters asking for SSN or bank info before hiring','Fake check scams disguised as payroll','Package reshipping scams  -  you become an unknowing money mule','Romance scams  -  fake online relationship that eventually leads to a money request','Pig butchering  -  romantic connection used to steer you into a fake crypto investment platform','Investment opportunity with guaranteed returns'],
@@ -4617,7 +4617,7 @@ const SCAM_CATS = [
   },
   {
     id: 'senior',
-    icon: '🛡️',
+    icon: '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>',
     label: 'Senior and Vulnerable Targets',
     def: 'Scams specifically designed to exploit older adults, caregivers, and people receiving government benefits, often using trust and urgency.',
     subtypes: ['Medicare and Medicaid fraud  -  fake billing, fake cards, free equipment scams','Social Security impersonation  -  your number has been suspended','Grandparent scams  -  grandchild or family member in emergency','Elder financial abuse by caregiver or trusted person','Lottery and sweepstakes scams targeting seniors','Funeral and cemetery scams targeting grieving families'],
