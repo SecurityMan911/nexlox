@@ -5946,15 +5946,12 @@ window.addEventListener('scroll', () => {
 <!-- CRIME MAP MODAL -->
 <div class="overlay" id="ol-crimemap" onclick="overlayClick(event,'crimemap')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon" style="background:rgba(240,150,58,0.15);">🗺️</div>
-      <h2 class="modal-h2">Gwinnett County Crime Map</h2>
-      <div class="modal-sub">Live interactive crime activity map — recent incidents by type and location</div>
-    </div>
-    <button class="modal-close" onclick="close_('crimemap')">✕</button>
+  <div style="position:relative;">
+    <img src="/crimemap-banner.png" alt="Gwinnett County Crime Map" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('crimemap')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body" style="padding:0;">
+    <div class="modal-sub" style="padding:16px 20px; font-size:0.85rem;">A live, interactive map of recent crime activity across Gwinnett County — filter incidents by type and location to see what's happening near you.</div>
     <iframe
       id="crimeMapFrame"
       width="100%"
