@@ -5335,15 +5335,12 @@ window.addEventListener('scroll', () => {
 <!-- DIGITAL FOOTPRINT & PRIVACY -->
 <div class="overlay" id="ol-digitalfootprint" onclick="overlayClick(event,'digitalfootprint')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon" style="background:rgba(201,168,76,0.15);">🌐</div>
-      <h2 class="modal-h2">Digital Footprint &amp; Privacy</h2>
-      <div class="modal-sub">Reduce your online exposure, understand authentication, and protect your digital identity</div>
-    </div>
-    <button class="modal-close" onclick="close_('digitalfootprint')">✕</button>
+  <div style="position:relative;">
+    <img src="/digitalfootprint-banner.png" alt="Digital Footprint &amp; Privacy" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('digitalfootprint')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">Shrink your online exposure, opt out of data brokers, lock down authentication, and take back control of the personal information scammers use to target you.</div>
 
     <div class="tabs" style="margin-bottom:18px;">
       <button class="tab on" onclick="dftab('exposure',this)">👤 Your Exposure</button>
