@@ -2709,13 +2709,9 @@ footer strong { color: var(--gold); font-weight: 600; }
 <!-- SCAM TYPES -->
 <div class="overlay" id="ol-scamTypes" onclick="overlayClick(event,'scamTypes')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon icon-bg-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em;color:var(--gold)"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-      <h2 class="modal-h2">Scam Types Library</h2>
-      <div class="modal-sub">Select a category, then tap any scam type to see the full playbook.</div>
-    </div>
-    <button class="modal-close" onclick="close_('scamTypes')">✕</button>
+  <div style="position:relative;">
+    <img src="/scamlibrary-banner.png" alt="Scam Types Library" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('scamTypes')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
     <div class="tabs" id="scamTabs">
