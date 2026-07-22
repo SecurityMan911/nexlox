@@ -1051,7 +1051,7 @@ main {
 .privacy-chevron { font-size: 0.75rem; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; margin-top: 2px; }
 .privacy-expand-card.open .privacy-chevron { transform: rotate(180deg); }
 .privacy-panel {
-  display: none; margin-top: 12px;
+  display: none; margin: 12px auto 0; max-width: 760px;
   border: 1px solid var(--border-2);
   border-radius: 16px; overflow: hidden;
   animation: fadeIn 0.25s ease;
@@ -2520,7 +2520,7 @@ footer strong { color: var(--gold); font-weight: 600; }
 
   <!-- Privacy expandable panel  -  sits below the grid -->
   <div class="privacy-panel" id="privacyPanel">
-    <img src="/privacytools-banner.png" alt="Privacy Tools" style="width:100%; max-width:760px; margin:0 auto; display:block;">
+    <img src="/privacytools-banner.png" alt="Privacy Tools" style="width:100%; display:block;">
     <div class="privacy-panel-inner">
       <div class="privacy-intro">These tools do not react to scams — they prevent them. A VPN encrypts your connection. A private browser and search engine reduce the tracking scammers exploit to target you. Encrypted email keeps your real inbox out of the wrong hands. Two-factor authentication stops account takeovers even when a password is stolen.</div>
 
