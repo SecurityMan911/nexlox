@@ -3069,15 +3069,12 @@ footer strong { color: var(--gold); font-weight: 600; }
 <!-- LOCAL RESOURCES -->
 <div class="overlay" id="ol-local" onclick="overlayClick(event,'local')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon icon-bg-gold">📍</div>
-      <h2 class="modal-h2">Georgia &amp; Local Atlanta Resources</h2>
-      <div class="modal-sub">Specifically for Gwinnett County and the Greater Atlanta metro area.</div>
-    </div>
-    <button class="modal-close" onclick="close_('local')">✕</button>
+  <div style="position:relative;">
+    <img src="/localresources-banner.png" alt="Georgia &amp; Local Atlanta Resources" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('local')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">Specifically for Gwinnett County and the Greater Atlanta metro area.</div>
     <div class="alert-block alert-red" style="margin-bottom:18px;">
       <span class="alert-icon">📍</span>
       <div class="alert-text" style="color:var(--white);">
