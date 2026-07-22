@@ -5023,15 +5023,12 @@ window.addEventListener('scroll', () => {
 
 <div class="overlay" id="ol-homesafety" onclick="overlayClick(event,'homesafety')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon" style="background:rgba(46,201,122,0.15);">🏠</div>
-      <h2 class="modal-h2">Home &amp; Physical Security</h2>
-      <div class="modal-sub">Practical security layering for your home — the same principles security professionals use</div>
-    </div>
-    <button class="modal-close" onclick="close_('homesafety')">✕</button>
+  <div style="position:relative;">
+    <img src="/homesafety-banner.png" alt="Home &amp; Physical Security" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('homesafety')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">Doors, locks, cameras, lighting, and perimeter defense — practical, layered security for your home and family, built on the same principles the pros use.</div>
 
     <div class="tabs" style="margin-bottom:18px;">
       <button class="tab on" onclick="hstab('entry',this)">🚪 Entry Points</button>
