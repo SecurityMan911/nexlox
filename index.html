@@ -5749,15 +5749,12 @@ window.addEventListener('scroll', () => {
 <!-- MOBILE DEVICE SECURITY MODAL -->
 <div class="overlay" id="ol-mobile" onclick="overlayClick(event,'mobile')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon" style="background:rgba(201,168,76,0.15);">📱</div>
-      <h2 class="modal-h2">Mobile Device Security</h2>
-      <div class="modal-sub">Settings and habits that block the most common phone-based scams — for iPhone and Android</div>
-    </div>
-    <button class="modal-close" onclick="close_('mobile')">✕</button>
+  <div style="position:relative;">
+    <img src="/mobile-banner.png" alt="Mobile Device Security" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('mobile')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">The settings and habits — for both iPhone and Android — that shut down the most common phone-based scams, from smishing texts to SIM-swap and stolen-device attacks.</div>
 
     <div class="tabs" style="margin-bottom:18px;">
       <button class="tab on" onclick="mstab('universal',this)">🌐 Universal</button>
