@@ -3138,15 +3138,12 @@ footer strong { color: var(--gold); font-weight: 600; }
 <!-- LEARN -->
 <div class="overlay" id="ol-learn" onclick="overlayClick(event,'learn')">
 <div class="modal">
-  <div class="modal-head">
-    <div class="modal-head-left">
-      <div class="modal-head-icon icon-bg-gold">📚</div>
-      <h2 class="modal-h2">Learn &amp; Stay Safe</h2>
-      <div class="modal-sub">Build habits that protect you every day. Knowledge is your strongest defense.</div>
-    </div>
-    <button class="modal-close" onclick="close_('learn')">✕</button>
+  <div style="position:relative;">
+    <img src="/learn-banner.png" alt="Learn &amp; Stay Safe" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('learn')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">Daily habits, golden rules, a phishing quiz, and password tools — practical ways to build the instincts that keep you a step ahead of scammers.</div>
     <div class="tabs">
       <button class="tab on" onclick="ltab('habits',this)">Daily Habits</button>
       <button class="tab" onclick="ltab('rules',this)">Golden Rules</button>
