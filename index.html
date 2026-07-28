@@ -917,6 +917,8 @@ main {
 .ref-card-safety:hover { border-left-color: rgba(46,201,122,0.55); }
 .ref-card-digital { border-left-color: rgba(80,180,255,0.22); }
 .ref-card-digital:hover { border-left-color: rgba(80,180,255,0.55); }
+.ref-card-watch { border-left-color: rgba(64,201,198,0.22); }
+.ref-card-watch:hover { border-left-color: rgba(64,201,198,0.55); }
 .ref-card-local  { border-left-color: rgba(240,150,58,0.22); }
 .ref-card-local:hover  { border-left-color: rgba(240,150,58,0.55); }
 .bolo-card {
@@ -1313,6 +1315,7 @@ footer strong { color: var(--gold); font-weight: 600; }
 .sr-SPOT { background: rgba(240,150,58,0.15); color: var(--orange); }
 .sr-SCAM { background: rgba(255,255,255,0.07); color: var(--muted); }
 .sr-MOBILE { background: rgba(80,180,255,0.15); color: #78b4e8; }
+.sr-WATCH { background: rgba(64,201,198,0.15); color: #5ecfcb; }
 .sr-no-result { padding: 16px; text-align: center; color: var(--muted); font-size: 0.82rem; }
 @media(max-width:600px) { .header-search { padding: 0 16px 12px; } .search-input { font-size: 0.82rem; } }
 /* ─── PAYMENT RECOVERY WIDGET ────────────────────────── */
@@ -2517,6 +2520,12 @@ footer strong { color: var(--gold); font-weight: 600; }
       <div class="ref-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em;color:var(--gold)"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg></div>
       <div class="ref-card-title">Crime Map</div>
       <div class="ref-card-desc">Interactive live crime activity map for Gwinnett County with recent incidents by type and location</div>
+    </div>
+
+    <div class="ref-card ref-card-watch" onclick="open_('surveillance')">
+      <div class="ref-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em;color:var(--gold)"><path d="M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97"/><path d="M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z"/><path d="M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15"/><path d="M2 21v-4"/><path d="M7 9h.01"/></svg></div>
+      <div class="ref-card-title">Surveillance Awareness</div>
+      <div class="ref-card-desc">License plate readers, traffic cameras, drones, and trackers. See what is watching in public and what you can do about it</div>
     </div>
 
   </div>
@@ -3784,6 +3793,11 @@ const SEARCH_INDEX = [
   { terms:['garage security','garage door','garage code','rolling code','garage break in'], label:'🚗 Garage Security', desc:'Garage door vulnerabilities and best practices', badge:'SAFETY', action:()=>_navTab('homesafety','hstab','entry') },
   { terms:['bolo','bolo alerts','current threats','active scam alert','scam warning','threat alert','active threat','local alert','gwinnett alert'], label:'📡 BOLO Alerts', desc:'Active scam alerts and current threat warnings for Gwinnett County', badge:'LOCAL', action:()=>open_('bolo') },
   { terms:['crime map','crimemap','crime mapping','gwinnett crime','local crime','crime activity','crime incidents','police incidents','gwinnett incidents','crime near me'], label:'🗺️ Gwinnett Crime Map', desc:'Interactive live crime activity map for Gwinnett County with recent incidents by type and location', badge:'LOCAL', action:()=>open_('crimemap') },
+  // SURVEILLANCE AWARENESS
+  { terms:['surveillance','surveillance awareness','who is watching','flock camera','flock cameras','license plate reader','alpr','camera map','cameras near me','surveillance cameras'], label:'Surveillance Awareness', desc:'License plate readers, traffic cameras, drones, and trackers. Maps and tools to see what is watching in public', badge:'WATCH', action:()=>open_('surveillance') },
+  { terms:['traffic cameras','511','511ga','red light camera','speed camera','school zone camera','gdot cameras','traffic cameras near me'], label:'Road Cameras — Surveillance Awareness', desc:'Live GDOT traffic cameras plus maps of red light and school zone enforcement cameras', badge:'WATCH', action:()=>_navTab('surveillance','svtab','road') },
+  { terms:['police drones','drone program','gwinnett drones','drone first responder','camera registry','fusus','gwinnett safe communities','ring camera police','share camera police'], label:'Drones & Camera Networks — Surveillance Awareness', desc:'The Gwinnett drone first responder program and the county camera registry explained', badge:'WATCH', action:()=>_navTab('surveillance','svtab','drones') },
+  { terms:['airtag','airtag tracking','tracker on my car','bluetooth tracker','unknown tracker alert','am i being tracked','car tracking insurance','amazon sidewalk'], label:'Trackers You Carry — Surveillance Awareness', desc:'Check for unknown Bluetooth trackers and learn what your car and phone share about you', badge:'WATCH', action:()=>_navTab('surveillance','svtab','trackers') },
   { terms:['yard security','perimeter security','outdoor security','neighborhood watch','outdoor cameras'], label:'🌳 Perimeter & Yard Security', desc:'Outdoor protection strategies for your property', badge:'SAFETY', action:()=>_navTab('homesafety','hstab','perimeter') },
   { terms:['emergency plan','emergency prep','home emergency kit','emergency contacts list','emergency binder'], label:'🎒 Emergency Preparedness', desc:'Emergency plans, contacts, and important documents', badge:'SAFETY', action:()=>_navTab('homesafety','hstab','emergency') },
 
@@ -4704,6 +4718,14 @@ function buildCatPills() {
 function hstab(id, el) {
   document.querySelectorAll('[id^="hsp-"]').forEach(p => p.classList.remove('on'));
   const target = document.getElementById('hsp-' + id);
+  if (target) target.classList.add('on');
+  const modal = el ? el.closest('.modal') : null;
+  if (modal) modal.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  if (el) el.classList.add('on');
+}
+function svtab(id, el) {
+  document.querySelectorAll('[id^="svp-"]').forEach(p => p.classList.remove('on'));
+  const target = document.getElementById('svp-' + id);
   if (target) target.classList.add('on');
   const modal = el ? el.closest('.modal') : null;
   if (modal) modal.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
@@ -5976,6 +5998,86 @@ window.addEventListener('scroll', () => {
 </div>
 </div>
 <!-- END CRIME MAP MODAL -->
+
+<!-- SURVEILLANCE AWARENESS MODAL -->
+<div class="overlay" id="ol-surveillance" onclick="overlayClick(event,'surveillance')">
+<div class="modal">
+  <div style="position:relative;">
+    <img src="/surveillance-banner.png" alt="Surveillance Awareness" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('surveillance')" style="position:absolute; top:10px; right:10px;">✕</button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">Cameras and automated trackers are part of daily life in Gwinnett County, from license plate readers on neighborhood poles to traffic cameras on every major road. This section shows you what each system is, who operates it, what it records, and how long the data is kept. Use the maps to see what is near you, check whether your own plate has been searched, and follow the transparency tools to watch the watchers. Rights &amp; Smart Habits shows you what is actually in your control. No opinions here, just the facts and the links. You decide what it means for your privacy.</div>
+
+    <div class="tabs" style="margin-bottom:18px;">
+      <button class="tab on" onclick="svtab('lpr',this)">Plate Readers</button>
+      <button class="tab" onclick="svtab('road',this)">Road Cameras</button>
+      <button class="tab" onclick="svtab('drones',this)">Drones &amp; Networks</button>
+      <button class="tab" onclick="svtab('trackers',this)">Trackers</button>
+      <button class="tab" onclick="svtab('rights',this)">Rights &amp; Habits</button>
+    </div>
+
+    <div class="pane on" id="svp-lpr">
+      <div style="font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:16px;">Automated license plate readers, or ALPRs, photograph every plate that passes and log the plate, time, and location. Flock Safety, the largest provider, is headquartered in Atlanta and its cameras operate across Gwinnett County through police, cities, and community improvement districts. It is not just police: many HOAs and subdivisions buy the same cameras for their neighborhood entrances, and private companies such as repo services run their own plate databases with no public oversight at all. The tools below show where the cameras are and how the data gets used.</div>
+      <div class="report-grid" style="margin-bottom:20px;">
+        <a href="https://deflock.me/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=deflock.me&sz=64" alt="" class="rc-logo"></div><div class="rc-name">DeFlock</div><div class="rc-desc">Crowdsourced map of nearly 100,000 license plate readers nationwide. Open the map, allow location, and see every documented camera near you.</div></a>
+        <a href="https://atlasofsurveillance.org/search?location=Gwinnett" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=atlasofsurveillance.org&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Atlas of Surveillance: Gwinnett</div><div class="rc-desc">EFF project documenting police surveillance tech agency by agency. This search shows everything on record for Gwinnett, including plate readers and drones.</div></a>
+        <a href="https://haveibeenflocked.com/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=haveibeenflocked.com&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Have I Been Flocked?</div><div class="rc-desc">Type in your plate and see whether it appears in released Flock audit logs: who searched it, when, and the reason they wrote down.</div></a>
+        <a href="https://eyesonflock.com/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=eyesonflock.com&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Eyes on Flock</div><div class="rc-desc">Aggregates Flock transparency portal data nationwide: camera counts, search volumes, and which agencies share data with each other.</div></a>
+      </div>
+    </div>
+
+    <div class="pane" id="svp-road">
+      <div style="font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:16px;">Georgia runs one of the largest traffic camera networks in the country, and most of it is not recording you: GDOT cameras stream live traffic without storing footage. Enforcement cameras are different. School zone speed cameras and school bus stop arm cameras photograph plates and mail tickets, and Georgia law currently limits automated speed enforcement to school zones. Peach Pass toll records also log where your car has been.</div>
+      <div class="report-grid" style="margin-bottom:20px;">
+        <a href="https://511ga.org/cctv" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=511ga.org&sz=64" alt="" class="rc-logo"></div><div class="rc-name">511GA Traffic Cameras</div><div class="rc-desc">GDOT official live view of 3,700+ traffic cameras statewide. Genuinely useful: check your commute before you leave.</div></a>
+        <a href="https://www.photoenforced.com/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=photoenforced.com&sz=64" alt="" class="rc-logo"></div><div class="rc-name">PhotoEnforced</div><div class="rc-desc">The largest crowdsourced database of red light, speed, and photo enforcement camera locations in North America.</div></a>
+        <a href="https://speedcams.us/map/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=speedcams.us&sz=64" alt="" class="rc-logo"></div><div class="rc-name">SpeedCams.us</div><div class="rc-desc">Interactive map of speed and red light cameras with a near me lookup, built from open data and verified government records.</div></a>
+      </div>
+    </div>
+
+    <div class="pane" id="svp-drones">
+      <div style="font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:16px;">Gwinnett County approved a Drones as First Responders program in July 2026: police drones dispatched to serious accidents, disturbances, and crimes in progress ahead of officers. Separately, Gwinnett Safe Communities lets residents and businesses connect private cameras to the police department. Registering tells police a camera exists at your address. Full integration shares your live feed through a small device. Both are voluntary, and the difference matters, so read the county pages below before joining. One more thing: if a private drone hovers over your yard, the airspace above you is federal, and damaging the drone is a crime. Document it and call the non emergency line instead.</div>
+      <div class="report-grid" style="margin-bottom:20px;">
+        <a href="https://www.gwinnettcounty.com/government/departments/police/projects-initiatives" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=gwinnettcounty.com&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Gwinnett PD Projects</div><div class="rc-desc">The department official page describing its plate reader, drone, and camera programs in its own words.</div></a>
+        <a href="https://gwinnettsafecommunities.org/camera-registration/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=gwinnettsafecommunities.org&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Camera Registry</div><div class="rc-desc">The county page for registering your camera location with police. Registration flags that a camera exists but does not share your video feed.</div></a>
+        <a href="https://gwinnettsafecommunities.org/privacy-faqs/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=gwinnettsafecommunities.org&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Registry Privacy FAQs</div><div class="rc-desc">The county's own answers on who can see registry data and what integrated live camera sharing actually means.</div></a>
+        <a href="https://atlasofsurveillance.org/search?location=Gwinnett" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=atlasofsurveillance.org&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Atlas: Gwinnett Drones</div><div class="rc-desc">The EFF record of surveillance technology documented for Gwinnett agencies, including the drone program.</div></a>
+      </div>
+    </div>
+
+    <div class="pane" id="svp-trackers">
+      <div style="font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:16px;">Not all tracking is on a pole. A Bluetooth tracker like an AirTag can be slipped into a bag or under a bumper. Phone apps may sell your location history. Newer cars report driving behavior to data brokers that insurers buy. And Amazon Echo and Ring devices quietly share a slice of your bandwidth into a neighborhood network by default (you can turn that off in the Alexa app under Account Settings, Amazon Sidewalk). The checks below take a few minutes each.</div>
+      <div class="report-grid" style="margin-bottom:20px;">
+        <a href="https://support.apple.com/en-us/HT212227" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Apple: Unknown Tracker Alerts</div><div class="rc-desc">What the iPhone alert means when an unknown AirTag is traveling with you, and how to find and disable the tracker.</div></a>
+        <a href="https://support.google.com/android/answer/13658562" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Android: Unknown Tracker Alerts</div><div class="rc-desc">Google guide to automatic alerts plus how to run a manual scan for unknown Bluetooth trackers on Android.</div></a>
+        <a href="https://foundation.mozilla.org/en/privacynotincluded/categories/cars/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=foundation.mozilla.org&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Mozilla: Cars and Privacy</div><div class="rc-desc">Independent research on what modern connected cars collect and share about your driving. Worth reading before your next vehicle.</div></a>
+      </div>
+    </div>
+
+    <div class="pane" id="svp-rights">
+      <div style="font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:16px;"><strong style="color:var(--white);">Where citizens stand.</strong> Supporters point to recovered stolen cars, located missing people, and solved cases. Critics point to data retention, network wide sharing, and documented misuse: in 2026, officers at several Georgia agencies, including one in Gwinnett, were accused of using plate readers to track people for personal reasons. Both things can be true at once, which is why the transparency tools exist. <strong style="color:var(--white);">Your rights.</strong> Camera policies and audit logs are public records under the Georgia Open Records Act, transparency portals publish some of it voluntarily, and camera contracts are approved in public county and city meetings where residents can speak.</div>
+      <div class="report-grid" style="margin-bottom:20px;">
+        <a href="https://www.aclu.org/campaigns-initiatives/get-the-flock-out" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=aclu.org&sz=64" alt="" class="rc-logo"></div><div class="rc-name">ACLU: Plate Reader Campaign</div><div class="rc-desc">The civil liberties case against mass plate tracking, with model policies and steps residents can take.</div></a>
+        <a href="https://alpr.watch/" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=alpr.watch&sz=64" alt="" class="rc-logo"></div><div class="rc-name">ALPR Watch</div><div class="rc-desc">Scans local government meeting agendas nationwide for plate reader discussions, so you can see when your city is deciding.</div></a>
+        <a href="https://law.georgia.gov/key-issues/open-government" target="_blank" rel="noopener noreferrer" class="report-card"><div class="rc-icon"><img src="https://www.google.com/s2/favicons?domain=law.georgia.gov&sz=64" alt="" class="rc-logo"></div><div class="rc-name">Georgia Open Records</div><div class="rc-desc">The Attorney General guide to requesting public records, which covers camera policies and audit logs.</div></a>
+      </div>
+      <h3 class="tool-section-label" style="margin-bottom:12px;">Smart Habits</h3>
+      <ul style="font-size:0.82rem;color:var(--muted);line-height:1.9;margin:0 0 8px 18px;padding:0;">
+        <li>Know what is on your commute. Check the maps once so nothing surprises you</li>
+        <li>Your plate is public facing by law. What you control is everything else: bumper stickers, parking passes, and decals that identify your neighborhood, school, or workplace</li>
+        <li>If you own a doorbell or security camera, know exactly what you have opted into: registry, integration, or neither, and how footage requests reach you</li>
+        <li>Run your plate through Have I Been Flocked once or twice a year, the same habit as a data breach check</li>
+        <li>Check your phone for unknown tracker alerts and run a manual scan if something feels off</li>
+        <li>If a camera concerns you, the effective route is the public meeting and the records request. Tampering with one is a crime in Georgia</li>
+        <li>Traffic cameras and surveillance cameras are different machines with different rules. GDOT streams do not record you. School zone speed cameras do photograph plates</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- END SURVEILLANCE AWARENESS MODAL -->
 
 <script async data-uid="e8d521a893" src="https://scamshield.kit.com/e8d521a893/index.js"></script>
 </body>
