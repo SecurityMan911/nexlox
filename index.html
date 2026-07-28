@@ -919,6 +919,40 @@ main {
 .ref-card-digital:hover { border-left-color: rgba(80,180,255,0.55); }
 .ref-card-watch { border-left-color: rgba(64,201,198,0.22); }
 .ref-card-watch:hover { border-left-color: rgba(64,201,198,0.55); }
+.ref-card-intel2 { border-left-color: rgba(201,168,76,0.30); }
+.ref-card-intel2:hover { border-left-color: rgba(201,168,76,0.65); }
+
+/* Community Scam Intel */
+.ci-period { font-family:'Courier New',monospace; font-size:0.72rem; letter-spacing:1.6px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.ci-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:22px; }
+.ci-stat { background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:10px; padding:14px 12px; }
+.ci-stat-v { font-family:'Courier New',monospace; font-size:1.7rem; font-weight:800; line-height:1; color:var(--gold); }
+.ci-stat-k { font-size:0.63rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.8px; margin-top:7px; line-height:1.45; }
+.ci-chart { display:flex; align-items:flex-end; gap:8px; height:132px; margin-bottom:10px; }
+.ci-col { flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; }
+.ci-bar-v { font-family:'Courier New',monospace; font-size:0.72rem; color:var(--white); margin-bottom:5px; }
+.ci-bar { width:100%; border-radius:3px 3px 0 0; background:linear-gradient(180deg,#6E5A1C,#4A3E18); }
+.ci-bar.hot { background:linear-gradient(180deg,var(--gold),#8a6f1f); box-shadow:0 0 18px rgba(201,168,76,0.30); }
+.ci-bar-k { font-family:'Courier New',monospace; font-size:0.6rem; color:var(--muted-2); margin-top:8px; text-align:center; line-height:1.35; }
+.ci-schemes { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:22px; }
+.ci-scheme { background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:10px; padding:16px 15px; cursor:pointer; transition:border-color 0.2s, transform 0.2s; }
+.ci-scheme:hover { border-color:rgba(201,168,76,0.45); transform:translateY(-2px); }
+.ci-scheme-n { font-size:0.86rem; font-weight:700; color:var(--white); margin-bottom:8px; }
+.ci-scheme-d { font-size:0.76rem; color:var(--muted); line-height:1.6; margin-bottom:10px; }
+.ci-scheme-t { font-size:0.72rem; color:var(--gold); }
+.ci-two { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px; }
+.ci-list { background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:10px; padding:15px 16px; }
+.ci-list-h { font-size:0.66rem; font-weight:700; color:var(--muted-2); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+.ci-list ul { margin:0; padding-left:16px; font-size:0.78rem; color:var(--muted); line-height:1.85; }
+.ci-archive { border-top:1px solid var(--border); padding-top:16px; }
+.ci-arch-row { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:11px 14px; background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:8px; font-size:0.78rem; color:var(--ink); }
+.ci-arch-tag { font-family:'Courier New',monospace; font-size:0.68rem; color:var(--gold); letter-spacing:1px; }
+@media (max-width: 620px) {
+  .ci-stats { grid-template-columns:repeat(2,1fr); }
+  .ci-schemes { grid-template-columns:1fr; }
+  .ci-two { grid-template-columns:1fr; }
+  .ci-chart { height:110px; gap:5px; }
+}
 .ref-card-local  { border-left-color: rgba(240,150,58,0.22); }
 .ref-card-local:hover  { border-left-color: rgba(240,150,58,0.55); }
 .bolo-card {
@@ -1316,6 +1350,7 @@ footer strong { color: var(--gold); font-weight: 600; }
 .sr-SCAM { background: rgba(255,255,255,0.07); color: var(--muted); }
 .sr-MOBILE { background: rgba(80,180,255,0.15); color: #78b4e8; }
 .sr-WATCH { background: rgba(64,201,198,0.15); color: #5ecfcb; }
+.sr-INTEL { background: rgba(201,168,76,0.15); color: var(--gold); }
 .sr-no-result { padding: 16px; text-align: center; color: var(--muted); font-size: 0.82rem; }
 @media(max-width:600px) { .header-search { padding: 0 16px 12px; } .search-input { font-size: 0.82rem; } }
 /* ─── PAYMENT RECOVERY WIDGET ────────────────────────── */
@@ -2526,6 +2561,12 @@ footer strong { color: var(--gold); font-weight: 600; }
       <div class="ref-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em;color:var(--gold)"><path d="M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97"/><path d="M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z"/><path d="M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15"/><path d="M2 21v-4"/><path d="M7 9h.01"/></svg></div>
       <div class="ref-card-title">Surveillance Awareness</div>
       <div class="ref-card-desc">License plate readers, traffic cameras, drones, and trackers. See what is watching in public and what you can do about it</div>
+    </div>
+
+    <div class="ref-card ref-card-intel2" onclick="open_('scamintel')">
+      <div class="ref-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em;color:var(--gold)"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+      <div class="ref-card-title">Community Scam Intel</div>
+      <div class="ref-card-desc">Real scam warnings collected from local Nextdoor communities, counted and tracked. See what is actually hitting your area</div>
     </div>
 
   </div>
@@ -3796,6 +3837,8 @@ const SEARCH_INDEX = [
   { terms:['garage security','garage door','garage code','rolling code','garage break in'], label:'🚗 Garage Security', desc:'Garage door vulnerabilities and best practices', badge:'SAFETY', action:()=>_navTab('homesafety','hstab','entry') },
   { terms:['bolo','bolo alerts','current threats','active scam alert','scam warning','threat alert','active threat','local alert','gwinnett alert'], label:'📡 BOLO Alerts', desc:'Active scam alerts and current threat warnings for Gwinnett County', badge:'LOCAL', action:()=>open_('bolo') },
   { terms:['crime map','crimemap','crime mapping','gwinnett crime','local crime','crime activity','crime incidents','police incidents','gwinnett incidents','crime near me'], label:'🗺️ Gwinnett Crime Map', desc:'Interactive live crime activity map for Gwinnett County with recent incidents by type and location', badge:'LOCAL', action:()=>open_('crimemap') },
+  // COMMUNITY SCAM INTEL
+  { terms:['community scam intel','scam report','local scam data','scam trends','scam statistics','nextdoor scam report','what scams are happening','scams in my area','scam activity','local scam trends'], label:'Community Scam Intel', desc:'Real scam warnings collected from local Nextdoor communities, counted and tracked by period', badge:'INTEL', action:()=>open_('scamintel') },
   // SURVEILLANCE AWARENESS
   { terms:['surveillance','surveillance awareness','who is watching','flock camera','flock cameras','license plate reader','alpr','camera map','cameras near me','surveillance cameras'], label:'Surveillance Awareness', desc:'License plate readers, traffic cameras, drones, and trackers. Maps and tools to see what is watching in public', badge:'WATCH', action:()=>open_('surveillance') },
   { terms:['traffic cameras','511','511ga','red light camera','speed camera','school zone camera','gdot cameras','traffic cameras near me'], label:'Road Cameras — Surveillance Awareness', desc:'Live GDOT traffic cameras plus maps of red light and school zone enforcement cameras', badge:'WATCH', action:()=>_navTab('surveillance','svtab','road') },
@@ -6086,6 +6129,99 @@ window.addEventListener('scroll', () => {
 </div>
 </div>
 <!-- END SURVEILLANCE AWARENESS MODAL -->
+
+<!-- COMMUNITY SCAM INTEL MODAL -->
+<div class="overlay" id="ol-scamintel" onclick="overlayClick(event,'scamintel')">
+<div class="modal" style="max-width: 900px;">
+  <div style="position:relative;">
+    <img src="/scamintel-banner.png" alt="Community Scam Intel" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <button class="modal-close" onclick="close_('scamintel')" style="position:absolute; top:10px; right:10px;">✕</button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">Most scam advice is written for the whole country. This is not that. Every number here comes from scam warnings neighbors actually posted in local Nextdoor communities, collected by hand, dated, and sorted. It shows what is hitting this area right now, which schemes are growing, and how the scammers are asking to be paid. New reports are published periodically, and the ones that matter most become alerts and full playbooks in the Scam Library.</div>
+
+    <div class="ci-period">Report 001 &middot; Jun 5 to Jul 27, 2026 &middot; North Georgia</div>
+
+    <div class="ci-stats">
+      <div class="ci-stat"><div class="ci-stat-v">116</div><div class="ci-stat-k">Scam warnings posted by neighbors</div></div>
+      <div class="ci-stat"><div class="ci-stat-v">53</div><div class="ci-stat-k">Day collection window</div></div>
+      <div class="ci-stat"><div class="ci-stat-v">5.7</div><div class="ci-stat-k">Warnings per day in the final week, up from 0.6 in early June</div></div>
+      <div class="ci-stat"><div class="ci-stat-v">30%</div><div class="ci-stat-k">Of all warnings were fake rentals</div></div>
+    </div>
+
+    <h3 class="tool-section-label" style="margin-bottom:12px;">Activity Over The Period</h3>
+    <div class="ci-chart">
+      <div class="ci-col"><div class="ci-bar-v">6</div><div class="ci-bar" style="height:18%"></div><div class="ci-bar-k">JUN<br>1-14</div></div>
+      <div class="ci-col"><div class="ci-bar-v">16</div><div class="ci-bar" style="height:47%"></div><div class="ci-bar-k">JUN<br>15-30</div></div>
+      <div class="ci-col"><div class="ci-bar-v">12</div><div class="ci-bar" style="height:35%"></div><div class="ci-bar-k">JUL<br>1-7</div></div>
+      <div class="ci-col"><div class="ci-bar-v">28</div><div class="ci-bar" style="height:82%"></div><div class="ci-bar-k">JUL<br>8-14</div></div>
+      <div class="ci-col"><div class="ci-bar-v">20</div><div class="ci-bar" style="height:59%"></div><div class="ci-bar-k">JUL<br>15-21</div></div>
+      <div class="ci-col"><div class="ci-bar-v">34</div><div class="ci-bar hot" style="height:100%"></div><div class="ci-bar-k">JUL<br>22-27</div></div>
+    </div>
+    <div style="font-size:0.76rem;color:var(--muted);line-height:1.6;margin-bottom:22px;">The final bar covers only six days and is still the largest. Warnings arrived roughly ten times more often at the end of July than in early June. The mid July jump came from payment scams aimed at people selling items. The late July surge came from fake rental listings copying real property companies.</div>
+
+    <h3 class="tool-section-label" style="margin-bottom:12px;">The Three Schemes Hitting Hardest</h3>
+    <div class="ci-schemes">
+      <div class="ci-scheme" onclick="close_('scamintel'); _navScam('online','rental');">
+        <div class="ci-scheme-n">The Fake Landlord</div>
+        <div class="ci-scheme-d">A real listing is copied, reposted far below market rent, and the deposit goes to someone who does not own the home. Comments get turned off so neighbors cannot warn you.</div>
+        <div class="ci-scheme-t">Open the full playbook</div>
+      </div>
+      <div class="ci-scheme" onclick="close_('scamintel'); _navScam('online','overpayment');">
+        <div class="ci-scheme-n">The Fake Buyer</div>
+        <div class="ci-scheme-d">A buyer offers full price sight unseen, sends a fake payment screenshot showing too much, then asks you to return the difference. No money ever arrived.</div>
+        <div class="ci-scheme-t">Open the full playbook</div>
+      </div>
+      <div class="ci-scheme" onclick="close_('scamintel'); _navScam('online','sellerverify');">
+        <div class="ci-scheme-n">The Fake Verification</div>
+        <div class="ci-scheme-d">An official looking message says you must complete an identity check and link a bank card to keep selling. The same message hit sellers in two different cities in one week.</div>
+        <div class="ci-scheme-t">Open the full playbook</div>
+      </div>
+    </div>
+
+    <div class="ci-two">
+      <div class="ci-list">
+        <div class="ci-list-h">How They Asked To Be Paid</div>
+        <ul>
+          <li>Zelle named in 15 posts</li>
+          <li>Cash App named in 4 posts</li>
+          <li>Venmo named in 4 posts</li>
+          <li>Gift cards in 3 posts</li>
+        </ul>
+      </div>
+      <div class="ci-list">
+        <div class="ci-list-h">Who They Pretended To Be</div>
+        <ul>
+          <li>Invitation Homes and American Homes 4 Rent</li>
+          <li>USPS, FBI, and IRS</li>
+          <li>Amazon, Apple, Microsoft, AT&amp;T, AOL</li>
+          <li>Fake Zelle support agents</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="tool-section-label" style="margin-bottom:12px;">What Would Have Stopped Almost All Of It</h3>
+    <ul style="font-size:0.8rem;color:var(--muted);line-height:1.9;margin:0 0 22px 18px;padding:0;">
+      <li><strong style="color:var(--white);">Look up the address first.</strong> Before sending any rental money, check the address on Zillow and county property records. Both are free, and several neighbors caught scams exactly this way</li>
+      <li><strong style="color:var(--white);">Never refund an overpayment.</strong> No legitimate buyer sends extra money and asks for change back. That money was never real</li>
+      <li><strong style="color:var(--white);">Nobody legitimate asks for your bank card in a message.</strong> Any identity check or business account request in a direct message is a scammer, every single time</li>
+    </ul>
+
+    <div class="ci-archive">
+      <h3 class="tool-section-label" style="margin-bottom:12px;">Report Archive</h3>
+      <div class="ci-arch-row">
+        <span><span class="ci-arch-tag">REPORT 001</span> &nbsp; June 5 to July 27, 2026</span>
+        <span style="color:var(--muted-2);font-size:0.72rem;">116 warnings</span>
+      </div>
+      <div style="font-size:0.74rem;color:var(--muted-2);line-height:1.6;margin-top:14px;">
+        <strong style="color:var(--muted);">How this was counted:</strong> every neighbor post returned by searching the single word scam across north Georgia Nextdoor communities was collected and sorted into one category based on what the scammer was doing. Replies were read for context but not counted, so one incident equals one data point. Because only one word was searched, posts saying fraud, ripoff, or is this legit never appeared, and many scams are never posted about at all. The real number is always higher than the count shown.
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- END COMMUNITY SCAM INTEL MODAL -->
 
 <script async data-uid="e8d521a893" src="https://scamshield.kit.com/e8d521a893/index.js"></script>
 </body>
