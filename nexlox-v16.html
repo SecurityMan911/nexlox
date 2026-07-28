@@ -1748,8 +1748,8 @@ footer strong { color: var(--gold); font-weight: 600; }
       <div class="wb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
       <div class="wb-text">
         <div class="wb-title">NEXLOX Scam Shield</div>
-        <div class="wb-sub">Identify, verify, and respond to scams — choose your situation below.</div>
-        <div class="wb-sub" style="margin-top:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Bookmark this page now — scams don't wait.</div>
+        <div class="wb-sub">Identify, verify, and respond to scams. Choose your situation below.</div>
+        <div class="wb-sub" style="margin-top:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Bookmark this page now. Scams don't wait.</div>
       </div>
       <div class="wb-actions">
         <button class="wb-cta-emergency" onclick="wbDismiss(); open_('panic');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> I'm Being Scammed Right Now</button>
@@ -1897,7 +1897,7 @@ footer strong { color: var(--gold); font-weight: 600; }
         <div class="risk-check-launcher">
           <div class="rck-text">
             <div class="rck-title">Quick Risk Check</div>
-            <div class="rck-desc">2 questions. 60 seconds. We tell you exactly where you stand and what to do next. No pattern matching, no guessing — you answer, we route.</div>
+            <div class="rck-desc">2 questions. 60 seconds. We tell you exactly where you stand and what to do next. No pattern matching, no guessing. You answer, we route.</div>
           </div>
           <button class="btn-rck" onclick="toggleFlags()">Start Check</button>
         </div>
@@ -3681,7 +3681,7 @@ const SEARCH_INDEX = [
   { terms:['emergency','being scammed right now','help now','panic','scammed','call my bank now'], label:'🚨 Emergency — Being Scammed Right Now', desc:'Immediate steps if a scam is in progress', badge:'EMERGENCY', action:()=>open_('panic') },
 
   // QUICK RISK CHECK
-  { terms:['quick risk check','risk check','am i being scammed','is this a scam','scam check','identify scam','check if scam'], label:'🚩 Quick Risk Check', desc:'Answer 2 questions — get an instant scam match', badge:'SPOT', action:()=>{ jumpStep(1); toggleFlags(); } },
+  { terms:['quick risk check','risk check','am i being scammed','is this a scam','scam check','identify scam','check if scam'], label:'🚩 Quick Risk Check', desc:'Answer 2 questions and get an instant scam match', badge:'SPOT', action:()=>{ jumpStep(1); toggleFlags(); } },
 
   // SCENARIO FLOWS
   { terms:['someone sent me money','wrong transfer','accidental payment','money sent by mistake','zelle mistake','overpayment scam','sent money back'], label:'💸 Someone Sent Me Money By Mistake', desc:'Step-by-step flow for unexpected or suspicious transfers', badge:'FLOW', action:()=>{ open_('scenarios'); startFlow('wrongmoney'); } },
