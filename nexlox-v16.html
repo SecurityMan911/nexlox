@@ -2565,8 +2565,8 @@ footer strong { color: var(--gold); font-weight: 600; }
 
     <div class="ref-card ref-card-digital" onclick="open_('mobile')">
       <div class="ref-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;width:1em;height:1em;color:var(--gold)"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
-      <div class="ref-card-title">Mobile Device Security</div>
-      <div class="ref-card-desc">iPhone and Android hardening: settings, locks, and habits that block the most common phone-based scams</div>
+      <div class="ref-card-title">Device Security</div>
+      <div class="ref-card-desc">Windows, iPhone, and Android settings that add privacy and protection, explained so you can decide what to change</div>
     </div>
 
   </div>
@@ -3943,7 +3943,8 @@ const SEARCH_INDEX = [
   { terms:['chatgpt privacy','ai chatbot privacy','what not to share chatgpt','chatgpt data training','opt out ai training','chatgpt settings privacy'], label:'💬 AI Chatbot Privacy', desc:'What not to share with ChatGPT and how to opt out of training', badge:'FOOTPRINT', action:()=>_navTab('digitalfootprint','dftab','ai') },
 
   // MOBILE SECURITY
-  { terms:['mobile security','phone security','cell phone security','smartphone security','phone hardening','mobile scam protection','phone scam prevention'], label:'📱 Mobile Device Security', desc:'iPhone and Android hardening — settings and habits to block phone-based scams', badge:'MOBILE', action:()=>open_('mobile') },
+  { terms:['device security','mobile security','phone security','cell phone security','smartphone security','phone hardening','computer security','pc security','mobile scam protection','phone scam prevention'], label:'Device Security', desc:'Windows, iPhone, and Android settings that add privacy and protection', badge:'MOBILE', action:()=>open_('mobile') },
+  { terms:['windows security','windows privacy','windows 11 settings','windows telemetry','microsoft tracking','pc privacy settings','windows advertising id','activity history','windows recall','diagnostic data','debloat windows','startup apps','bitlocker','windows defender'], label:'Windows Privacy and Security Settings', desc:'What Windows collects, which app permissions to review, and the protections worth turning on', badge:'MOBILE', action:()=>_navTab('mobile','mstab','windows') },
   { terms:['android security','android settings','android hardening','android scam protection','android 16 security','advanced protection mode','google play protect'], label:'🤖 Android Security Settings', desc:'Top 10 Android security settings to enable right now', badge:'MOBILE', action:()=>_navTab('mobile','mstab','android') },
   { terms:['iphone security','ios security','iphone settings','iphone hardening','ios 26 security','stolen device protection','screen unknown callers'], label:'🍎 iPhone Security Settings', desc:'Top 10 iOS security settings to enable right now', badge:'MOBILE', action:()=>_navTab('mobile','mstab','iphone') },
   { terms:['airplane mode','airplane mode scam','phone killswitch','cut internet phone','disconnect phone internet'], label:'✈️ Airplane Mode as Killswitch', desc:'Cut all wireless instantly — cellular, WiFi, and Bluetooth — in one tap', badge:'MOBILE', action:()=>open_('mobile') },
@@ -5863,191 +5864,261 @@ window.addEventListener('scroll', () => {
 <div class="overlay" id="ol-mobile" onclick="overlayClick(event,'mobile')">
 <div class="modal">
   <div style="position:relative;">
-    <img src="/mobile-banner.png" alt="Mobile Device Security" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
+    <img src="/devicesecurity-banner.png" alt="Device Security" style="width:100%; display:block; border-radius: 12px 12px 0 0;">
     <button class="modal-close" onclick="close_('mobile')" style="position:absolute; top:10px; right:10px;">✕</button>
   </div>
   <div class="modal-body">
-    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">The settings and habits — for both iPhone and Android — that shut down the most common phone-based scams, from smishing texts to SIM-swap and stolen-device attacks.</div>
+    <div class="modal-sub" style="margin-bottom:18px; font-size:0.85rem;">The settings and habits on your phone and your computer that shut down the most common device-based scams, from smishing texts and SIM swaps to remote access popups and stolen-device attacks. Each setting is explained in plain language, including what it actually does, so you can decide what is worth changing on your own machines.</div>
 
     <div class="tabs" style="margin-bottom:18px;">
-      <button class="tab on" onclick="mstab('universal',this)">🌐 Universal</button>
-      <button class="tab" onclick="mstab('android',this)">🤖 Android</button>
-      <button class="tab" onclick="mstab('iphone',this)">🍎 iPhone</button>
+      <button class="tab on" onclick="mstab('universal',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Universal</button>
+      <button class="tab" onclick="mstab('android',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg> Android</button>
+      <button class="tab" onclick="mstab('iphone',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06"/><path d="M10 2c1 .5 2 2 2 5"/></svg> iPhone</button>
+      <button class="tab" onclick="mstab('windows',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><rect width="18" height="12" x="3" y="4" rx="2"/><path d="M2 20h20"/><path d="M12 16v4"/></svg> Windows</button>
     </div>
 
     <!-- UNIVERSAL -->
     <div class="pane on" id="msp-universal">
-      <h3 class="tool-section-label" style="margin-bottom:12px;">🌐 Works on Any Phone</h3>
+      <h3 class="tool-section-label" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Works on Any Phone</h3>
       <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">These apply regardless of whether you have an iPhone or Android. Get these right first.</div>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🔒 Lock &amp; Access</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Lock &amp; Access</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
-        <li><strong style="color:var(--white);">6-digit PIN minimum</strong> — a 4-digit PIN has only 10,000 combinations; 6-digit has 1 million. Face/fingerprint unlock is fine as the primary method, but your PIN is the backup — make it strong.</li>
-        <li><strong style="color:var(--white);">Auto-lock after 30 seconds</strong> — every second your screen stays unlocked in public is risk. A grabbed phone is a locked phone if your timeout is tight.</li>
-        <li><strong style="color:var(--white);">Keep your OS updated</strong> — iOS 26.5 and Android 16 are current as of 2026. Most successful phone attacks target devices running outdated software. Updates are the fastest fix.</li>
-        <li><strong style="color:var(--white);">Two-factor authentication</strong> on your email, bank accounts, and social media — these are the accounts scammers target first. If one is taken, 2FA stops the chain.</li>
+        <li><strong style="color:var(--white);">6-digit PIN minimum</strong>: a 4-digit PIN has only 10,000 combinations; 6-digit has 1 million. Face/fingerprint unlock is fine as the primary method, but your PIN is the backup, so make it strong.</li>
+        <li><strong style="color:var(--white);">Auto-lock after 30 seconds</strong>: every second your screen stays unlocked in public is risk. A grabbed phone is a locked phone if your timeout is tight.</li>
+        <li><strong style="color:var(--white);">Keep your OS updated</strong>: iOS 26.5 and Android 16 are current as of 2026. Most successful phone attacks target devices running outdated software. Updates are the fastest fix.</li>
+        <li><strong style="color:var(--white);">Two-factor authentication</strong> on your email, bank accounts, and social media. These are the accounts scammers target first. If one is taken, 2FA stops the chain.</li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📞 Calls &amp; Texts</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Calls &amp; Texts</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
-        <li><strong style="color:var(--white);">Enable your carrier's spam call labeling</strong> — AT&amp;T ActiveArmor, T-Mobile Scam Shield, and Verizon Call Filter are all free. They label or auto-block likely scam calls before your phone even rings.</li>
+        <li><strong style="color:var(--white);">Enable your carrier's spam call labeling</strong>: AT&amp;T ActiveArmor, T-Mobile Scam Shield, and Verizon Call Filter are all free. They label or auto-block likely scam calls before your phone even rings.</li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">✈️ Airplane Mode — Your Wireless Killswitch</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg> Airplane Mode: Your Wireless Killswitch</h3>
       <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:8px;">
         Turning on Airplane Mode instantly cuts all three wireless radios: cellular, WiFi, and Bluetooth. This is the fastest way to isolate your phone if you suspect active compromise, malicious pairing, or a caller with remote access.
       </div>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>One swipe from Control Center (iPhone) or Quick Settings (Android)</li>
-        <li>After enabling, you can manually re-enable WiFi while staying off cellular — useful if you want internet but not calls</li>
-        <li>Scammers who talk you through a "security process" do not want you to go offline — that alone is a red flag</li>
+        <li>After enabling, you can manually re-enable WiFi while staying off cellular, which is useful if you want internet but not calls</li>
+        <li>Scammers who talk you through a "security process" do not want you to go offline, and that alone is a red flag</li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📶 Public WiFi &amp; Auto-Connect</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M12 20h.01"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/></svg> Public WiFi &amp; Auto-Connect</h3>
       <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:8px;">
-        Auto-connecting to public WiFi means your phone can silently join a network you've never verified — including attacker-controlled networks designed to look like Starbucks, a hotel, or your gym.
+        Auto-connecting to public WiFi means your phone can silently join a network you've never verified, including attacker-controlled networks designed to look like Starbucks, a hotel, or your gym.
       </div>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:14px;">
         <li><strong style="color:var(--white);">iPhone:</strong> Settings → WiFi → tap ⓘ next to a saved network → turn off Auto-Join. Or: Settings → WiFi → Ask to Join Networks → Ask (instead of Automatic)</li>
         <li><strong style="color:var(--white);">Android:</strong> Settings → Network &amp; Internet → WiFi → WiFi preferences → turn off Connect to open networks</li>
-        <li>If you use public WiFi regularly, run a VPN on your phone — Proton VPN is free and trustworthy</li>
+        <li>If you use public WiFi regularly, run a VPN on your phone. Proton VPN is free and trustworthy</li>
         <li><strong style="color:var(--white);">Never</strong> do banking or enter passwords on unsecured public WiFi without a VPN</li>
       </ul>
 
       <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px; margin-top:8px;">
-        Not every setting is required — treat these as a priority list, not a pass/fail checklist. A phone with 5 of these in place is dramatically harder to compromise than one with none.
+        Not every setting is required, so treat these as a priority list, not a pass/fail checklist. A phone with 5 of these in place is dramatically harder to compromise than one with none.
       </div>
     </div>
 
     <!-- ANDROID -->
     <div class="pane" id="msp-android">
-      <h3 class="tool-section-label" style="margin-bottom:12px;">🤖 Android 16 — Top 10 Settings</h3>
-      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">Paths shown for stock Android 16. Samsung, Pixel, and other manufacturers may label settings slightly differently — use Search in your Settings app if a path doesn't match.</div>
+      <h3 class="tool-section-label" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg> Android 16: Top 10 Settings</h3>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">Paths shown for stock Android 16. Samsung, Pixel, and other manufacturers may label settings slightly differently, so use Search in your Settings app if a path doesn't match.</div>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🛡️ Device Protection</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Device Protection</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>
-          <strong style="color:var(--white);">Advanced Protection Mode</strong> — Google's maximum security mode. Requires hardware keys for sign-in, blocks sideloaded apps from accessing sensitive permissions, and activates all available protections at once.<br>
+          <strong style="color:var(--white);">Advanced Protection Mode</strong>: Google's maximum security mode. Requires hardware keys for sign-in, blocks sideloaded apps from accessing sensitive permissions, and activates all available protections at once.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Security &amp; privacy → Advanced Protection</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Google Play Protect</strong> — continuously scans every app on your device for malware, even apps you installed months ago. Should be on by default; verify it's active.<br>
+          <strong style="color:var(--white);">Google Play Protect</strong>: continuously scans every app on your device for malware, even apps you installed months ago. Should be on by default; verify it's active.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Play Store → profile icon → Play Protect → make sure it's on</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Block unknown source installs</strong> — prevents any app from being installed outside the Play Store. This shuts down the most common malware delivery method: a link texted to you that installs a fake app.<br>
+          <strong style="color:var(--white);">Block unknown source installs</strong>: prevents any app from being installed outside the Play Store. This shuts down the most common malware delivery method: a link texted to you that installs a fake app.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Special app access → Install unknown apps → confirm all show "Not Allowed"</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Automatic system updates</strong> — patches security vulnerabilities the moment they're fixed, without waiting for you to remember.<br>
+          <strong style="color:var(--white);">Automatic system updates</strong>: patches security vulnerabilities the moment they're fixed, without waiting for you to remember.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → System → Software update → Auto-update → on</span>
         </li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📍 Anti-Theft</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> Anti-Theft</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>
-          <strong style="color:var(--white);">Theft Detection Lock</strong> — uses motion sensors and AI to detect if your phone is suddenly grabbed and run off with. Locks the screen automatically.<br>
+          <strong style="color:var(--white);">Theft Detection Lock</strong>: uses motion sensors and AI to detect if your phone is suddenly grabbed and run off with. Locks the screen automatically.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Security &amp; privacy → Device unlock → Theft protection → Theft Detection Lock</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Offline Device Lock</strong> — locks your phone if it's been offline for an extended period. Prevents a thief from putting it in a signal-blocking bag and bypassing lock screen.<br>
+          <strong style="color:var(--white);">Offline Device Lock</strong>: locks your phone if it's been offline for an extended period. Prevents a thief from putting it in a signal-blocking bag and bypassing lock screen.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Security &amp; privacy → Device unlock → Theft protection → Offline Device Lock</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Find Hub</strong> (formerly Find My Device) — locate, ring, lock, or remotely wipe your phone if lost or stolen. Set this up before you need it.<br>
+          <strong style="color:var(--white);">Find Hub</strong> (formerly Find My Device): locate, ring, lock, or remotely wipe your phone if lost or stolen. Set this up before you need it.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Google → All services → Personal &amp; device safety → Find Hub</span>
         </li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">💬 Calls &amp; Messages</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Calls &amp; Messages</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>
-          <strong style="color:var(--white);">Scam Protection in Messages</strong> — Google Messages automatically detects and warns you about likely scam texts. Keep it enabled.<br>
+          <strong style="color:var(--white);">Scam Protection in Messages</strong>: Google Messages automatically detects and warns you about likely scam texts. Keep it enabled.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Messages app → profile icon → Settings → Spam protection → on</span>
         </li>
         <li>
-          <strong style="color:var(--white);">OTP Protection</strong> — Android 16 automatically hides one-time passcodes from your notifications so shoulder-surfers and screen-recording malware can't capture them. This is automatic — just confirm you're on Android 16.<br>
+          <strong style="color:var(--white);">OTP Protection</strong>: Android 16 automatically hides one-time passcodes from your notifications so shoulder-surfers and screen-recording malware can't capture them. This is automatic, so just confirm you're on Android 16.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → About phone → Android version (confirm 16)</span>
         </li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">✅ Security Checkup</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Security Checkup</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:14px;">
         <li>
-          <strong style="color:var(--white);">Google Security Checkup</strong> — reviews your Google account for weak passwords, compromised accounts, unauthorized access, and recovery options. Takes 2 minutes.<br>
+          <strong style="color:var(--white);">Google Security Checkup</strong>: reviews your Google account for weak passwords, compromised accounts, unauthorized access, and recovery options. Takes 2 minutes.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → tap your Google account → Security tab → Security Checkup</span>
         </li>
       </ul>
 
       <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px; margin-top:8px;">
-        RCS messaging between Android and iPhone is now end-to-end encrypted as of May 2026. Standard SMS is not encrypted — use Signal or WhatsApp for sensitive conversations.
+        RCS messaging between Android and iPhone is now end-to-end encrypted as of May 2026. Standard SMS is not encrypted, so use Signal or WhatsApp for sensitive conversations.
       </div>
     </div>
 
     <!-- IPHONE -->
     <div class="pane" id="msp-iphone">
-      <h3 class="tool-section-label" style="margin-bottom:12px;">🍎 iPhone iOS 26.5 — Top 10 Settings</h3>
+      <h3 class="tool-section-label" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06"/><path d="M10 2c1 .5 2 2 2 5"/></svg> iPhone iOS 26.5: Top 10 Settings</h3>
       <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">Paths shown for iOS 26.5. If a setting is in a slightly different location, use Settings search (magnifying glass at the top of Settings).</div>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🛡️ Device Protection</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Device Protection</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>
-          <strong style="color:var(--white);">Stolen Device Protection</strong> — on by default since iOS 26.4. If your phone is taken to an unfamiliar location, it requires Face ID and adds a 1-hour delay before allowing changes to your Apple ID, passcode, or payment methods. Set the delay to "Always" for maximum protection.<br>
+          <strong style="color:var(--white);">Stolen Device Protection</strong>: on by default since iOS 26.4. If your phone is taken to an unfamiliar location, it requires Face ID and adds a 1-hour delay before allowing changes to your Apple ID, passcode, or payment methods. Set the delay to "Always" for maximum protection.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Face ID &amp; Passcode → Stolen Device Protection → Require Security Delay → Always</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Automatic Updates</strong> — keeps iOS current with the latest security patches without manual intervention.<br>
+          <strong style="color:var(--white);">Automatic Updates</strong>: keeps iOS current with the latest security patches without manual intervention.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → General → Software Update → Automatic Updates → turn both toggles on</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Find My iPhone</strong> — locate, play a sound, lock, or erase your device remotely. Enable all three toggles: Find My iPhone, Find My network, and Send Last Location.<br>
+          <strong style="color:var(--white);">Find My iPhone</strong>: locate, play a sound, lock, or erase your device remotely. Enable all three toggles: Find My iPhone, Find My network, and Send Last Location.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → [your name] → Find My → Find My iPhone → all three on</span>
         </li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">📞 Calls &amp; Messages</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Calls &amp; Messages</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>
-          <strong style="color:var(--white);">Silence Unknown Callers</strong> — automatically silences calls from numbers not in your contacts, recent calls, or Siri suggestions. The call still goes to voicemail, so you won't miss it — you just won't be interrupted mid-task by a scam call.<br>
+          <strong style="color:var(--white);">Silence Unknown Callers</strong>: automatically silences calls from numbers not in your contacts, recent calls, or Siri suggestions. The call still goes to voicemail, so you won't miss it, you just won't be interrupted mid-task by a scam call.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Phone → Screen Unknown Callers → Silence</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Filter Unknown Senders</strong> — moves texts from unknown numbers into a separate "Junk" folder so they don't mix with your real conversations.<br>
+          <strong style="color:var(--white);">Filter Unknown Senders</strong>: moves texts from unknown numbers into a separate "Junk" folder so they don't mix with your real conversations.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Messages → Filter Unknown Senders → on</span>
         </li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🌐 Safari &amp; Browsing</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Safari &amp; Browsing</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>
-          <strong style="color:var(--white);">Fraudulent Website Warning</strong> — Safari checks sites you visit against a database of known phishing and scam pages and blocks them before they load.<br>
+          <strong style="color:var(--white);">Fraudulent Website Warning</strong>: Safari checks sites you visit against a database of known phishing and scam pages and blocks them before they load.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Safari → Fraudulent Website Warning → on</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Block Pop-ups</strong> — eliminates fake virus warnings and tech support scam pop-ups that try to panic you into calling a fake number.<br>
+          <strong style="color:var(--white);">Block Pop-ups</strong>: eliminates fake virus warnings and tech support scam pop-ups that try to panic you into calling a fake number.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Safari → Block Pop-ups → on</span>
         </li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;">🔏 Privacy</h3>
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg> Privacy</h3>
       <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
         <li>
-          <strong style="color:var(--white);">App Tracking Transparency</strong> — prevents apps from tracking your activity across other apps and websites. This is data scammers buy to build targeting profiles.<br>
+          <strong style="color:var(--white);">App Tracking Transparency</strong>: prevents apps from tracking your activity across other apps and websites. This is data scammers buy to build targeting profiles.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Privacy &amp; Security → Tracking → Allow Apps to Request to Track → off</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Mail Privacy Protection</strong> — hides your IP address and prevents email senders from knowing when you opened their message. Stops tracking pixels used in phishing campaigns to validate active email addresses.<br>
+          <strong style="color:var(--white);">Mail Privacy Protection</strong>: hides your IP address and prevents email senders from knowing when you opened their message. Stops tracking pixels used in phishing campaigns to validate active email addresses.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → Apps → Mail → Privacy Protection → Protect Mail Activity → on</span>
         </li>
         <li>
-          <strong style="color:var(--white);">Review Trusted Phone Numbers</strong> — confirm only your own numbers appear. Scammers who access your Apple ID sometimes add their own number as a recovery contact.<br>
+          <strong style="color:var(--white);">Review Trusted Phone Numbers</strong>: confirm only your own numbers appear. Scammers who access your Apple ID sometimes add their own number as a recovery contact.<br>
           <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings → [your name] → Sign-In &amp; Security → Two-Factor Authentication → Trusted Phone Numbers</span>
         </li>
       </ul>
 
       <div style="font-size:0.75rem; color:rgba(201,168,76,0.5); border-top:1px solid rgba(201,168,76,0.12); padding-top:14px; margin-top:8px;">
-        RCS messaging between iPhone and Android is now end-to-end encrypted as of May 2026. iMessage between iPhones remains encrypted. Standard SMS is not — use Signal for sensitive conversations.
+        RCS messaging between iPhone and Android is now end-to-end encrypted as of May 2026. iMessage between iPhones remains encrypted. Standard SMS is not, so use Signal for sensitive conversations.
+      </div>
+    </div>
+
+    <div class="pane" id="msp-windows">
+      <h3 class="tool-section-label" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><rect width="18" height="12" x="3" y="4" rx="2"/><path d="M2 20h20"/><path d="M12 16v4"/></svg> Windows 11: Privacy and Security Settings</h3>
+      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">None of these are required and nothing here is broken if you leave it alone. Windows works fine as it ships. These are the settings that give you more privacy or more protection if you want them, with a plain explanation of what each one actually does so you can decide for yourself. Paths are for Windows 11. Windows 10 labels differ slightly, so use the search box at the top of Settings if a path does not match.</div>
+
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg> Data Windows Collects</h3>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Advertising ID</strong>: gives every app on your PC a shared identifier so your activity across different apps can be combined into one advertising profile. Turning it off does not reduce how many ads you see, it stops them being tied together into a profile of you<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; General</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Optional diagnostic data</strong>: sends Microsoft details about how you use apps and which websites you visit, beyond the basic data needed for updates. Setting this to Required only keeps security updates working normally<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Diagnostics &amp; feedback</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Tailored experiences</strong>: lets Microsoft use that diagnostic data to show you personalized tips, ads, and suggestions inside Windows itself<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Diagnostics &amp; feedback</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Activity history</strong>: records the apps and services you use so it can be synced across your devices. Turning it off keeps that record local<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Activity history</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Recall and snapshots</strong>: is on newer Copilot PCs only. It periodically screenshots what is on your screen so you can search your past activity. If your PC has it, you can switch it off entirely or exclude specific apps and websites<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Recall &amp; snapshots</span>
+        </li>
+      </ul>
+
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg> App Permissions</h3>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Location</strong>: shows every app allowed to know where your computer is, and a history of recent location use. Most desktop apps have no reason to need it<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Location</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Camera and microphone</strong>: list which apps can turn each one on. Worth a look because a remote access scam that got onto a machine relies on permissions already being granted<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Camera, then Microphone</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Startup apps</strong>: are programs that launch every time you boot, often preinstalled by the manufacturer. Turning off the ones you do not recognize speeds up startup and reduces what runs quietly in the background<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Apps &#8594; Startup</span>
+        </li>
+      </ul>
+
+      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> Protection Worth Turning On</h3>
+      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li>
+          <strong style="color:var(--white);">Windows Security real-time protection</strong>: is the built-in antivirus and it is genuinely capable. Confirm it is on and that scans are current, particularly if a third party antivirus expired and left the machine unprotected<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Windows Security &#8594; Virus &amp; threat protection</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Device encryption</strong>: scrambles the drive so files cannot be read if the computer is stolen. Many newer machines support it and have it switched off<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Device encryption, or search BitLocker</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Windows Hello sign-in</strong>: replaces a typed password with a PIN, fingerprint, or face that never leaves the device<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Accounts &#8594; Sign-in options</span>
+        </li>
+        <li>
+          <strong style="color:var(--white);">Windows Update</strong>: closes the security holes that malware and remote access tools rely on. Check that it is not paused and that optional driver updates are not sitting unapplied<br>
+          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Windows Update</span>
+        </li>
+      </ul>
+
+      <div style="background:rgba(232,64,64,0.06); border:1px solid rgba(232,64,64,0.18); border-radius:8px; padding:12px 15px; font-size:0.78rem; color:var(--muted); line-height:1.6;">
+        <strong style="color:var(--red-2);">One thing that matters more than any setting above.</strong> Microsoft will never call you, and no real Windows error puts a phone number on your screen. Every popup claiming your PC is infected and telling you to call support is a scam, and the goal is always to get remote access to the machine you are reading this on.
       </div>
     </div>
 
