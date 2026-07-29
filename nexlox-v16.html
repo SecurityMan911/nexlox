@@ -3944,7 +3944,7 @@ const SEARCH_INDEX = [
 
   // MOBILE SECURITY
   { terms:['device security','mobile security','phone security','cell phone security','smartphone security','phone hardening','computer security','pc security','mobile scam protection','phone scam prevention'], label:'Device Security', desc:'Windows, iPhone, and Android settings that add privacy and protection', badge:'MOBILE', action:()=>open_('mobile') },
-  { terms:['windows security','windows privacy','windows 11 settings','windows telemetry','microsoft tracking','pc privacy settings','windows advertising id','activity history','windows recall','diagnostic data','debloat windows','startup apps','bitlocker','windows defender'], label:'Windows Privacy and Security Settings', desc:'What Windows collects, which app permissions to review, and the protections worth turning on', badge:'MOBILE', action:()=>_navTab('mobile','mstab','windows') },
+  { terms:['windows scam','fake virus warning','fake microsoft warning','computer says infected','popup wont close','tech support popup','microsoft called me','remote access scam','anydesk scam','teamviewer scam','quick assist scam','powershell scam','windows key r scam','event viewer hacked','fake defender alert','pc scam'], label:'Windows Scam Warning Signs', desc:'Fake Windows alerts, remote access requests, command tricks, and the warnings scammers tell you to ignore', badge:'MOBILE', action:()=>_navTab('mobile','mstab','windows') },
   { terms:['android security','android settings','android hardening','android scam protection','android 16 security','advanced protection mode','google play protect'], label:'🤖 Android Security Settings', desc:'Top 10 Android security settings to enable right now', badge:'MOBILE', action:()=>_navTab('mobile','mstab','android') },
   { terms:['iphone security','ios security','iphone settings','iphone hardening','ios 26 security','stolen device protection','screen unknown callers'], label:'🍎 iPhone Security Settings', desc:'Top 10 iOS security settings to enable right now', badge:'MOBILE', action:()=>_navTab('mobile','mstab','iphone') },
   { terms:['airplane mode','airplane mode scam','phone killswitch','cut internet phone','disconnect phone internet'], label:'✈️ Airplane Mode as Killswitch', desc:'Cut all wireless instantly — cellular, WiFi, and Bluetooth — in one tap', badge:'MOBILE', action:()=>open_('mobile') },
@@ -6054,74 +6054,43 @@ window.addEventListener('scroll', () => {
     </div>
 
     <div class="pane" id="msp-windows">
-      <h3 class="tool-section-label" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><rect width="18" height="12" x="3" y="4" rx="2"/><path d="M2 20h20"/><path d="M12 16v4"/></svg> Windows 11: Privacy and Security Settings</h3>
-      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:18px;">None of these are required and nothing here is broken if you leave it alone. Windows works fine as it ships. These are the settings that give you more privacy or more protection if you want them, with a plain explanation of what each one actually does so you can decide for yourself. Paths are for Windows 11. Windows 10 labels differ slightly, so use the search box at the top of Settings if a path does not match.</div>
-
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg> Data Windows Collects</h3>
-      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
-        <li>
-          <strong style="color:var(--white);">Advertising ID</strong>: gives every app on your PC a shared identifier so your activity across different apps can be combined into one advertising profile. Turning it off does not reduce how many ads you see, it stops them being tied together into a profile of you<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; General</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Optional diagnostic data</strong>: sends Microsoft details about how you use apps and which websites you visit, beyond the basic data needed for updates. Setting this to Required only keeps security updates working normally<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Diagnostics &amp; feedback</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Tailored experiences</strong>: lets Microsoft use that diagnostic data to show you personalized tips, ads, and suggestions inside Windows itself<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Diagnostics &amp; feedback</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Activity history</strong>: records the apps and services you use so it can be synced across your devices. Turning it off keeps that record local<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Activity history</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Recall and snapshots</strong>: is on newer Copilot PCs only. It periodically screenshots what is on your screen so you can search your past activity. If your PC has it, you can switch it off entirely or exclude specific apps and websites<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Recall &amp; snapshots</span>
-        </li>
+<h3 class="tool-section-label" style="margin-bottom:10px;margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><rect width="18" height="12" x="3" y="4" rx="2"/><path d="M2 20h20"/><path d="M12 16v4"/></svg> Windows: Spotting a Scam in Progress</h3>      <div style="font-size:0.8rem; line-height:1.65; color:var(--muted); margin-bottom:16px;">Almost every scam that targets a Windows computer works the same way. Someone creates urgency, then asks you to install something, run a command, approve a prompt, read back a code, or hand over control of the machine. This section is about recognizing that moment. It is not a settings walkthrough, because knowing what a scam looks like is what actually saves you.</div>
+      <div style="background:rgba(232,64,64,0.07); border:1px solid rgba(232,64,64,0.22); border-radius:8px; padding:13px 16px; font-size:0.82rem; color:var(--white); line-height:1.6; margin-bottom:20px;">
+        <strong style="color:var(--red-2);">The one rule.</strong> Stop whenever someone creates urgency and asks you to install something, type a command, approve a Windows prompt, give them a code, or take control of your computer. Everything below is a version of that same moment.
+      </div>
+<h3 class="tool-section-label" style="margin-bottom:10px;font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--red-2)"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Fake Alerts and Fake Virus Warnings</h3><ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li><strong style="color:var(--white);">A website can look exactly like Windows.</strong> Scam pages imitate Windows Security, Microsoft Defender, virus scan results, and even blue screen errors. They go fullscreen, play an alarm sound, freeze the browser, and tell you the computer is infected. None of it is Windows. It is a web page.</li>
+        <li><strong style="color:var(--white);">The giveaway never changes.</strong> A real Microsoft warning will never show you a phone number to call. If there is a number on the screen, it is a scam, every single time.</li>
+        <li><strong style="color:var(--white);">How to get out of one.</strong> Press Alt and F4 together to close the window. If that does not work, press Ctrl, Shift, and Esc together to open Task Manager, select your browser in the list, and choose End task. Do not click anything inside the warning itself, including the X, because the buttons are part of the fake page.</li>
+        <li><strong style="color:var(--white);">Check the real source instead.</strong> Windows keeps its own record of anything Defender actually found, under Windows Security and then Protection history. If a scary popup claims your machine is infected and nothing appears there, the popup was fake.</li>
+        <li><strong style="color:var(--white);">That notification may not be from Windows at all.</strong> Alerts that slide in from the corner saying your antivirus expired or that threats were detected are often sent by a website you once clicked Allow on, and they keep arriving even when the browser looks closed. Genuine security software does not sell you a renewal through a popup.</li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg> App Permissions</h3>
-      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
-        <li>
-          <strong style="color:var(--white);">Location</strong>: shows every app allowed to know where your computer is, and a history of recent location use. Most desktop apps have no reason to need it<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Location</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Camera and microphone</strong>: list which apps can turn each one on. Worth a look because a remote access scam that got onto a machine relies on permissions already being granted<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Camera, then Microphone</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Startup apps</strong>: are programs that launch every time you boot, often preinstalled by the manufacturer. Turning off the ones you do not recognize speeds up startup and reduces what runs quietly in the background<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Apps &#8594; Startup</span>
-        </li>
+<h3 class="tool-section-label" style="margin-bottom:10px;font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg> Remote Access: Who Called Who</h3><ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li><strong style="color:var(--white);">Remote support is normal when you started it.</strong> If you looked up a technician, called them yourself, and agreed to a session, that is ordinary computer help and there is nothing wrong with it. A professional you hired will explain what they are doing and will not rush you.</li>
+        <li><strong style="color:var(--white);">It is a scam when the contact came to you.</strong> A popup told you to call, or someone phoned claiming to be from Microsoft, your bank, Amazon, PayPal, the IRS, or law enforcement, and then asked to connect to your computer. None of those organizations need remote access to fix an account or send a refund. Nobody legitimate calls you first and asks to get into your machine.</li>
+        <li><strong style="color:var(--white);">The tools they ask you to install.</strong> Quick Assist, AnyDesk, TeamViewer, ScreenConnect, UltraViewer, Zoho Assist, and RemotePC are all real programs used by real support teams. That is exactly why scammers use them. The software is not the problem. Being asked to install it by someone who contacted you is the problem.</li>
+        <li><strong style="color:var(--white);">While they are connected they can see everything.</strong> That includes your open bank tab, your saved passwords, and your files. They can also move your mouse, install more software, and hide what they are doing behind a black screen.</li>
+        <li><strong style="color:var(--white);">If you already let someone in.</strong> Disconnect from the internet, then <a href="#" onclick="close_('mobile'); openScenario('remote'); return false;" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35);">walk through the recovery steps for a device someone accessed remotely</a>.</li>
       </ul>
 
-      <h3 class="tool-section-label" style="margin-bottom:10px; font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> Protection Worth Turning On</h3>
-      <ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
-        <li>
-          <strong style="color:var(--white);">Windows Security real-time protection</strong>: is the built-in antivirus and it is genuinely capable. Confirm it is on and that scans are current, particularly if a third party antivirus expired and left the machine unprotected<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Windows Security &#8594; Virus &amp; threat protection</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Device encryption</strong>: scrambles the drive so files cannot be read if the computer is stolen. Many newer machines support it and have it switched off<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Privacy &amp; security &#8594; Device encryption, or search BitLocker</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Windows Hello sign-in</strong>: replaces a typed password with a PIN, fingerprint, or face that never leaves the device<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Accounts &#8594; Sign-in options</span>
-        </li>
-        <li>
-          <strong style="color:var(--white);">Windows Update</strong>: closes the security holes that malware and remote access tools rely on. Check that it is not paused and that optional driver updates are not sitting unapplied<br>
-          <span style="color:rgba(201,168,76,0.65); font-size:0.75rem;">Settings &#8594; Windows Update</span>
-        </li>
+<h3 class="tool-section-label" style="margin-bottom:10px;font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></svg> Commands, Prompts, and Fake Proof</h3><ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li><strong style="color:var(--white);">Never type or paste a command someone gave you.</strong> If a caller, a popup, a text, or a social media message tells you to press the Windows key and R together and paste something in, stop. A single line can install malware, steal saved passwords, or open a permanent back door. The same goes for anything they want you to run in Command Prompt, PowerShell, Terminal, or Registry Editor.</li>
+        <li><strong style="color:var(--white);">Event Viewer is their favorite prop.</strong> Scammers open it and point at ordinary warnings and errors as proof your computer is hacked. Every Windows machine on earth is full of those entries. They are normal and they mean nothing.</li>
+        <li><strong style="color:var(--white);">Treat the blue permission prompt as a checkpoint.</strong> When Windows asks whether you want to allow an app to make changes to your device, that is your last chance to stop a program from getting full control. Only click Yes when you personally opened or installed the thing, you recognize its name, and it makes sense that it is asking.</li>
+        <li><strong style="color:var(--white);">Verification codes are never shared.</strong> Nobody legitimate will ask you to read back a code that was texted or emailed to you, and no real support process needs one.</li>
       </ul>
 
-      <div style="background:rgba(232,64,64,0.06); border:1px solid rgba(232,64,64,0.18); border-radius:8px; padding:12px 15px; font-size:0.78rem; color:var(--muted); line-height:1.6;">
-        <strong style="color:var(--red-2);">One thing that matters more than any setting above.</strong> Microsoft will never call you, and no real Windows error puts a phone number on your screen. Every popup claiming your PC is infected and telling you to call support is a scam, and the goal is always to get remote access to the machine you are reading this on.
+<h3 class="tool-section-label" style="margin-bottom:10px;font-size:0.72rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.125em;width:1em;height:1em;color:var(--gold)"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Downloads and the Warnings Scammers Want You to Ignore</h3><ul style="font-size:0.8rem; line-height:1.7; color:var(--muted); padding-left:18px; margin-bottom:18px;">
+        <li><strong style="color:var(--white);">Being told to turn off your protection is the scam.</strong> If anyone tells you to click Run anyway, disable Microsoft Defender, turn off SmartScreen, add an exclusion, allow a detected threat, or switch off the firewall, that is the entire attack. They are asking you to remove the guardrail that is currently stopping them.</li>
+        <li><strong style="color:var(--white);">Windows hides file endings by default.</strong> That is why a file named Invoice.pdf can actually be Invoice.pdf.exe, and Photo.jpg can be Photo.jpg.scr. The dangerous part is the last bit, and it is hidden unless file extensions are switched on. Anything arriving unexpectedly that ends in exe, msi, scr, bat, cmd, js, vbs, ps1, or comes as a zip or iso deserves real suspicion.</li>
+        <li><strong style="color:var(--white);">A warning is information, not an obstacle.</strong> Windows blocks a download when it does not recognize it or has seen it flagged elsewhere. That is the system working. Clicking through it because a stranger on the phone said to is how the machine gets infected.</li>
+      </ul>
+
+      <div style="font-size:0.78rem; color:var(--muted-2); line-height:1.6; border-top:1px solid var(--border); padding-top:14px;">
+        Turning these protections on properly, checking whether they are already active, and cleaning up a machine that has been through one of these is hands-on work. This section is here so you know what to watch for and what questions to ask.
       </div>
     </div>
-
   </div>
 </div>
 </div>
